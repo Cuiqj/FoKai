@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf:template>
+	{{! 公路赔（补）偿案件勘验检查笔录 }}
+	<pdf:paper width="595.276" height="841.89" fontName="SimSun" fontSize="10.5" offset="0,1" />
+	<pdf:content>
+        <!--   当事人或 当事人代表   -->
+        <pdf:line fromPoint="30,100" toPoint="195,100" lineWidth="0.5" />
+        <pdf:line fromPoint="30,100" toPoint="30,110.5" lineWidth="0.5" />
+        <pdf:text point="22,72">勘验人1</pdf:text>
+        <pdf:text point="22,82.5">勘验人2</pdf:text>
+        <pdf:text point="22,114">被邀请人</pdf:text>
+        <pdf:text point="22,124.5">记录人</pdf:text>
+        
+        <!--   当事人或 当事人代表   -->
+        <pdf:text point="22,93">当事人</pdf:text>
+        <pdf:table rect="{59,89.5},{44,21}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
+            <pdf:tr height="10.5">
+                <pdf:td width="44" textAlignment="left" static="NO">{{ caseProve.party.name }}</pdf:td>
+            </pdf:tr>
+            <pdf:tr height="10.5">
+                <pdf:td width="44"  textAlignment="left" static="NO">{{ caseProve.attorney.name }}</pdf:td>
+            </pdf:tr>
+        </pdf:table>
+        <pdf:text point="108.5,93" >单位及职务</pdf:text>
+        <pdf:table rect="{133,89.5},{62,21}" borderWidth="0.1" lineWidth="0.1" padding="1">
+            <pdf:tr height="10.5">
+                <pdf:td width="62" fontSize="10" textAlignment="left" static="NO">{{ caseProve.party.org_duty }}</pdf:td>
+            </pdf:tr>
+            <pdf:tr height="10.5">
+                <pdf:td width="62" fontSize="10" textAlignment="left" static="NO">{{ caseProve.attorney.org_duty }}</pdf:td>
+            </pdf:tr>
+        </pdf:table>
+        <pdf:text point="22,103.5">或</pdf:text>
+        <pdf:text point="33.5,103.5">当事人代表</pdf:text>
+        <pdf:text point="108.5,103.5">单位及职务</pdf:text>
+        
+        
+        
+		<pdf:text point="50.5,15.5" fontName="SimHei" fontSize="20.5">公路赔(补)偿案件勘验检查笔录</pdf:text>
+		<pdf:text point="130,30.5">案号（</pdf:text>
+		<pdf:text point="142.5,30.5" static="NO">{{ case.mark2 }}</pdf:text>
+		<pdf:text point="151,30.5">）年（</pdf:text>
+<!--		<pdf:text point="163,32" static="NO">{{ case.mark3 }}</pdf:text>-->
+        <pdf:paragraph rect="{163,27},{20,31.5}" lineHeight="4" static="NO">{{ case.mark3 }} </pdf:paragraph>
+		<pdf:text point="182,30.5">）号</pdf:text>
+		<pdf:table rect="{18,37},{177,233.5}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
+			<pdf:tr height="10.5">
+				<pdf:td width="177" textAlignment="left">
+                    <pdf:text point="mid-left:4,5.5">案由：</pdf:text>
+					<pdf:text point="mid-left:20,5.5" static="NO">{{ caseProve.description }}</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.5">
+				<pdf:td width="177" textAlignment="left">
+                    <pdf:text point="mid-left:4,5.5">勘验时间：</pdf:text>
+					<pdf:text point="mid-left:24,5.5" static="NO">{{ caseProve.sDate.year }}</pdf:text>
+					<pdf:text point="mid-left:36,5.5">年</pdf:text>
+					<pdf:text point="mid-left:43.5,5.5" static="NO">{{ caseProve.sDate.month }}</pdf:text>
+					<pdf:text point="mid-left:50,5.5">月</pdf:text>
+					<pdf:text point="mid-left:57.5,5.5" static="NO">{{ caseProve.sDate.day }}</pdf:text>
+					<pdf:text point="mid-left:64,5.5">日</pdf:text>
+					<pdf:text point="mid-left:71.5,5.5" static="NO">{{ caseProve.sDate.hour }}</pdf:text>
+					<pdf:text point="mid-left:78,5.5">时</pdf:text>
+					<pdf:text point="mid-left:85.5,5.5" static="NO">{{ caseProve.sDate.minute }}</pdf:text>
+					<pdf:text point="mid-left:92,5.5">分至</pdf:text>
+					<pdf:text point="mid-left:103.5,5.5" static="NO">{{ caseProve.eDate.year }}</pdf:text>
+					<pdf:text point="mid-left:115.5,5.5">年</pdf:text>
+					<pdf:text point="mid-left:123,5.5" static="NO">{{ caseProve.eDate.month }}</pdf:text>
+					<pdf:text point="mid-left:129.5,5.5">月</pdf:text>
+					<pdf:text point="mid-left:137,5.5" static="NO">{{ caseProve.eDate.day }}</pdf:text>
+					<pdf:text point="mid-left:143.5,5.5">日</pdf:text>
+					<pdf:text point="mid-left:151,5.5" static="NO">{{ caseProve.eDate.hour }}</pdf:text>
+					<pdf:text point="mid-left:157.5,5.5">时</pdf:text>
+					<pdf:text point="mid-left:165,5.5" static="NO">{{ caseProve.eDate.minute }}</pdf:text>
+					<pdf:text point="mid-left:171.5,5.5">分</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.5">
+				<pdf:td width="177" textAlignment="left">
+					<pdf:text point="mid-left:4,5.5">天气情况：</pdf:text>
+					<pdf:text point="mid-left:25,5.5" static="NO">{{ case.weather }}</pdf:text>
+					<pdf:text point="mid-left:60,5.5">勘验场所：</pdf:text>
+                    <pdf:text point="mid-left:78,5.5" maxWidth="98" static="NO">{{ caseProve.inpect_place }}</pdf:text>
+<!--                    <pdf:paragraph rect="{80,5.5},{90,8}" lineHeight="4" static="NO">{{ caseProve.inpect_place }}</pdf:paragraph>-->
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.5">
+
+                <pdf:td width="41" textAlignment="left"></pdf:td>    <!--    勘验人1的位置            -->
+                
+				<pdf:td width="44" textAlignment="left" static="NO">{{ caseProve.inspector1.name }}</pdf:td>
+				<pdf:td width="30">单位及职务</pdf:td>
+				<pdf:td width="62" fontSize="10" textAlignment="left" static="NO">{{ caseProve.inspector1.org_duty }}</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.5">
+				<pdf:td width="41" textAlignment="left"></pdf:td>     <!--    勘验人2的位置            -->
+				<pdf:td width="44" textAlignment="left" static="NO">{{ caseProve.inspector2.name }}</pdf:td>
+				<pdf:td width="30">单位及职务</pdf:td>
+				<pdf:td width="62" fontSize="10" textAlignment="left" static="NO">{{ caseProve.inspector2.org_duty }}</pdf:td>
+            </pdf:tr>
+            <!--<pdf:tr height="10.5">
+                <pdf:td width="40" textAlignment="left">当 事 人</pdf:td>
+                <pdf:td width="30" textAlignment="left" static="NO">{{ caseProve.party.name }}</pdf:td>
+                <pdf:td width="41">单位及职务</pdf:td>
+                <pdf:td width="60" fontSize="10" textAlignment="left" static="NO">{{ caseProve.party.org_duty }}</pdf:td>
+            </pdf:tr>
+            <pdf:tr height="10.5" borderWidth="0" lineWidth="0" >
+                <pdf:td width="9">或</pdf:td>
+                <pdf:td width="31">当事人代表</pdf:td>
+                <pdf:td width="30"  textAlignment="left" static="NO">{{ caseProve.attorney.name }}</pdf:td>
+                <pdf:td width="41">单位及职务</pdf:td>
+                <pdf:td width="60" fontSize="10" textAlignment="left" static="NO">{{ caseProve.attorney.org_duty }}</pdf:td>
+            </pdf:tr>-->
+            <pdf:tr height="21">
+            </pdf:tr>
+			<pdf:tr height="10.5">
+				<pdf:td width="41" textAlignment="left"></pdf:td>   <!--   被邀请人的位置            -->
+				<pdf:td width="44"  textAlignment="left" static="NO">{{ caseProve.invitee.name }}</pdf:td>
+				<pdf:td width="30">单位及职务</pdf:td>
+				<pdf:td width="62" fontSize="10" textAlignment="left" static="NO">{{ caseProve.invitee.org_duty }}</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.5">
+				<pdf:td width="41" textAlignment="left"></pdf:td>     <!--  记录人的位置            -->
+				<pdf:td width="44" point="mid-left:0,9" textAlignment="left" static="NO">{{ caseProve.recorder.name }}</pdf:td>
+				<pdf:td width="30">单位及职务</pdf:td>
+				<pdf:td width="62" point="mid-left:0,7" fontSize="10" textAlignment="left" static="NO">{{ caseProve.recorder.org_duty }}</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="118">
+				<pdf:td width="177">
+                    <pdf:text point="mid-left:4,5">勘验情况及结果：</pdf:text>
+					<pdf:paragraph rect="{3.5,9},{170.5,75}" lineHeight="6" static="NO">{{ caseProve.inspect_result }}</pdf:paragraph>
+                    <pdf:paragraph rect="{60,80},{98,6}" lineHeight="6">请对上述内容进行复核，并签名确定。以下空白</pdf:paragraph>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.5">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:4,5.5">勘验人（签名）</pdf:text>
+					<pdf:text point="mid-left:97,5.5">记录人（签名）</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.5">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:4,5.5">被邀请人（签名）</pdf:text>
+					<pdf:text point="mid-left:82.5,5.5">当事人（单位代表签名）</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+		</pdf:table>
+		<pdf:text point="18.5,272">（本页填写不下的内容，或需绘制勘验及贴照片的，可另附纸。）</pdf:text>
+	</pdf:content>
+</pdf:template>	

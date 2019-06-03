@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf:template>
+    {{! 公路赔（补）偿案件调查报告 }}
+    <pdf:paper width="595.276" height="841.89" fontName="SimSun" fontSize="10.5" offset="0,3" />
+    <pdf:content>
+        <pdf:text point="65,20" fontName="SimHei" fontSize="18">公路赔（补）偿案件调查报告</pdf:text>
+        <pdf:table rect="{30,40},{10,200.5}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
+            <pdf:tr height="31.5">
+                <pdf:td width="10">
+                    <pdf:text point="mid-left:3,11" fontSize="10">案</pdf:text>
+                    <pdf:text point="mid-left:3,21" fontSize="10">由</pdf:text>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="33">
+                <pdf:td width="10">
+                    <pdf:paragraph rect="{5,9},{4,20}" lineHeight="4" >当事人</pdf:paragraph>
+                    <pdf:paragraph rect="{1,7},{4,20}" lineHeight="4" >基本情况</pdf:paragraph>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="47">
+                <pdf:td width="10">
+                    <pdf:paragraph rect="{5,15},{4,20}" lineHeight="4" >案件调查</pdf:paragraph>
+                    <pdf:paragraph rect="{1,13},{4,25}" lineHeight="4" >经过及结论</pdf:paragraph>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="49">
+                <pdf:td width="10">
+                    <pdf:paragraph rect="{3,13},{5,25}" lineHeight="4" >所附证据材料</pdf:paragraph>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="30">
+                <pdf:td width="10">
+                    <pdf:paragraph rect="{3,6.5},{5,20}" lineHeight="4" >领导意见</pdf:paragraph>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="10">
+                <pdf:td width="10">
+                    <pdf:text point="mid-left:1.5,5.5" fontSize="10">备注</pdf:text>
+                </pdf:td>
+            </pdf:tr>
+        </pdf:table>
+        <pdf:text point="113,34.5" fontSize ="10" static="NO">{{ case.anhao  }}</pdf:text>
+        <pdf:line fromPoint="119,50.5" toPoint="182,50.5" lineWidth="0.5" />
+        <pdf:line fromPoint="119,61" toPoint="182,61" lineWidth="0.5" />
+        <pdf:table rect="{40,40},{142,200.5}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
+            <pdf:tr height="31.5">
+                <pdf:td width="66" textAlignment="left" static="NO">{{ case.anyou }}</pdf:td>
+                <pdf:td width="13">
+                    <pdf:paragraph rect="{7.5,3},{5,28}" lineHeight="4" >案件调查人员</pdf:paragraph>
+                    <pdf:paragraph rect="{2.5,3},{5,28}" lineHeight="4" >姓名及证件号</pdf:paragraph>
+                </pdf:td>
+                <pdf:td width="63">
+                    <pdf:text point="mid-left:1,5.5" static="NO">{{ case.userone  }}</pdf:text>
+                    <pdf:text point="mid-left:1,16" static="NO">{{ case.usertwo  }}</pdf:text>
+                    <pdf:text point="mid-left:1,26.5" static="NO">{{ case.userthree  }}</pdf:text>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="11">
+                <pdf:td width="66">
+                    <pdf:text point="mid-left:1,5.5" fontSize="10">姓名：</pdf:text>
+                    <pdf:text point="mid-left:11,5.5" fontSize="10" maxWidth="54" static="NO">{{ citizen.citizenname  }}</pdf:text>
+                </pdf:td>
+                <pdf:td width="76">
+                    <pdf:text point="mid-left:1,5.5" fontSize="10">地址：</pdf:text>
+                    <pdf:text point="mid-left:11,5.5" fontSize="10" maxWidth="64" static="NO">{{ citizen.adress  }}</pdf:text>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="11">
+                <pdf:td width="66">
+                    <pdf:text point="mid-left:1,5.5" fontSize="10">单位名称：</pdf:text>
+                    <pdf:text point="mid-left:18,5.5" fontSize="10" maxWidth="47" static="NO">{{ citizen.orgname  }}</pdf:text>
+                </pdf:td>
+                <pdf:td width="76">
+                    <pdf:text point="mid-left:1,5.5" fontSize="10">法定代表人：</pdf:text>
+                    <pdf:text point="mid-left:21.5,5.5" fontSize="10" maxWidth="54" static="NO">{{ citizen.orgnameone  }}</pdf:text>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="11">
+                <pdf:td width="66">
+                    <pdf:text point="mid-left:1,5.5" fontSize="10">车辆所在地：</pdf:text>
+                    <pdf:text point="mid-left:21.5,5.5" fontSize="10" maxWidth="44" static="NO">{{ citizen.caradress  }}</pdf:text>
+                </pdf:td>
+                <pdf:td width="76">
+                    <pdf:text point="mid-left:1,5.5" fontSize="10">车型、车牌号：</pdf:text>
+                    <pdf:text point="mid-left:25,5.5" fontSize="10" maxWidth="50" static="NO">{{ citizen.cartypeandnumber  }}</pdf:text>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="47">
+                <pdf:td width="142">
+                    <!--        首行缩进            -->
+                    <pdf:paragraph rect="{2,2},{138,45}" indent="head:7.5" lineHeight="5" static="NO">{{ case.course }}</pdf:paragraph>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="49">
+                <pdf:td width="142">
+                    <pdf:paragraph rect="{2,2},{138,45}" indent="head:7.5" lineHeight="5" static="NO">{{ case.witness }}</pdf:paragraph>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="30">
+                <pdf:td width="142">
+                    <pdf:paragraph rect="{2,2},{138,28}" indent="head:7.5" lineHeight="5" static="NO">{{ case.leadercomment }}</pdf:paragraph>
+                </pdf:td>
+            </pdf:tr>
+            <pdf:tr height="10">
+                <pdf:td width="142">
+                    <pdf:text point="mid-left:2,5.5" fontSize="10" maxWidth="138" static="NO">{{ case.remark  }}</pdf:text>
+                </pdf:td>
+            </pdf:tr>
+        </pdf:table>
+        <pdf:text point="29.5,241.5">（报告一式两份，其中一份用于向上级备案，本页填写不下的可另附纸）</pdf:text>
+    </pdf:content>
+</pdf:template>

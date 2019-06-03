@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InvestigateTable>
+    <Paper size="A4" width="595" height="842">
+        <Margin top="0" left="0" right="3" bottom="1" />
+        <orientation isPortrait="YES" />
+    </Paper>
+    <StaticTable>
+        <Lines>
+            <defaultLineWidth>0.2</defaultLineWidth>
+            <!--上线-->
+            <line x1="17" y1="50" x2="192" y2="50" />
+        </Lines>
+        <Texts>
+            <defaultFontSize>19</defaultFontSize>
+            <!--标题:-->
+            <Text>
+                <text>广东省公路管理局中江路政大队</text>
+                <fontSize>16</fontSize>
+                <origin x="43" y="24" />
+                <size width="500" height="6" />
+            </Text>
+        </Texts>
+        
+    </StaticTable>
+    <DataTable>
+        <!--设置默认字体-->
+        <DefaultFontSize>19</DefaultFontSize>
+        <!--案发地点-->
+        <UITextField>
+            <origin x="32" y="53.5" />
+            <size width="76" height = "6"/>
+            <content>
+                <data>
+                    <attributeName>full_happen_place</attributeName>
+                </data>
+            </content>
+        </UITextField>
+    </DataTable>
+</InvestigateTable>
+

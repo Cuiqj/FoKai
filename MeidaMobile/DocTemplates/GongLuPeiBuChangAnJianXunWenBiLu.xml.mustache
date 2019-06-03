@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf:template>
+	{{! 公路赔（补）偿案件询问笔录 }}
+	<pdf:paper width="595.276" height="841.89" fontName="SimSun" fontSize="10.5" offset="1,-14" />
+	<pdf:content>
+		<pdf:text point="56,31" fontName="SimHei" fontSize="20.5">公路赔（补）偿案件询问笔录</pdf:text>
+		<pdf:text point="123,43">案号（</pdf:text>
+		<pdf:text point="135.5,42.5" static="NO">{{ case.mark2  }}</pdf:text>
+		<pdf:text point="145.5,43">）年（</pdf:text>
+<!--		<pdf:text point="163,44.5" static="NO">{{ case.mark3 }}</pdf:text>-->
+        <pdf:paragraph rect="{159,40},{24,30}" lineHeight="4" static="NO">{{ case.mark3 }} </pdf:paragraph>
+		<pdf:text point="182,43">）号</pdf:text>
+		<pdf:table rect="{15,49.6},{177,234.4}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
+			<pdf:tr height="10.7">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:3.5,6">时间：</pdf:text>
+                    <pdf:text point="mid-left:18,6" static="NO">{{ caseInquire.date }}</pdf:text>
+					<pdf:text point="mid-left:80,6">地点：</pdf:text>
+                    <pdf:text point="mid-left:93,6" maxWidth = "81" static="NO" >{{ caseInquire.place }}</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.7">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:3.5,6">询问人：</pdf:text>
+                    <pdf:text point="mid-left:21,6" static="NO">{{ caseInquire.inquirerName }}</pdf:text>
+					<pdf:text point="mid-left:80,6">记录人：</pdf:text>
+                    <pdf:text point="mid-left:100,6" static="NO">{{ caseInquire.recorderName }}</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.65">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:3.5,6">被询问人：</pdf:text>
+                    <pdf:text point="mid-left:26,6" static="NO">{{ caseInquire.answererName }}</pdf:text>
+					<pdf:text point="mid-left:48,6">性别：</pdf:text>
+                    <pdf:text point="mid-left:59,6" static="NO">{{ caseInquire.answererSex }}</pdf:text>
+					<pdf:text point="mid-left:77,6">年龄：</pdf:text>
+                    <pdf:text point="mid-left:88,6" static="NO">{{ caseInquire.answererAge }}</pdf:text>
+					<pdf:text point="mid-left:105,6">与案件关系：</pdf:text>
+                    <pdf:text point="mid-left:128,6" static="NO">{{ caseInquire.answererRelation }}</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.65">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:3.5,6">工作单位和职务：</pdf:text>
+                    <pdf:text point="mid-left:40,6" maxWidth="75" static="NO">{{ caseInquire.answererOrgDuty }}</pdf:text>
+					<pdf:text point="mid-left:116,6">电话：</pdf:text>
+                    <pdf:text point="mid-left:128,6" static="NO">{{ caseInquire.answererPhoneNum }}</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.65">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:3.5,6">地址：</pdf:text>
+                    <pdf:text point="mid-left:18,6" maxWidth="96" static="NO">{{ caseInquire.answererAddress }}</pdf:text>
+					<pdf:text point="mid-left:116,6">邮编：</pdf:text>
+                    <pdf:text point="mid-left:128,6" static="NO">{{ caseInquire.answererPostalCode }}</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">
+                <pdf:paragraph rect="{3.5,0},{170,240}" lineHeight="10.3" static="NO">
+                    {{ caseInquire.inquireNote }}
+                </pdf:paragraph>
+            </pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+            <pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+            <pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+            <pdf:tr height="10.65"><pdf:td width="177">{{! 空白行 }}</pdf:td></pdf:tr>
+			<pdf:tr height="10.65">
+                <pdf:td width="177">
+                    <pdf:text point="mid-left:3.5,6">被询问人签名并按印：</pdf:text>
+                </pdf:td>
+<!--                <pdf:td width="177" textAlignment="left">被询问人签名并按印：</pdf:td>-->
+			</pdf:tr>
+			<pdf:tr height="10.65">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:3.5,6">询问人签名：</pdf:text>
+					<pdf:text point="mid-left:72,6">证件号码：</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.65">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:3.5,6">记录人签名：</pdf:text>
+					<pdf:text point="mid-left:72,6">证件号码：</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+			<pdf:tr height="10.65">
+				<pdf:td width="177">
+					<pdf:text point="mid-left:132,4.5">共</pdf:text>
+					<pdf:text point="mid-left:140,4.5" static="NO">{{ page.pageCount  }}</pdf:text>
+					<pdf:text point="mid-left:147,4.5">页第</pdf:text>
+					<pdf:text point="mid-left:160,4.5" static="NO">{{ page.pageNum  }}</pdf:text>
+					<pdf:text point="mid-left:167,4.5">页</pdf:text>
+				</pdf:td>
+			</pdf:tr>
+		</pdf:table>
+		<pdf:text point="16.5,285">（本页填写不下的内容，可另附纸。）</pdf:text>
+	</pdf:content>
+</pdf:template>

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A1F77DEF6E0BC10E65C45E6467CB406C226EF792",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CC9E6813401FC20BF860D9A1BE28999344063381" : 0,
+    "A1F77DEF6E0BC10E65C45E6467CB406C226EF792" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "38F3C5F0-7C35-4FC2-A930-B3D1FD51BE9F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CC9E6813401FC20BF860D9A1BE28999344063381" : "",
+    "A1F77DEF6E0BC10E65C45E6467CB406C226EF792" : "NingHua"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NingHuaMobile",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "NingHuaMobile.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/192.168.0.253\/volume1\/GitRepos\/NingHua\/",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A1F77DEF6E0BC10E65C45E6467CB406C226EF792"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/192.168.0.243\/guizhouluzheng.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CC9E6813401FC20BF860D9A1BE28999344063381"
+    }
+  ]
+}
