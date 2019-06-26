@@ -31,4 +31,8 @@
 
 +(CaseInquire *)inquireForCase:(NSString *)caseID;
 
+
+- (NSString *) inquirer_name_num;
+- (NSString *) recorder_name_num;
+
 @end

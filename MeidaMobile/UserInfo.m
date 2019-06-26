@@ -79,4 +79,6 @@
     NSString *orgName = [org orgname]?[org orgname]:@"";
     return [NSString stringWithFormat:@"%@%@",orgName,duty];
 }
+
+
 @end

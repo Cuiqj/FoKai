@@ -7,7 +7,7 @@
 //
 
 #import "CaseInquire.h"
-
+#import "UserInfo.h"
 
 @implementation CaseInquire
 
@@ -50,6 +50,17 @@
     }else{
         return nil;
     }
+}
+
+- (NSString *)inquirer_name_num{
+    if(self.inquirer_name.length>0)
+        return [UserInfo exelawidforname:self.inquirer_name];
+    return nil;
+}
+- (NSString *) recorder_name_num{
+    if(self.recorder_name.length>0)
+        return [UserInfo exelawidforname:self.recorder_name];
+    return nil;
 }
 
 @end

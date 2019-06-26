@@ -50,7 +50,8 @@ static NSString * const xmlName = @"InvestigateTable";
         self.labelanhao.text = [NSString stringWithFormat:@"案件（%@）年佛开交赔字第（%@）号",caseInfo.case_mark2,caseInfo.full_case_mark3];
     }
     if(proveInfo){
-        self.textcasedesc.text = [NSString stringWithFormat:@"%@%@因交通事故%@", self.citizen.automobile_number, self.citizen.automobile_pattern, proveInfo.case_short_desc];
+//        self.textcasedesc.text = [NSString stringWithFormat:@"%@%@因交通事故%@", self.citizen.automobile_number, self.citizen.automobile_pattern, proveInfo.case_short_desc];
+        self.textcasedesc.text = proveInfo.case_short_desc;
     }
     if (self.caseInvestigate) {
         //    调查人员

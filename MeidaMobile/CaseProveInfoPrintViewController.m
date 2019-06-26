@@ -137,8 +137,8 @@ static NSString * const xmlName = @"ProveInfoTable";
     self.textMark3.text = caseInfo.full_case_mark3;
     
     //案由
-    // self.textcase_short_desc.text = self.caseProveInfo.case_short_desc;
-    self.textcase_short_desc.text = [NSString stringWithFormat:@"%@%@因交通事故%@", citizen.automobile_number, citizen.automobile_pattern, self.caseProveInfo.case_short_desc];
+    self.textcase_short_desc.text = self.caseProveInfo.case_short_desc;
+//    self.textcase_short_desc.text = [NSString stringWithFormat:@"%@%@因交通事故%@", citizen.automobile_number, citizen.automobile_pattern, self.caseProveInfo.case_short_desc];
     
     //勘验时间 没有时默认为当前时间 zhenlintie 2014-03-31
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

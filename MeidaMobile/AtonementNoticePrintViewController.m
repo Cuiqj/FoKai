@@ -133,7 +133,8 @@
     self.textParty.text = citizen.party;
     self.textPartyAddress.text = citizen.address;
     //self.textCaseReason.text = [NSString stringWithFormat:@"驾驶%@%@因交通事故%@", citizen.automobile_number, citizen.automobile_pattern, proveInfo.case_short_desc];
-    self.textCaseReason.text = [NSString stringWithFormat:@"交通事故%@",  proveInfo.case_short_desc];
+//    self.textCaseReason.text = [NSString stringWithFormat:@"交通事故%@",  proveInfo.case_short_desc];
+    self.textCaseReason.text = proveInfo.case_short_desc;
     self.textOrg.text = self.notice.organization_id;
     
     NSArray * tempArr = [self.notice.case_desc componentsSeparatedByString:@"，经与当事人"];

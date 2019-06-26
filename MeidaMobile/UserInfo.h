@@ -34,4 +34,5 @@
 + (NSArray *)allUserInfo;
 
 + (NSString *)orgAndDutyForUserName:(NSString *)username;
+
 @end

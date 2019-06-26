@@ -352,6 +352,7 @@
     
 }
 
+//巡查路线选择
 - (IBAction)textRoadClick:(id)sender {
     if ([self.pickerPopover isPopoverVisible]) {
         [self.pickerPopover dismissPopoverAnimated:YES];
@@ -359,7 +360,7 @@
         UITextField * textfield = sender;
         ListSelectViewController *listPicker=[self.storyboard instantiateViewControllerWithIdentifier:@"ListSelectPoPover"];
         listPicker.delegate = self;
-        NSMutableArray * nsmuarray = [[Systype typeValueForCodeName:@"巡查日常路线"] mutableCopy];
+        NSMutableArray * nsmuarray = [[Systype typeValueForCodeName:@"常用日常巡查路线"] mutableCopy];
         if (nsmuarray.count<=0) {
             listPicker.data = @[@"大麻站-打撒站-萨达站",@"阿斯顿站-大事站"];
         }else{

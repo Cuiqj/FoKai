@@ -265,7 +265,7 @@ enum kUITextFieldTag {
         self.textFieldInquirer.text = caseInquire.inquirer_name;
         self.textFieldRecorder.text = caseInquire.recorder_name;
     } else {
-//        self.inquireTextView.text=[[Systype typeValueForCodeName:@"询问笔录固定用语"] lastObject];
+        // self.inquireTextView.text=[[Systype typeValueForCodeName:@"询问笔录固定用语"] lastObject];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setLocale:[NSLocale currentLocale]];
         [dateFormatter setDateFormat:@"yyyy-M-d HH:mm"];
@@ -322,7 +322,8 @@ enum kUITextFieldTag {
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         self.textInquireDate.text=[dateFormatter stringFromDate:caseInquire.date_inquired];
     } else {
-        self.inquireTextView.text=[[Systype typeValueForCodeName:@"询问笔录固定用语"] lastObject];
+        self.inquireTextView.text = [self generateCommonInquireText];
+//        self.inquireTextView.text=[[Systype typeValueForCodeName:@"询问笔录固定用语"] lastObject];
         self.textLocality.text = localityString;
     }
     inquireSaved=YES;
@@ -831,34 +832,145 @@ enum kUITextFieldTag {
     popoverContent.pickerPopover = self.listSelectPopover;
     [self.listSelectPopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
--(NSString*)generateCommonInquireText{
-    NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-    OrgInfo *orgInfo = [OrgInfo orgInfoForOrgID:[UserInfo userInfoForUserID:currentUserID].organization_id];
-    if (orgInfo != nil && orgInfo.belongtoorg_id != nil && ![orgInfo.belongtoorg_id isEmpty]) {
-        orgInfo = [OrgInfo orgInfoForOrgID:orgInfo.belongtoorg_id];
-    }
-    NSString *organizationName = [orgInfo valueForKey:@"orgname"];
-    NSString* text = [NSString stringWithFormat:@"%@%@%@",@"问：您好，我们是",organizationName,@"的路政员，现在向你了解事故发生的一些情况，请如实提供证言，不得作伪证，否则要负法律责任，清楚吗？\n" ];
-    text = [NSString stringWithFormat:@"%@%@",text,@"答：清楚。\n"];
-    text = [NSString stringWithFormat:@"%@%@",text,@"问：请您陈述事故发生的时间，经过和原因？\n" ];
-    text = [NSString stringWithFormat:@"%@%@%@\n",text,@"答：",[CaseProveInfo generateEventDescForInquire:self.caseID] ];
-    text = [NSString stringWithFormat:@"%@%@",text,@"问：事故车辆是由谁驾驶的？\n" ];
-    text = [NSString stringWithFormat:@"%@%@",text,@"答：是我驾驶的。\n" ];
-    text = [NSString stringWithFormat:@"%@%@",text,@"问：此次事故有无人员伤亡？\n答：" ];
-    text = [NSString stringWithFormat:@"%@%@\n",text,[CaseProveInfo generateWoundDesc:self.caseID] ];
-    
-    NSString *deformDes = @"";
+- (NSString *)setdeformationforstring{
     if (![self.answererName isEmpty]) {
         NSString *nexus = @"当事人";
         if (![self.textNexus.text isEmpty]){
             nexus = self.textNexus.text;
         }
         Citizen *citizen = [Citizen citizenForParty:self.answererName  case:self.caseID nexus:nexus ];
-        deformDes = [self getDeformDescWithCitizenName2:citizen.automobile_number];
+        return [self getDeformDescWithCitizenName2:citizen.automobile_number];
     }
-    text = [NSString stringWithFormat:@"%@问：经勘查,本次事故造成路产损坏：%@，%@\n",text,deformDes,[CaseProveInfo generateDefaultPayReason:self.caseID]];
-    text = [NSString stringWithFormat:@"%@%@",text,@"答：无异议。\n问：你还有什么要补充的吗？\n答：没有。\n" ];
-    text = [NSString stringWithFormat:@"%@%@",text,@"问：你对上述笔录无异议请签名按印？\n答：好。" ];
+    return nil;
+}
+-(NSString*)generateCommonInquireText{
+//    NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
+//    OrgInfo *orgInfo = [OrgInfo orgInfoForOrgID:[UserInfo userInfoForUserID:currentUserID].organization_id];
+//    if (orgInfo != nil && orgInfo.belongtoorg_id != nil && ![orgInfo.belongtoorg_id isEmpty]) {
+//        orgInfo = [OrgInfo orgInfoForOrgID:orgInfo.belongtoorg_id];
+//    }
+//    NSString *organizationName = [orgInfo valueForKey:@"orgname"];
+//    NSString* text = [NSString stringWithFormat:@"%@%@%@",@"问：您好，我们是",organizationName,@"的路政员，现在向你了解事故发生的一些情况，请如实提供证言，不得作伪证，否则要负法律责任，清楚吗？\n" ];
+//    text = [NSString stringWithFormat:@"%@%@",text,@"答：清楚。\n"];
+//    text = [NSString stringWithFormat:@"%@%@",text,@"问：请您陈述事故发生的时间，经过和原因？\n" ];
+//    text = [NSString stringWithFormat:@"%@%@%@\n",text,@"答：",[CaseProveInfo generateEventDescForInquire:self.caseID] ];
+//    text = [NSString stringWithFormat:@"%@%@",text,@"问：事故车辆是由谁驾驶的？\n" ];
+//    text = [NSString stringWithFormat:@"%@%@",text,@"答：是我驾驶的。\n" ];
+//    text = [NSString stringWithFormat:@"%@%@",text,@"问：此次事故有无人员伤亡？\n答：" ];
+//    text = [NSString stringWithFormat:@"%@%@\n",text,[CaseProveInfo generateWoundDesc:self.caseID] ];
+//
+//    NSString *deformDes = @"";
+//    if (![self.answererName isEmpty]) {
+//        NSString *nexus = @"当事人";
+//        if (![self.textNexus.text isEmpty]){
+//            nexus = self.textNexus.text;
+//        }
+//        Citizen *citizen = [Citizen citizenForParty:self.answererName  case:self.caseID nexus:nexus ];
+//        deformDes = [self getDeformDescWithCitizenName2:citizen.automobile_number];
+//    }
+//    text = [NSString stringWithFormat:@"%@问：经勘查,本次事故造成路产损坏：%@，%@\n",text,deformDes,[CaseProveInfo generateDefaultPayReason:self.caseID]];
+//    text = [NSString stringWithFormat:@"%@%@",text,@"答：无异议。\n问：你还有什么要补充的吗？\n答：没有。\n" ];
+//    text = [NSString stringWithFormat:@"%@%@",text,@"问：你对上述笔录无异议请签名按印？\n答：好。" ];
+//    return text;
+    NSString * text;
+//    NSString * text = [[Systype typeValueForCodeName:@"询问笔录固定用语"] lastObject];
+    //\n    不识别
+    if (text == nil) {
+        text = @"问：你好，我们是#机构#的路政员，现在向你了解事故发生的一些情况，请如实提供证言，不得作伪证，否则要负法律责任，清楚吗？\n答：清楚。\n问：请您陈述事故发生的时间，经过和原因？\n答：#事故经过及原因#\n问：您的车辆购买的是哪家保险公司的保险？保险单号是多少？\n答：我购买了#保险公司#的保险。保险单号是\n问：该车的车主是谁？\n答：#车主#。\n问：经路政人员现场勘查，您的车辆损坏公路路产的项目与数量（详见《公路赔（补）偿通知书》及《广东省佛开高速公路路产索赔计价清单》应赔偿路产损坏的金额为#金额#您对上述损坏佛开高速公路路产的项目、数量和赔偿金额是否有异议？\n答：我无异议。\n   请对上述内容复核，并在下面签名确认。\n  （以下空白）";
+    }
+    text= [self paraseMuBan:text];
     return text;
 }
+-(NSString*) paraseMuBan :(NSString*) text{
+    NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
+    //机构
+    NSString *organizationName = [[OrgInfo orgInfoForOrgID:[UserInfo userInfoForUserID:currentUserID].organization_id] valueForKey:@"orgname"];
+    CaseProveInfo *proveInfo = [CaseProveInfo proveInfoForCase:self.caseID];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"MatchLaw" ofType:@"plist"];
+    NSDictionary *matchLaws = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString *payReason = @"";
+    //违反法律
+    NSString *breakStr = @"";
+    //依据法律
+    NSString *matchStr = @"";
+    //依据文书
+    NSString *payStr = @"";
+    if (matchLaws) {
+        NSDictionary *matchInfo = [[matchLaws objectForKey:@"case_desc_match_law"] objectForKey:proveInfo.case_desc_id];
+        if (matchInfo) {
+            if ([matchInfo objectForKey:@"breakLaw"]) {
+                breakStr = [(NSArray *)[matchInfo objectForKey:@"breakLaw"] componentsJoinedByString:@"、"];
+            }
+            if ([matchInfo objectForKey:@"matchLaw"]) {
+                matchStr = [(NSArray *)[matchInfo objectForKey:@"matchLaw"] componentsJoinedByString:@"、"];
+            }
+            if ([matchInfo objectForKey:@"payLaw"]) {
+                payStr = [(NSArray *)[matchInfo objectForKey:@"payLaw"] componentsJoinedByString:@"、"];
+            }
+        }
+        
+        payReason = [NSString stringWithFormat:@"你违反了%@规定，根据%@规定，我们依法向你收取路产赔偿，赔偿标准为广东省交通厅、财政厅和物价局联合颁发的%@文件的规定，请问你有无异议？",breakStr, matchStr, payStr];
+        
+    }
+    //当事人
+    Citizen *citizen = [Citizen citizenForParty:proveInfo.citizen_name case:self.caseID];
+    CaseInfo *caseinfo = [CaseInfo caseInfoForID:self.caseID];
+    if(citizen.automobile_address){
+        text = [text stringByReplacingOccurrencesOfString:@"#车辆所在地#" withString:citizen.automobile_address];
+    }else{
+        text = [text stringByReplacingOccurrencesOfString:@"#车辆所在地#" withString:@" "];
+    }
+    text = [text stringByReplacingOccurrencesOfString:@"#事故经过及原因#" withString:[CaseProveInfo generateEventDescForInquire:self.caseID]];
+    if([citizen.carowner isEqualToString:@"当事人"] || citizen.carowner.length <= 0){
+        text = [text stringByReplacingOccurrencesOfString:@"#车主#" withString:citizen.party];
+    }else{
+        text = [text stringByReplacingOccurrencesOfString:@"#车主#" withString:citizen.carowner];
+    }
+    NSString * moneystring;
+    NSArray * deformationarray  = [[CaseDeformation deformationsForCase:self.caseID forCitizen:citizen.automobile_number] mutableCopy];
+    double summary=[[deformationarray valueForKeyPath:@"@sum.total_price.doubleValue"] doubleValue];
+    if ((int)(summary * 100)%100 ==0) {
+        moneystring = [NSString stringWithFormat:@"%d元整。",(int)summary];
+    }else if((int)(summary * 100)%10 ==0){
+        NSString * moneystrsub = [NSString stringWithFormat:@"%.2f",summary];
+        moneystrsub = [moneystrsub substringToIndex:moneystrsub.length-1];
+        moneystring = [NSString stringWithFormat:@"%@元。",moneystrsub];
+    }else{
+        moneystring = [NSString stringWithFormat:@"%.2f元。",summary];
+    }
+    text = [text stringByReplacingOccurrencesOfString:@"#金额#" withString:moneystring];
+    text = [text stringByReplacingOccurrencesOfString:@"#损坏路产情况#" withString:[self setdeformationforstring]];
+    text = [text stringByReplacingOccurrencesOfString:@"#机构#" withString:organizationName];
+    text = [text stringByReplacingOccurrencesOfString:@"#案件基本情况描述#" withString:[CaseProveInfo generateEventDescForInquire:self.caseID] ];
+    text = [text stringByReplacingOccurrencesOfString:@"#伤亡情况#" withString:[CaseProveInfo generateWoundDesc:self.caseID] ];
+    text = [text stringByReplacingOccurrencesOfString:@"#违反的法律#" withString:breakStr];
+    text = [text stringByReplacingOccurrencesOfString:@"#依据的法律#" withString:matchStr];
+    text = [text stringByReplacingOccurrencesOfString:@"#依据的法律文件#" withString:payStr];
+    text = [text stringByReplacingOccurrencesOfString:@"#当事人#" withString:citizen.party];
+    //text = [text stringByReplacingOccurrencesOfString:@"#当事人年龄#" withString: [NSString stringWithFormat:@"%lu", citizen.age]];
+    text = [text stringByReplacingOccurrencesOfString:@"#当事人年龄#" withString:  [NSString stringWithFormat:@"%@",citizen.age]];
+    text = [text stringByReplacingOccurrencesOfString:@"#当事人地址#" withString:citizen.address];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setDateFormat:@"yyyy年M月d日HH时mm分"];
+    NSString *happenDate = [dateFormatter stringFromDate:caseinfo.happen_date];
+    text = [text stringByReplacingOccurrencesOfString:@"#案发时间#" withString:happenDate];
+    text = [text stringByReplacingOccurrencesOfString:@"#事故原因#" withString:caseinfo.case_reason];
+    text = [text stringByReplacingOccurrencesOfString:@"#车牌号码#" withString:citizen.automobile_number];
+    text = [text stringByReplacingOccurrencesOfString:@"#车属单位#" withString:citizen.org_name];
+    if(citizen.org_name !=nil && ![citizen.org_name isEqualToString:@""] ){
+        text = [text stringByReplacingOccurrencesOfString:@"#当事人性质#" withString:@"公司指派"];
+    }else{
+        text = [text stringByReplacingOccurrencesOfString:@"#当事人性质#" withString:@"个人行为"];
+    }
+    text = [text stringByReplacingOccurrencesOfString:@"一中队" withString:@""];
+    text = [text stringByReplacingOccurrencesOfString:@"二中队" withString:@""];
+    text = [text stringByReplacingOccurrencesOfString:@"三中队" withString:@""];
+    text = [text stringByReplacingOccurrencesOfString:@"四中队" withString:@""];
+    return text;
+    
+}
+
+
+
 @end

@@ -16,7 +16,7 @@ static NSString * const secondPageXmlName = @"InquireTable2_new"; //该文件改
 
 enum kPageInfo {
     kPageInfoFirstPage = 0,
-    kPageInfoSucessivePage
+    kPageInfoSucessivePage = 1
 };
 
 @interface CaseInquirePrinterViewController ()
@@ -255,6 +255,15 @@ enum kPageInfo {
         [caseInquireDataInfo setObject:data forKey:attribName];
 
     }
+    NSDictionary * dicddata1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                [self.caseInquire inquirer_name_num],@"value",
+                                @(NSStringAttributeType),@"valueType",nil];
+    NSDictionary * dicddata2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                [self.caseInquire recorder_name_num],@"value",
+                                @(NSStringAttributeType),@"valueType",nil];
+    //    [caseInquireDataInfo setObject: forKey:@"inquirer_name_num"];
+    [caseInquireDataInfo setObject:dicddata1 forKey:@"inquirer_name_num"];
+    [caseInquireDataInfo setObject:dicddata2 forKey:@"recorder_name_num"];
     
     //将CaseInfo的属性名、属性值、属性描述装入dataInfo
     CaseInfo *relativeCaseInfo = [CaseInfo caseInfoForID:self.caseID];
@@ -269,6 +278,7 @@ enum kPageInfo {
                               @(attribType),@"valueType",nil];
         [caseInfoDataInfo setObject:data forKey:attribName];
     }
+    
     
     //设置一个Default（针对xml里没有entityName的节点），指向caseInquireDataInfo
     [dataInfo setObject:caseInquireDataInfo forKey:@"Default"];
@@ -353,6 +363,8 @@ enum kPageInfo {
         answererPostalCode = NSStringNilIsBad(citizen.postalcode);
         
     }
+    NSString * inquirer_name_num = [self.caseInquire inquirer_name_num];
+    NSString * recorder_name_num = [self.caseInquire recorder_name_num];
     
     id caseInquireData = @{
                            @"date":dateString,
@@ -367,7 +379,9 @@ enum kPageInfo {
                            @"answererPhoneNum":answererPhoneNum,
                            @"answererAddress":answererAddress,
                            @"answererPostalCode":answererPostalCode,
-                           @"inquireNote":inquireNotePages
+                           @"inquireNote":inquireNotePages,
+                           @"inquirernum":inquirer_name_num,
+                           @"recordernum":recorder_name_num
                            };
     
     id page = @{
