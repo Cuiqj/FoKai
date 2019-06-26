@@ -5,13 +5,13 @@
 	<pdf:content>
 		<pdf:text point="52.5,18" fontName="SimHei" fontSize="18">公路赔（补）偿案件管理文书送达回证</pdf:text>
 
-        <pdf:text point="110.5,31" static="NO">{{ case.completemark}}</pdf:text>
-<!--        <pdf:text point="115,35">案件（</pdf:text>-->
-<!--        <pdf:text point="126.5,35" static="NO">{{ case.mark2  }}</pdf:text>-->
-<!--        <pdf:text point="134,35">）年佛开交赔字第（</pdf:text>-->
-<!--        <pdf:text point="167.5,35" static="NO">{{ case.mark3short }}</pdf:text>-->
-<!--<!--        <pdf:paragraph rect="{161,31},{20,30}" lineHeight="4" static="NO">{{ case.mark3  }} </pdf:paragraph>-->-->
-<!--        <pdf:text point="176.5,35">）号</pdf:text>-->
+<!--        <pdf:text point="110.5,31" static="NO">{{ case.completemark}}</pdf:text>-->
+        <pdf:text point="119,31.5">案件（</pdf:text>
+        <pdf:text point="130.5,31.5" static="NO">{{ case.mark2  }}</pdf:text>
+        <pdf:text point="138,31.5">）年（</pdf:text>
+<!--        <pdf:text point="167.5,31" static="NO">{{ case.mark3short }}</pdf:text>-->
+        <pdf:paragraph rect="{150,28},{20,30}" lineHeight="4" static="NO">{{ case.mark3  }} </pdf:paragraph>
+        <pdf:text point="169,31.5">）号</pdf:text>
 		<pdf:table rect="{30,37},{151,188.1}"  borderWidth="0.5" lineWidth="0.5" padding="0.5">
 			<pdf:tr height="11.4">
 				<pdf:td width="151">

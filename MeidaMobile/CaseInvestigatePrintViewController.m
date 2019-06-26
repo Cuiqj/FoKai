@@ -304,6 +304,8 @@ static NSString * const xmlName = @"InvestigateTable";
     CaseInfo *caseInfo = [CaseInfo caseInfoForID:self.caseID];
     if (caseInfo) {
         NSString * anhao = self.labelanhao.text >0 ? self.labelanhao.text :@"";
+        NSString * mark2 = caseInfo.case_mark2;
+        NSString * mark3 = [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3];
         NSString * anyou = self.textcasedesc.text.length >0 ? self.textcasedesc.text :@"无";
         NSString * userone = self.textnameone.text.length>0 ? [NSString stringWithFormat:@"%@ %@",self.textnameone.text,[UserInfo exelawidforname:self.textnameone.text]] :@"无";
         NSString * usertwo = self.textnametwo.text.length >0 ? [NSString stringWithFormat:@"%@ %@",self.textnametwo.text,[UserInfo exelawidforname:self.textnametwo.text]] :@"无";
@@ -324,6 +326,8 @@ static NSString * const xmlName = @"InvestigateTable";
         NSString * cartypeandnumber = @"";
         id caseData = @{
                         @"anhao":anhao,
+                        @"mark2":mark2,
+                        @"mark3":mark3,
                         @"anyou":anyou,
                         @"userone":userone,
                         @"usertwo":usertwo,

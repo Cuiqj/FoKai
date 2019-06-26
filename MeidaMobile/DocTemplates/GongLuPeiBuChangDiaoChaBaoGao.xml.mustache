@@ -39,7 +39,14 @@
                 </pdf:td>
             </pdf:tr>
         </pdf:table>
-        <pdf:text point="113,34.5" fontSize ="10" static="NO">{{ case.anhao  }}</pdf:text>
+<!--        <pdf:text point="113,34.5" fontSize ="10" static="NO">{{ case.anhao  }}</pdf:text>-->
+        <pdf:text point="119,35">案件（</pdf:text>
+        <pdf:text point="130.5,35" static="NO">{{ case.mark2  }}</pdf:text>
+        <pdf:text point="138,35">）年（</pdf:text>
+        <!--        <pdf:text point="167.5,31" static="NO">{{ case.mark3short }}</pdf:text>-->
+        <pdf:paragraph rect="{150,31.5},{20,30}" lineHeight="4" static="NO">{{ case.mark3  }} </pdf:paragraph>
+        <pdf:text point="169,35">）号</pdf:text>
+        
         <pdf:line fromPoint="119,50.5" toPoint="182,50.5" lineWidth="0.5" />
         <pdf:line fromPoint="119,61" toPoint="182,61" lineWidth="0.5" />
         <pdf:table rect="{40,40},{142,200.5}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
