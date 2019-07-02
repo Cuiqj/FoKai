@@ -15,7 +15,7 @@
 +(NSArray *)newCaseDescArray{
     NSArray *actionArray      = [LawbreakingAction LawbreakingActionsForCasetype:CaseTypeIDDefault];
     NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[actionArray count]];
-    for (LawbreakingAction *action in actionArray) {
+    for (LawbreakingAction * action in actionArray) {
         CaseDescString *cds = [[CaseDescString alloc] init];
         cds.caseDesc        = action.caption;
         cds.caseDescID      = action.myid;

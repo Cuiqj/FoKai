@@ -64,10 +64,12 @@ static NSString *dataNameArray[UPLOADCOUNT]={@"CaseInvestigate",@"Project",@"Tas
 
 - (void)uploadDataAtIndex:(NSInteger)index{
     NSString *currentDataName = dataNameArray[index];
-    if ([currentDataName isEqualToString:@"CaseServiceReceipt"]) {
-        NSLog(@"");
-    }
     NSArray *dataArray = [NSClassFromString(currentDataName) uploadArrayOfObject];
+//    if ([currentDataName isEqualToString:@"Inspection"]) {
+//        dataArray = [NSClassFromString(currentDataName) uploadArrayOfObjectforaaaaanyobj];
+//    }else{
+//        dataArray = [NSClassFromString(currentDataName) uploadArrayOfObject];
+//    }
     if (dataArray.count > 0) {
         
         NSString *dataTypeString = [NSClassFromString(currentDataName) complexTypeString];

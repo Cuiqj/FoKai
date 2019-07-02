@@ -224,6 +224,7 @@
             inspectionRecord.location=self.textPlaceNormal.text;
             inspectionRecord.measure=@"";
             inspectionRecord.status=@"";
+            inspectionRecord.station = [NSNumber numberWithInteger:(self.zhuanghaostart.text.integerValue*1000+self.zhuanghaoend.text.integerValue)];
             inspectionRecord.inspection_id=self.inspectionID;
             inspectionRecord.relationid = @"0";
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
@@ -464,7 +465,16 @@
     }else{
         kstationstartandend = [NSString stringWithFormat:@"K%d+%d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
     }
-    self.textViewNormalDesc.text = [NSString stringWithFormat:@"%@在%@%@路段巡查%@%@，%@",time,sfzname,kstationstartandend,self.textRoad.text,self.textPlaceNormal.text,self.textDescNormal.text];
+    NSString * remark = [self.textDescNormal.text stringByReplacingOccurrencesOfString:@"[时1]-[时2]" withString:time];
+    remark = [remark stringByReplacingOccurrencesOfString:@"[时1]" withString:self.textTimeStart.text];
+    remark = [remark stringByReplacingOccurrencesOfString:@"[时2]" withString:self.textTimeEnd.text];
+    remark = [remark stringByReplacingOccurrencesOfString:@"[站1]-[站2]" withString:sfzname];
+    remark = [remark stringByReplacingOccurrencesOfString:@"[站1]" withString:self.textsfz.text];
+    remark = [remark stringByReplacingOccurrencesOfString:@"[站2]" withString:self.textsfzend.text];
+    remark = [remark stringByReplacingOccurrencesOfString:@"[桩]" withString:kstationstartandend];
+    remark = [remark stringByReplacingOccurrencesOfString:@"K0+0" withString:@""];
+    self.textViewNormalDesc.text = remark;
+//    self.textViewNormalDesc.text = [NSString stringWithFormat:@"%@在%@%@路段巡查%@%@，%@",time,sfzname,kstationstartandend,self.textRoad.text,self.textPlaceNormal.text,self.textDescNormal.text];
 }
 
 - (IBAction)viewNormalTextTouch:(UITextField *)sender {
