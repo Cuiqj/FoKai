@@ -518,7 +518,7 @@ static NSString * const xmlName = @"ProveInfoTable";
         
         id inspect_resultData = @"";
         if (self.caseProveInfo.event_desc != nil) {
-            inspect_resultData = [NSString stringWithFormat:@"\b\b%@",self.caseProveInfo.event_desc];
+            inspect_resultData = [NSString   stringWithFormat:@"\b\b%@\n      如承认以上事实，请在下面签名确认。",self.caseProveInfo.event_desc];
         }
         
         caseProveData = @{

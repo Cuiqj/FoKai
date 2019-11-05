@@ -94,7 +94,8 @@
     self.pageIndicator.numberOfPages=1;
 
     [super viewDidLoad];
-    
+    self.IconType.frame = CGRectMake(0.5, 1, 47, 350);
+    [self.view addSubview:self.IconType];
  	// Do any additional setup after loading the view.
 }
 

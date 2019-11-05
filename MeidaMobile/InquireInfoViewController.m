@@ -885,6 +885,7 @@ enum kUITextFieldTag {
     NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
     //机构
     NSString *organizationName = [[OrgInfo orgInfoForOrgID:[UserInfo userInfoForUserID:currentUserID].organization_id] valueForKey:@"orgname"];
+    
     CaseProveInfo *proveInfo = [CaseProveInfo proveInfoForCase:self.caseID];
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"MatchLaw" ofType:@"plist"];
     NSDictionary *matchLaws = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
@@ -914,6 +915,16 @@ enum kUITextFieldTag {
     }
     //当事人
     Citizen *citizen = [Citizen citizenForParty:proveInfo.citizen_name case:self.caseID];
+    if(citizen == nil){
+        NSArray *citizenArray=[Citizen allCitizenNameForCase:self.caseID];
+        for (Citizen * falsecitizen in citizenArray) {
+            if (falsecitizen.party) {
+                citizen = falsecitizen;
+            }else{
+                citizen.party = @"";
+            }
+        }
+    }
     CaseInfo *caseinfo = [CaseInfo caseInfoForID:self.caseID];
     if(citizen.automobile_address){
         text = [text stringByReplacingOccurrencesOfString:@"#车辆所在地#" withString:citizen.automobile_address];
