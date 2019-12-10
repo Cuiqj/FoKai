@@ -19,6 +19,7 @@
 @synthesize docTmplFullNameArray = _docTmplFullNameArray;
 
 - (NSArray *)docTemplatesFullNameArray{
+
     if (_docTmplFullNameArray == nil) {
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         for (NSString *fullName in DOC_TEMPLATES_FULLNAME_ARRAY) {

@@ -206,7 +206,7 @@
                 <size width="170" height="17" />
             </Text>
             <Text>
-                <text>（本页写不下的内容，或需绘制勘验与贴照片的，可另附纸）</text>
+                <text>（本页填写不下的内容，或需绘制勘验图与粘贴照片的，可另附纸）</text>
                 <fontSize>12</fontSize>
                 <origin x="27" y="266" />
                 <size width="460" height="17" />

@@ -10,5 +10,5 @@
 #import "InitData.h"
 
 @interface InitProvince : InitData
-- (void)downloadProvince;
+- (void)downloadProvince:(NSString *)orgID;
 @end

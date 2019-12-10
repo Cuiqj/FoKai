@@ -71,9 +71,9 @@
     self.paintToolsArray=@[@"直线",@"圆",@"矩形",@"点",@"曲线",@"箭头",@"双向箭头",@"虚线",@"护栏",@"草坪",@"文字标识",@"擦除"];
     
     UIFont *segFont = [UIFont boldSystemFontOfSize:15.0f];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:segFont
-                                                           forKey:UITextAttributeFont];
-    [self.segWidth setTitleTextAttributes:attributes 
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObject:segFont forKey:UITextAttributeFont];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:segFont forKey:NSFontAttributeName];
+    [self.segWidth setTitleTextAttributes:attributes
                                     forState:UIControlStateNormal];
     
     self.roadModelBoard=[[RoadModelBoard alloc] initWithFrame:CGRectMake(0.0f,0.0f, PaintAreaWidth, PaintAreaHeight)];
@@ -216,7 +216,7 @@
                 casemap.road_type = @"沥青";
                 casemap.draw_time = [NSDate date];
                 NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-                casemap.draftsman_name = [[UserInfo userInfoForUserID:currentUserID] valueForKey:@"username"];
+                casemap.draftsman_name = [[UserInfo userInfoForUserID:currentUserID] valueForKey:@"name"];
             }
             NSString *itemString = @"";
             NSString *templatePath = [[NSBundle mainBundle] pathForResource:@"CaseMapTemplate" ofType:@"xml"];

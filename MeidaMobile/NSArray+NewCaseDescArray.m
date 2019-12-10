@@ -22,15 +22,14 @@
         cds.isSelected      = NO;
         [tempArray addObject:cds];
     }
-    
-    if (tempArray.count > 3) {
-        [tempArray removeObjectAtIndex:2];
-    }
-    if (tempArray.count >= 3) {
-        ((CaseDescString*)tempArray[0]).caseDesc = @"损坏公路路产";
-        ((CaseDescString*)tempArray[1]).caseDesc = @"污染公路路产";
-        ((CaseDescString*)tempArray[2]).caseDesc = @"损坏、污染公路路产";
-    }
+//    if (tempArray.count > 3) {
+//        [tempArray removeObjectAtIndex:2];
+//    }
+//    if (tempArray.count >= 3) {
+//        ((CaseDescString*)tempArray[0]).caseDesc = @"损坏高速公路路产";
+//        ((CaseDescString*)tempArray[1]).caseDesc = @"污染高速公路路产";
+//        ((CaseDescString*)tempArray[2]).caseDesc = @"损坏、污染高速公路路产";
+//    }
     return [NSArray arrayWithArray:tempArray];
 }
 -(NSArray*) withOutNULL{

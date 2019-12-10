@@ -35,5 +35,5 @@
 @property (nonatomic, retain) NSString *currentOrgID;
 
 - (id)init;
-- (void)startDownLoad;
+- (void)startDownLoad:(NSString *)orgid;
 @end

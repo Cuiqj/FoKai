@@ -84,7 +84,7 @@ static NSString * const xmlName = @"ProveInfoTable";
     }
     
     NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-    NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"username"];
+    NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"name"];
     NSArray *inspectorArray = [[NSUserDefaults standardUserDefaults] objectForKey:INSPECTORARRAYKEY];
     if ([caseProveInfo.prover length] <= 0) {
         if (inspectorArray.count < 1) {
@@ -134,10 +134,10 @@ static NSString * const xmlName = @"ProveInfoTable";
     Citizen *citizen = [Citizen citizenForCitizenName:self.caseProveInfo.citizen_name nexus:@"当事人" case:self.caseID];
     
     self.textMark2.text = caseInfo.case_mark2;
-    self.textMark3.text = caseInfo.full_case_mark3;
+    self.textMark3.text = [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3];
     
     //案由
-    self.textcase_short_desc.text = self.caseProveInfo.case_short_desc;
+    self.textcase_short_desc.text = [NSString stringWithFormat:@"交通事故%@",self.caseProveInfo.case_short_desc];
 //    self.textcase_short_desc.text = [NSString stringWithFormat:@"%@%@因交通事故%@", citizen.automobile_number, citizen.automobile_pattern, self.caseProveInfo.case_short_desc];
     
     //勘验时间 没有时默认为当前时间 zhenlintie 2014-03-31
@@ -415,9 +415,10 @@ static NSString * const xmlName = @"ProveInfoTable";
     if (caseInfo) {
         caseData = @{
                      @"mark2": caseInfo.case_mark2,
-                     @"mark3": [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3],
+                     @"mark3": self.textMark3.text,
                      @"weather": caseInfo.weater,
                      };
+//        @"mark3": [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3],
     }
     id caseProveData = @{};
     if (self.caseProveInfo) {
@@ -465,7 +466,7 @@ static NSString * const xmlName = @"ProveInfoTable";
         }
         Citizen *citizen = [Citizen citizenForCitizenName:self.caseProveInfo.citizen_name nexus:@"当事人" case:self.caseID];
         if (citizen) {
-            NSString *citizen_org_duty = [[NSString stringWithFormat:@"%@%@", citizen.org_name?![citizen.org_name isEmpty]?citizen.org_name:@"":@"", citizen.org_principal_duty?![citizen.org_principal_duty isEmpty]?citizen.org_principal_duty:@"":@""] defaultEmpty];
+            NSString *citizen_org_duty = [[NSString stringWithFormat:@"%@/%@", citizen.org_name?![citizen.org_name isEmpty]?citizen.org_name:@"":@"", citizen.org_principal_duty?![citizen.org_principal_duty isEmpty]?citizen.org_principal_duty:@"":@""] defaultEmpty];
             [partyData setObject:citizen_org_duty forKey:@"org_duty"];
         }
         
@@ -518,7 +519,8 @@ static NSString * const xmlName = @"ProveInfoTable";
         
         id inspect_resultData = @"";
         if (self.caseProveInfo.event_desc != nil) {
-            inspect_resultData = [NSString   stringWithFormat:@"\b\b%@\n      如承认以上事实，请在下面签名确认。",self.caseProveInfo.event_desc];
+            inspect_resultData = self.caseProveInfo.event_desc;
+//            [NSString   stringWithFormat:@"\b\b%@\n   如承认以上路损事实，请在下面签名确认。",self.caseProveInfo.event_desc];
         }
         
         caseProveData = @{

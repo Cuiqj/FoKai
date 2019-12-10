@@ -372,7 +372,7 @@
             <origin x="33" y="107" />
             <size width="155" height="110" />
             <fontSize>10.5</fontSize>
-            <lineHeight>25</lineHeight>
+            <lineHeight>15</lineHeight>
             <content>
                 <data>
                     <attributeName>inquiry_note</attributeName>

@@ -10,5 +10,5 @@
 #import "InitData.h"
 
 @interface InitSystype : InitData
-- (void)downloadSysType;
+- (void)downloadSysType:(NSString *)orgID;
 @end

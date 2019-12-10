@@ -20,4 +20,5 @@
 + (NSArray *)LawbreakingActionsForCasetype:(NSString *)caseTypeID;
 
 + (NSArray *)LawbreakingActionsForCase:(NSString *)myID;
++ (NSString *)LawbreakingActionCaptionForID:(NSString *)myID;
 @end

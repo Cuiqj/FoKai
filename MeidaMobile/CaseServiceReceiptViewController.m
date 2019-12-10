@@ -49,10 +49,10 @@ static NSString * const xmlName = @"ServiceReceiptTable";
     CaseProveInfo *proveInfo = [CaseProveInfo proveInfoForCase:self.caseID];
     Citizen *citizen = [Citizen citizenForCitizenName:proveInfo.citizen_name nexus:@"当事人" case:self.caseID];
     self.textMark2.text = caseInfo.case_mark2;
-    self.textMark3.text = caseInfo.full_case_mark3;
+    self.textMark3.text = [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3];
     self.textincepter_name.text = self.caseServiceReceipt.incepter_name;
 //    self.textreason.text = [NSString stringWithFormat:@"%@%@因交通事故%@", citizen.automobile_number, citizen.automobile_pattern, proveInfo.case_short_desc];
-    self.textreason.text = proveInfo.case_short_desc;
+    self.textreason.text = [NSString stringWithFormat:@"交通事故%@",proveInfo.case_short_desc];
     
     self.textservice_company.text = self.caseServiceReceipt.service_company;
     self.textservice_address.text = self.caseServiceReceipt.service_position;
@@ -116,7 +116,7 @@ static NSString * const xmlName = @"ServiceReceiptTable";
     if (orgInfo != nil && orgInfo.belongtoorg_id != nil && ![orgInfo.belongtoorg_id isEmpty]) {
         orgInfo = [OrgInfo orgInfoForOrgID:orgInfo.belongtoorg_id];
     }
-    caseServiceReceipt.service_company = [orgInfo valueForKey:@"orgname"];
+    caseServiceReceipt.service_company = [[[[orgInfo valueForKey:@"orgname"] stringByReplacingOccurrencesOfString:@"一中队" withString:@""] stringByReplacingOccurrencesOfString:@"二中队" withString:@""] stringByReplacingOccurrencesOfString:@"三中队" withString:@""];
 
     //删掉已有送达文书
     NSArray *oldFilesArray = [CaseServiceFiles caseServiceFilesForCase:caseInfo.myid];
@@ -239,9 +239,10 @@ static NSString * const xmlName = @"ServiceReceiptTable";
     id caseData = @{};
     CaseInfo *caseInfo = [CaseInfo caseInfoForID:self.caseID];
     if (caseInfo) {
+//        [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3],
         caseData = @{
                      @"mark2": caseInfo.case_mark2,
-                     @"mark3": [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3],
+                     @"mark3": self.textMark3.text,
                      @"completemark": [NSString stringWithFormat:@"案件（%@）年佛开交赔字第（%@）号",caseInfo.case_mark2,caseInfo.full_case_mark3],
                      };
     }
@@ -258,11 +259,12 @@ static NSString * const xmlName = @"ServiceReceiptTable";
     NSString *addressForService = NSStringNilIsBad(self.caseServiceReceipt.service_position);
     
     id itemsData = [NSMutableArray array];
-    int fileLimit = 6;
+//    送达回证文书必须要有三项文书         6份文书改为3份了
+    int fileLimit = 3;
     if (self.data) {
         int i = 0;
         for (CaseServiceFiles *file in self.data) {
-            if (i > 5) {
+            if (i > 2) {
                 break;
             }
             [itemsData addObject:@{@"docName" : file.service_file}];

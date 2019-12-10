@@ -9,9 +9,10 @@
 #import "InitLaws.h"
 
 @implementation InitLaws
-- (void)downLoadLaws{
+- (void)downLoadLaws:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from Laws"];
+//    [service downloadDataSet:@"select * from Laws"];
+    [service downloadDataSet:@"select * from Laws" orgid:orgID];
 }
 
 - (void)xmlParser:(NSString *)webString{
@@ -21,10 +22,11 @@
 
 @implementation InitLawBreakingAction
 
-- (void)downloadLawBreakingAction{
+- (void)downloadLawBreakingAction:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from LawbreakingAction"];
+    [service downloadDataSet:@"select * from LawbreakingAction" orgid:orgID];
 }
+
 
 - (void)xmlParser:(NSString *)webString{
     [self autoParserForDataModel:@"LawbreakingAction" andInXMLString:webString];
@@ -33,11 +35,10 @@
 
 @implementation InitLawItems
 
-- (void)downloadLawItems{
+- (void)downloadLawItems:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from LawItems"];
+    [service downloadDataSet:@"select * from LawItems" orgid:orgID];
 }
-
 - (void)xmlParser:(NSString *)webString{
     [self autoParserForDataModel:@"LawItems" andInXMLString:webString];
 }
@@ -45,9 +46,9 @@
 
 @implementation InitMatchLaw
 
-- (void)downloadMatchLaw{
+- (void)downloadMatchLaw:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from MatchLaw"];
+    [service downloadDataSet:@"select * from MatchLaw" orgid:orgID];
 }
 
 - (void)xmlParser:(NSString *)webString{
@@ -57,9 +58,9 @@
 
 @implementation InitMatchLawDetails
 
-- (void)downloadMatchLawDetails{
+- (void)downloadMatchLawDetails:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from MatchLawDetails"];
+    [service downloadDataSet:@"select * from MatchLawDetails" orgid:orgID];
 }
 
 - (void)xmlParser:(NSString *)webString{

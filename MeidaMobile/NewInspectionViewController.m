@@ -191,7 +191,7 @@
         newInspection.carcode=self.textAutoNumber.text;
         newInspection.classe=self.textWorkShift.text;
         NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-        NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"username"];
+        NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"name"];
         NSArray *inspectorArray = [[NSUserDefaults standardUserDefaults] objectForKey:INSPECTORARRAYKEY];
         if (inspectorArray.count < 1) {
             newInspection.inspectionor_name = currentUserName;

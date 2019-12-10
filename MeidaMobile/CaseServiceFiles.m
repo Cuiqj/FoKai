@@ -69,8 +69,8 @@
 }
 
 
-+ (NSArray *)addDefaultCaseServiceFilesForCase:(NSString *)caseID forCaseServiceReceipt:(NSString *)receiptID
-{
++ (NSArray *)addDefaultCaseServiceFilesForCase:(NSString *)caseID forCaseServiceReceipt:(NSString *)receiptID{
+//    送达回证   默认的两份文书
     CaseInfo *caseInfo = [CaseInfo caseInfoForID:caseID];
     NSMutableArray *addedFiles = [NSMutableArray array];
     if (caseInfo) {
@@ -80,7 +80,7 @@
             [addedFiles addObject:defaultServiceFile1];
             
             CaseServiceFiles *defaultServiceFile2 = [CaseServiceFiles newCaseServiceFilesForCaseServiceReceipt:receiptID];
-            defaultServiceFile2.service_file = @"损坏公路设施索赔清单";
+            defaultServiceFile2.service_file = @"广东省佛开高速公路路产赔偿清单";
             [addedFiles addObject:defaultServiceFile2];
             
 //            CaseServiceFiles *defaultServiceFile3 = [CaseServiceFiles newCaseServiceFilesForCaseServiceReceipt:receiptID];

@@ -610,7 +610,7 @@ typedef enum {
 
 - (void)setCreator:(NSString *)userID{
     UserInfo *userInfo = [UserInfo userInfoForUserID:userID];
-    self.textCreator.text=userInfo.username;
+    self.textCreator.text=userInfo.name;
     self.textTele.text=userInfo.telephone;
     self.textDuty.text=userInfo.duty;
     self.textCompany.text=[[OrgInfo orgInfoForOrgID:userInfo.organization_id] valueForKey:@"orgname"];

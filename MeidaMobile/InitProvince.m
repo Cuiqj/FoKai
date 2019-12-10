@@ -13,7 +13,7 @@
 
 @implementation InitProvince
 
-- (void)downloadProvince{
+- (void)downloadProvince:(NSString *)orgID{
     WebServiceInit;
     [service downloadDataSet:@"select * from Provinces"];
 }

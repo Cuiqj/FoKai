@@ -22,7 +22,7 @@
 
 - (void) loadUserLabel {
     NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-    NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"username"];
+    NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"name"];
     if (currentUserName==nil) {
         currentUserName = @"";
     }
@@ -39,7 +39,8 @@
         osVC.modalPresentationStyle = UIModalPresentationFormSheet;
         osVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         osVC.delegate=self;
-        [self presentModalViewController:osVC animated:YES];
+        [self presentViewController:osVC animated:YES completion:nil];
+//        [self presentModalViewController:osVC animated:YES];
     } else {
         NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
         if (currentUserID == nil || [currentUserID isEmpty]) {

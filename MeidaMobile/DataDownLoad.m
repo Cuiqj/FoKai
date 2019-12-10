@@ -40,7 +40,7 @@
     [self setProgressView:nil];
 }
 
-- (void)startDownLoad{
+- (void)startDownLoad:(NSString *)orgID{
     if ([WebServiceHandler isServerReachable]) {
         [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
         self.progressView=[[AlertViewWithProgressbar alloc] initWithTitle:@"同步基础数据" message:@"正在下载，请稍候……" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
@@ -51,19 +51,20 @@
         self.currentParserCount = self.parserCount;
         @autoreleasepool {
             InitUser *initUser = [[InitUser alloc] init];
-            [initUser downLoadUserInfo];
+            [initUser downLoadUserInfo:orgID];
             WAITFORPARSER
             InitIconModel *initIcon = [[InitIconModel alloc] init];
-            [initIcon downLoadIconModels];
+            [initIcon downLoadIconModels:orgID];
             WAITFORPARSER
             InitProvince *initProvice = [[InitProvince alloc] init];
-            [initProvice downloadProvince];
+            [initProvice downloadProvince:orgID];
             WAITFORPARSER
             InitCities *initCities = [[InitCities alloc] init];
             [initCities downloadCityCode];
             WAITFORPARSER
             InitRoadSegment *initRoad = [[InitRoadSegment alloc] init];
-            [initRoad downloadRoadSegment];
+            [initRoad downloadRoadSegment:orgID];
+            
             WAITFORPARSER
             InitRoadAssetPrice *initRoadAssetPrice = [[InitRoadAssetPrice alloc] init];
             [initRoadAssetPrice downloadRoadAssetPrice];
@@ -78,10 +79,10 @@
             [icid downloadCheckItemDetails];
             WAITFORPARSER
             InitCheckItems *icheckItems = [[InitCheckItems alloc] init];
-            [icheckItems downloadCheckItems];
+            [icheckItems downloadCheckItems:orgID];
             WAITFORPARSER
             InitCheckType *iCheckType = [[InitCheckType alloc] init];
-            [iCheckType downLoadCheckType];
+            [iCheckType downLoadCheckType:orgID];
             WAITFORPARSER
             InitCheckHandle *iCheckHandle = [[InitCheckHandle alloc] init];
             [iCheckHandle downLoadCheckHandle];
@@ -90,34 +91,34 @@
             [iCheckReason downLoadCheckReason];
             WAITFORPARSER
             InitCheckStatus *iCheckStatus = [[InitCheckStatus alloc] init];
-            [iCheckStatus downLoadCheckStatus];
+            [iCheckStatus downLoadCheckStatus:orgID];
             WAITFORPARSER
             InitSystype *iSystype = [[InitSystype alloc] init];
-            [iSystype downloadSysType];
+            [iSystype downloadSysType:orgID];
             WAITFORPARSER
             InitLaws *iLaws = [[InitLaws alloc] init];
-            [iLaws downLoadLaws];
+            [iLaws downLoadLaws:orgID];
             WAITFORPARSER
             InitLawItems *iLawItems = [[InitLawItems alloc] init];
-            [iLawItems downloadLawItems];
+            [iLawItems downloadLawItems:orgID];
             WAITFORPARSER
             InitMatchLaw *iMatchLaw = [[InitMatchLaw alloc] init];
-            [iMatchLaw downloadMatchLaw];
+            [iMatchLaw downloadMatchLaw:orgID];
             WAITFORPARSER
             InitMatchLawDetails *iMatchLawDetails = [[InitMatchLawDetails alloc] init];
-            [iMatchLawDetails downloadMatchLawDetails];
+            [iMatchLawDetails downloadMatchLawDetails:orgID];
             WAITFORPARSER
             InitLawBreakingAction *iLawBreakingAction = [[InitLawBreakingAction alloc] init];
-            [iLawBreakingAction downloadLawBreakingAction];
+            [iLawBreakingAction downloadLawBreakingAction:orgID];
             WAITFORPARSER
             InitOrgInfo *iOrgInfo = [[InitOrgInfo alloc] init];
-            [iOrgInfo downLoadOrgInfo];
+            [iOrgInfo downLoadOrgInfo:orgID];
             WAITFORPARSER
             InitFileCode *iFileCode = [[InitFileCode alloc] init];
-            [iFileCode downLoadFileCode];
-            WAITFORPARSER
-            InitBridge *iBridge = [[InitBridge alloc] init];
-            [iBridge downloadBridge ];
+            [iFileCode downLoadFileCode:orgID];
+//            WAITFORPARSER
+//            InitBridge *iBridge = [[InitBridge alloc] init];
+//            [iBridge downloadBridge ];
         }
     }
 }

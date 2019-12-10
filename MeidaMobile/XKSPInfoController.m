@@ -76,7 +76,7 @@
             //TBXMLElement *status=[TBXML childElementNamed:@"opinion" parentElement:author];
             //app_nodesc=[app_nodesc stringByAppendingString:[NSString stringWithFormat:@"(%@)",[TBXML textForElement:status]]];
             [_data addObject:app_nodesc];
-            TBXMLElement *applicant_name=[TBXML childElementNamed:@"account" parentElement:author];
+            TBXMLElement *applicant_name=[TBXML childElementNamed:@"code" parentElement:author];
             NSString *username=[[AppDelegate App] getUserName:[TBXML textForElement:applicant_name]];
             NSString *applicant_namedesc=[NSString stringWithFormat:@"处理人：%@ ",username];
             TBXMLElement *app_date=[TBXML childElementNamed:@"datedesc" parentElement:author];

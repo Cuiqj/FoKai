@@ -8,7 +8,7 @@
          <pdf:text point="132,33" fontSize="12">案号：</pdf:text>
 <!--        <pdf:text point="155,35" static="NO">{{ case.anhao }}</pdf:text>-->
          <pdf:paragraph rect="{144,31.5},{26,9}" lineHeight="4" static="NO">{{ case.anhao  }} </pdf:paragraph>
-        <pdf:table rect="{9,41.5},{166.5,226.7}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
+        <pdf:table rect="{9,41.5},{166.5,225.2}" borderWidth="0.5" lineWidth="0.5" padding="0.5">
             
             <!--案发地点。时间  CaseCountPrintViewController-->
             <pdf:tr height="10.5">
@@ -56,9 +56,9 @@
                 </pdf:td>
             </pdf:tr>
             <!--损坏公路情况-->
-            <pdf:tr height="164.8">
+            <pdf:tr height="163.3">
                 <pdf:td width="166.5" textAlignment="center">
-                    <pdf:table rect = "{0,0},{166.5,164.8}" borderWidth = "0.5" lineWidth = "0.5" padding = "1">
+                    <pdf:table rect = "{0,0},{166.5,163.3}" borderWidth = "0.5" lineWidth = "0.5" padding = "1">
                         <pdf:tr height="10.3">
                             <pdf:td width="13" textAlignment="center">序号</pdf:td>
                             <pdf:td width="51" height="6" textAlignment="center">路产项目</pdf:td>
@@ -71,7 +71,7 @@
                         </pdf:tr>
                         
                         {{#items}}
-                        <pdf:tr height="10.3">
+                        <pdf:tr height="10.2">
                             <pdf:td width="13" static="NO">{{ .index }}</pdf:td>
                             <pdf:td width="51" textAlignment="left" static="NO" maxWidth="">{{ .name }}</pdf:td>
                             <pdf:td width="22.5" static="NO">{{ .rasset_size }}</pdf:td>

@@ -133,7 +133,7 @@
          */
         ListSelectViewController *listPicker=[self.storyboard instantiateViewControllerWithIdentifier:@"ListSelectPoPover"];
         listPicker.delegate = self;
-        listPicker.data     = [[[[UserInfo allUserInfo] valueForKeyPath:@"username"]   mutableCopy] withOutNull];;
+        listPicker.data     = [[[[UserInfo allUserInfo] valueForKeyPath:@"name"]   mutableCopy] withOutNull];;
         self.popVC=[[UIPopoverController alloc] initWithContentViewController:listPicker];
         CGRect rect         = sender.frame;
         [self.popVC presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];

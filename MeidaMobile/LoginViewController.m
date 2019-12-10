@@ -51,7 +51,7 @@
     if (![self.textUser.text isEmpty]) {
 
         UserInfo *userInfo = [UserInfo userInfoForUserID:self.loginUserID];
-        NSString *password = [[userInfo.account stringByAppendingString:self.textPassword.text] encryptedString];
+        NSString *password = [[userInfo.code stringByAppendingString:self.textPassword.text] encryptedString];
 //        NSString *password = [self.textPassword.text encryptedString];
 #ifdef DEBUG
         if (password) {

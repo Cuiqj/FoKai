@@ -310,7 +310,7 @@ static NSString * const xmlName = @"CaseCountTable";
         
         caseData = @{
                      //@"place": caseInfo.full_happen_place,
-                     @"anhao":[NSString stringWithFormat:@"%@年%@交赔字第%@号",caseInfo.case_mark2,[FileCode fileCodeWithPredicateFormat :@"赔补偿案件编号"].organization_code,caseInfo.case_mark3],
+                     @"anhao":[NSString stringWithFormat:@"（%@）年佛开交赔字第%@号",caseInfo.case_mark2,caseInfo.full_case_mark3],
                      @"place": self.textfieldCaseAddress.text,
                      //                     @"date": NSStringFromNSDateAndFormatter(caseInfo.happen_date, NSDateFormatStringCustom1),
                      @"year": year,

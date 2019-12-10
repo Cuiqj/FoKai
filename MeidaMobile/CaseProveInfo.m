@@ -69,10 +69,9 @@
 }
 
 + (NSString *)generateEventDescForCase:(NSString *)caseID{
+    //勘验检查笔录中勘验情况及结果
     CaseInfo *caseInfo=[CaseInfo caseInfoForID:caseID];
     NSString *roadName=[RoadSegment roadNameFromSegment:caseInfo.roadsegment_id];
-    
-    
     NSString *caseDescString=@"";
     NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
     
@@ -118,16 +117,18 @@
     if (citizenArray.count>0) {
         if (citizenArray.count==1) {
             Citizen *citizen=[citizenArray objectAtIndex:0];
-            // modified by cjl
-            if (citizen.bad_desc && ![citizen.bad_desc isEmpty]) {
-                //        caseStatusString=[caseStatusString stringByAppendingFormat:@"损坏%@辆车",caseInfo.badcar_sum];
-                caseStatusString=[caseStatusString stringByAppendingFormat:@"造成车辆%@损坏",citizen.bad_desc];
-            } else {
-                caseStatusString=[caseStatusString stringByAppendingString:@"未造成车辆损坏"];
-            }
-            
+//            // modified by cjl
+//            if (citizen.bad_desc && ![citizen.bad_desc isEmpty]) {
+//                //        caseStatusString=[caseStatusString stringByAppendingFormat:@"损坏%@辆车",caseInfo.badcar_sum];
+//                caseStatusString=[caseStatusString stringByAppendingFormat:@"造成车辆%@损坏",citizen.bad_desc];
+//            } else {
+//                caseStatusString=[caseStatusString stringByAppendingString:@"未造成车辆损坏"];
+//            }
+//            当事人闵彬勇于2012年6月3日22时00分驾驶桂P11617大巴车，行驶至G15沈海高速（佛开段）开平方向K3128+700m处，因车辆失控与粤GJZ992大货车和粤J22369小车发生交通事故，无人员伤亡，造成高速公路路产损坏。经现场勘查，路产损坏情况为：中央分隔带波形钢板护栏（双波、长4m）壹片，防阻块壹个；路肩波形钢板护栏（双波、长4m）伍片，立柱壹根，防阻块伍个。
+//            如承认以上路损事实，请在下面签名确认。
+
             //caseDescString=[caseDescString stringByAppendingFormat:@"   %@于%@驾驶%@%@行至%@%@%@，在公路%@由于发生交通事故损坏公路路产，%@，经与当事人现场勘查，",citizen.party,happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.place,caseStatusString];
-            caseDescString=[caseDescString stringByAppendingFormat:@"   %@于%@驾驶%@%@行至%@%@%@，因%@发生交通事故损坏公路路产，经现场勘查认定，",citizen.party,happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason];
+            caseDescString=[caseDescString stringByAppendingFormat:@"    当事人%@于%@驾驶%@%@，行驶至%@%@%@，因%@发生交通事故，%@造成高速公路路产损坏。经现场勘查，路产损坏情况为：",citizen.party,happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason, caseStatusString];
             NSEntityDescription *deformEntity=[NSEntityDescription entityForName:@"CaseDeformation" inManagedObjectContext:context];
             NSPredicate *deformPredicate=[NSPredicate predicateWithFormat:@"proveinfo_id ==%@ && citizen_name==%@",caseID,citizen.automobile_number];
             [fetchRequest setEntity:deformEntity];
@@ -156,29 +157,31 @@
                 }
                 NSCharacterSet *charSet=[NSCharacterSet characterSetWithCharactersInString:@"、"];
                 deformsString=[deformsString stringByTrimmingCharactersInSet:charSet];
-                caseDescString=[caseDescString stringByAppendingFormat:@"损坏路产如下：%@。",deformsString];
+                caseDescString=[caseDescString stringByAppendingFormat:@"%@。",deformsString];
             } else {
                 caseDescString=[caseDescString stringByAppendingString:@"没有路产损坏。"];
             }
         }
         if (citizenArray.count>1) {
-            Citizen *citizen=[citizenArray objectAtIndex:0];
-            caseDescString=[caseDescString stringByAppendingFormat:@"%@于%@驾驶%@%@行至%@%@%@，与",citizen.party,happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString];
-            for (int i=1;i<citizenArray.count;i++) {
+            Citizen * citizen=[citizenArray objectAtIndex:0];
+//            当事人闵彬勇于2012年6月3日22时00分驾驶桂P11617大巴车，行驶至G15沈海高速（佛开段）开平方向K3128+700m处，因车辆失控与粤GJZ992大货车和粤J22369小车发生交通事故，无人员伤亡，造成高速公路路产损坏。经现场勘查，路产损坏情况为：中央分隔带波形钢板护栏（双波、长4m）壹片，防阻块壹个；路肩波形钢板护栏（双波、长4m）伍片，立柱壹根，防阻块伍个。
+            caseDescString=[caseDescString stringByAppendingFormat:@"   当事人%@于%@驾驶%@%@,行驶至%@%@%@，因%@",citizen.party,happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason];
+            for (int i=1;i<citizenArray.count;++i) {
                 citizen=[citizenArray objectAtIndex:i];
                 if (i==1) {
-                    caseDescString=[caseDescString stringByAppendingFormat:@"%@驾驶的%@%@",citizen.party,citizen.automobile_number,citizen.automobile_pattern];
+                    caseDescString=[caseDescString stringByAppendingFormat:@"与%@%@",citizen.automobile_number,citizen.automobile_pattern];
                 } else {
-                    caseDescString=[caseDescString stringByAppendingFormat:@"、%@驾驶的%@%@",citizen.party,citizen.automobile_number,citizen.automobile_pattern];
+                    caseDescString=[caseDescString stringByAppendingFormat:@"和%@%@",citizen.automobile_number,citizen.automobile_pattern];
                 }
             }
-            if (citizen.bad_desc && ![citizen.bad_desc isEmpty]) {
-                //        caseStatusString=[caseStatusString stringByAppendingFormat:@"损坏%@辆车",caseInfo.badcar_sum];
-                caseStatusString=[caseStatusString stringByAppendingFormat:@"造成车辆%@损坏",citizen.bad_desc];
-            } else {
-                caseStatusString=[caseStatusString stringByAppendingString:@"未造成车辆损坏"];
-            }
-            caseDescString=[caseDescString stringByAppendingFormat:@"在公路%@由于发生交通事故损坏公路路产，经与当事人现场勘查，",caseInfo.place];
+            caseDescString=[caseDescString stringByAppendingFormat:@"发生交通事故，%@造成高速公路路产损坏。经现场勘查，路产损坏情况为：",caseStatusString];
+//            if (citizen.bad_desc && ![citizen.bad_desc isEmpty]) {
+//                //        caseStatusString=[caseStatusString stringByAppendingFormat:@"损坏%@辆车",caseInfo.badcar_sum];
+//                caseStatusString=[caseStatusString stringByAppendingFormat:@"造成车辆%@损坏",citizen.bad_desc];
+//            } else {
+//                caseStatusString=[caseStatusString stringByAppendingString:@"未造成车辆损坏"];
+//            }
+//            caseDescString=[caseDescString stringByAppendingFormat:@"在公路%@由于发生交通事故损坏公路路产，经与当事人现场勘查，",caseInfo.place];
             
             NSArray *deformArray=[CaseDeformation deformationsForCase:caseID];
             NSString *roadAssetString=@"";
@@ -208,40 +211,40 @@
                 }
                 roadAssetString=[roadAssetString stringByTrimmingCharactersInSet:charSet];
                 if (![roadAssetString isEmpty]) {
-                    deformsString=[deformsString stringByAppendingFormat:@"%@损坏路产：%@，",[[citizenArray objectAtIndex:i] automobile_number],roadAssetString];
+                    deformsString=[deformsString stringByAppendingFormat:@"%@，",roadAssetString];
                 }
             }
-            roadAssetString=@"";
-            for (CaseDeformation *deform in deformArray) {
-                if ([deform.citizen_name isEqualToString:@"共同"]) {
-                    NSString *roadSizeString=[deform.rasset_size stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                    if ([roadSizeString isEmpty]) {
-                        roadSizeString=@"";
-                    } else {
-                        roadSizeString=[NSString stringWithFormat:@"（%@）",roadSizeString];
-                    }
-                    NSString *remarkString=[deform.remark stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                    if ([remarkString isEmpty]) {
-                        remarkString=@"";
-                    } else {
-                        remarkString=[NSString stringWithFormat:@"（%@）",remarkString];
-                    }
-                    NSString *quantity=[[NSString alloc] initWithFormat:@"%.2f",deform.quantity.floatValue];
-                    NSCharacterSet *zeroSet=[NSCharacterSet characterSetWithCharactersInString:@".0"];
-                    quantity=[quantity stringByTrimmingTrailingCharactersInSet:zeroSet];
-                    roadAssetString=[roadAssetString stringByAppendingFormat:@"、%@%@%@%@%@",deform.roadasset_name,roadSizeString,quantity,deform.unit,remarkString];
-                }
-            }
-            roadAssetString=[roadAssetString stringByTrimmingCharactersInSet:charSet];
-            if (![roadAssetString isEmpty]) {
-                NSString *citizenString=@"";
-                for (int i=0; i<citizenArray.count; i++) {
-                    citizenString=[citizenString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                    citizenString=[citizenString stringByAppendingFormat:@"%@%@",([citizenString isEmpty]?@"":@"、"),[[citizenArray objectAtIndex:i] automobile_number]];
-                }
-                citizenString=[citizenString stringByTrimmingTrailingCharactersInSet:charSet];
-                deformsString=[deformsString stringByAppendingFormat:@"%@共同损坏路产：%@，",[citizenString stringByTrimmingTrailingCharactersInSet:charSet],roadAssetString];
-            }
+//            roadAssetString=@"";
+//            for (CaseDeformation *deform in deformArray) {
+//                if ([deform.citizen_name isEqualToString:@"共同"]) {
+//                    NSString *roadSizeString=[deform.rasset_size stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//                    if ([roadSizeString isEmpty]) {
+//                        roadSizeString=@"";
+//                    } else {
+//                        roadSizeString=[NSString stringWithFormat:@"（%@）",roadSizeString];
+//                    }
+//                    NSString *remarkString=[deform.remark stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//                    if ([remarkString isEmpty]) {
+//                        remarkString=@"";
+//                    } else {
+//                        remarkString=[NSString stringWithFormat:@"（%@）",remarkString];
+//                    }
+//                    NSString *quantity=[[NSString alloc] initWithFormat:@"%.2f",deform.quantity.floatValue];
+//                    NSCharacterSet *zeroSet=[NSCharacterSet characterSetWithCharactersInString:@".0"];
+//                    quantity=[quantity stringByTrimmingTrailingCharactersInSet:zeroSet];
+//                    roadAssetString=[roadAssetString stringByAppendingFormat:@"、%@%@%@%@%@",deform.roadasset_name,roadSizeString,quantity,deform.unit,remarkString];
+//                }
+//            }
+//            roadAssetString=[roadAssetString stringByTrimmingCharactersInSet:charSet];
+//            if (![roadAssetString isEmpty]) {
+//                NSString *citizenString=@"";
+//                for (int i=0; i<citizenArray.count; i++) {
+//                    citizenString=[citizenString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//                    citizenString=[citizenString stringByAppendingFormat:@"%@%@",([citizenString isEmpty]?@"":@"、"),[[citizenArray objectAtIndex:i] automobile_number]];
+//                }
+//                citizenString=[citizenString stringByTrimmingTrailingCharactersInSet:charSet];
+//                deformsString=[deformsString stringByAppendingFormat:@"%@共同损坏路产：%@，",[citizenString stringByTrimmingTrailingCharactersInSet:charSet],roadAssetString];
+//            }
             if (![deformsString isEmpty]) {
                 NSCharacterSet *commaSet=[NSCharacterSet characterSetWithCharactersInString:@"，"];
                 caseDescString=[caseDescString stringByAppendingFormat:@"%@。",[deformsString stringByTrimmingTrailingCharactersInSet:commaSet]];
@@ -250,7 +253,7 @@
             }
         }
     }
-    return caseDescString;
+    return [NSString stringWithFormat:@"\b\b%@\n   如承认以上路损事实，请在下面签名确认。",caseDescString ];
 }
 
 
@@ -334,6 +337,7 @@
     return [UserInfo orgAndDutyForUserName:self.recorder];
 }
 + (NSString *)generateEventDescForInquire:(NSString *)caseID{
+    //询问笔录 中 事故发生时间、经过和原因
     CaseInfo *caseInfo = [CaseInfo caseInfoForID:caseID];
     NSString *roadName = [RoadSegment roadNameFromSegment:caseInfo.roadsegment_id];
     
@@ -366,31 +370,47 @@
     if (citizenArray.count > 0) {
         if (citizenArray.count == 1) {
             Citizen *citizen = [citizenArray objectAtIndex:0];
-            
-            caseDescString = [caseDescString stringByAppendingFormat:@"%@驾驶%@%@行至%@%@%@由于%@发生交通事故，",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason];
+//            大概是今天晚上10点00分左右，我驾驶桂P11617大巴车行驶至佛开高速陈山至共和路段，因车辆失控跟前面的粤GJZ992大货车、粤J22369小车发生追尾事故，没人受伤，损坏了公路路产设施。
+            caseDescString = [caseDescString stringByAppendingFormat:@"大概是%@左右，我驾驶%@%@行驶至%@%@%@，因%@发生交通事故，",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason];
         }
         if (citizenArray.count > 1) {
             Citizen *citizen = [citizenArray objectAtIndex:0];
-            caseDescString = [caseDescString stringByAppendingFormat:@"%@驾驶%@%@行至%@%@%@，与",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString];
+            caseDescString = [caseDescString stringByAppendingFormat:@"大概是%@左右，我驾驶%@%@行驶至%@%@%@，因%@与",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason];
             for (int i = 1;i < citizenArray.count;i++) {
                 citizen = [citizenArray objectAtIndex:i];
                 if (i == 1) {
-                    caseDescString = [caseDescString stringByAppendingFormat:@"%@驾驶的%@%@",citizen.party,citizen.automobile_number,citizen.automobile_pattern];
+                    caseDescString = [caseDescString stringByAppendingFormat:@"%@%@",citizen.automobile_number,citizen.automobile_pattern];
                 } else {
-                    caseDescString = [caseDescString stringByAppendingFormat:@"、%@驾驶的%@%@",citizen.party,citizen.automobile_number,citizen.automobile_pattern];
+                    caseDescString = [caseDescString stringByAppendingFormat:@"、%@%@",citizen.automobile_number,citizen.automobile_pattern];
                 }
             }
-            caseDescString = [caseDescString stringByAppendingFormat:@"，因%@发生交通事故，",caseInfo.case_reason];
+            caseDescString = [caseDescString stringByAppendingFormat:@"发生交通事故，"];
             
         }
     }
+    NSString * caseStatusString = @"";
+    if (caseInfo.fleshwound_sum.integerValue==0 && caseInfo.badwound_sum.integerValue==0 && caseInfo.death_sum.integerValue==0) {
+        caseStatusString=[caseStatusString stringByAppendingString:@"无人员伤亡，"];
+    } else {
+        caseStatusString=@"造成";
+        if (caseInfo.fleshwound_sum.integerValue!=0) {
+            caseStatusString=[caseStatusString stringByAppendingFormat:@"轻伤%@人，",caseInfo.fleshwound_sum];
+        }
+        if (caseInfo.badwound_sum.integerValue!=0) {
+            caseStatusString=[caseStatusString stringByAppendingFormat:@"重伤%@人，",caseInfo.badwound_sum];
+        }
+        if (caseInfo.death_sum.integerValue!=0) {
+            caseStatusString=[caseStatusString stringByAppendingFormat:@"死亡%@人，",caseInfo.death_sum];
+        }
+    }
+    caseDescString = [caseDescString stringByAppendingFormat:@"%@",caseStatusString];
     CaseProveInfo *proveInfo = [CaseProveInfo proveInfoForCase:caseID];
     if ([proveInfo.case_desc_id isEqualToString:@"973"]){
-        caseDescString = [caseDescString stringByAppendingFormat:@"造成高速公路路产被损坏及污染。"];
+        caseDescString = [caseDescString stringByAppendingFormat:@"损坏、污染了高速公路路产设施。"];
     } else if ([proveInfo.case_desc_id isEqualToString:@"970"]){
-        caseDescString = [caseDescString stringByAppendingFormat:@"造成高速公路路产损坏。"];
+        caseDescString = [caseDescString stringByAppendingFormat:@"损坏了高速公路路产设施。"];
     } else if ([proveInfo.case_desc_id isEqualToString:@"971"]){
-        caseDescString = [caseDescString stringByAppendingFormat:@"造成成高速公路污染。"];
+        caseDescString = [caseDescString stringByAppendingFormat:@"污染了高速公路路产设施。"];
 
     }
     return caseDescString;
@@ -446,13 +466,11 @@
 }
 
 + (NSString *)generateEventDescForCase2:(NSString *)caseID{
+    //通知书 事故经过描述
     CaseInfo *caseInfo=[CaseInfo caseInfoForID:caseID];
     NSString *roadName=[RoadSegment roadNameFromSegment:caseInfo.roadsegment_id];
-    
-    
     NSString *caseDescString=@"";
     NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
-    
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[NSLocale currentLocale]];
     [dateFormatter setDateFormat:@"yyyy年MM月dd日HH时mm分"];
@@ -503,45 +521,44 @@
             }
             
            // caseDescString=[caseDescString stringByAppendingFormat:@"%@驾驶%@%@行至%@%@%@在公路%@由于发生交通事故损坏公路路产，%@。",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.place,caseStatusString];
-            caseDescString=[caseDescString stringByAppendingFormat:@"%@驾驶%@%@行至%@%@%@,因%@发生交通事故损坏公路路产，%@。",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason,caseStatusString];
+            caseDescString=[caseDescString stringByAppendingFormat:@"%@驾驶%@%@,行驶至%@%@%@,因%@",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason];
+//            闵彬勇于2012年6月3日22时00分驾驶桂P11617大巴车，行驶至G15沈海高速（佛开段）开平方向K3128+700m处，因车辆失控与粤GJZ992大货车和粤J22369小车发生交通事故，
         }
         if (citizenArray.count>1) {
             Citizen *citizen=[citizenArray objectAtIndex:0];
-            caseDescString=[caseDescString stringByAppendingFormat:@"%@驾驶%@%@行至%@%@%@，与",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString];
+            caseDescString=[caseDescString stringByAppendingFormat:@"%@驾驶%@%@，行驶至%@%@%@，因%@与",happenDate,citizen.automobile_number,citizen.automobile_pattern,roadName,caseInfo.side,stationString,caseInfo.case_reason];
             for (int i=1;i<citizenArray.count;i++) {
                 citizen=[citizenArray objectAtIndex:i];
                 if (i==1) {
-                    caseDescString=[caseDescString stringByAppendingFormat:@"%@驾驶的%@%@",citizen.party,citizen.automobile_number,citizen.automobile_pattern];
+                    caseDescString=[caseDescString stringByAppendingFormat:@"%@%@",citizen.automobile_number,citizen.automobile_pattern];
                 } else {
-                    caseDescString=[caseDescString stringByAppendingFormat:@"、%@驾驶的%@%@",citizen.party,citizen.automobile_number,citizen.automobile_pattern];
+                    caseDescString=[caseDescString stringByAppendingFormat:@"和%@%@",citizen.automobile_number,citizen.automobile_pattern];
                 }
             }
-            if (citizen.bad_desc && ![citizen.bad_desc isEmpty]) {
-                //        caseStatusString=[caseStatusString stringByAppendingFormat:@"损坏%@辆车",caseInfo.badcar_sum];
-                caseStatusString=[caseStatusString stringByAppendingFormat:@"造成车辆%@损坏",citizen.bad_desc];
-            } else {
-                caseStatusString=[caseStatusString stringByAppendingString:@"未造成车辆损坏"];
-            }
-            caseDescString=[caseDescString stringByAppendingFormat:@"在公路%@由于发生交通事故损坏公路路产，%@。",caseInfo.place,caseStatusString];
+//            if (citizen.bad_desc && ![citizen.bad_desc isEmpty]) {
+//                //        caseStatusString=[caseStatusString stringByAppendingFormat:@"损坏%@辆车",caseInfo.badcar_sum];
+//                caseStatusString=[caseStatusString stringByAppendingFormat:@"造成车辆%@损坏",citizen.bad_desc];
+//            } else {
+//                caseStatusString=[caseStatusString stringByAppendingString:@"未造成车辆损坏"];
+////            }
+//            caseDescString=[caseDescString stringByAppendingFormat:@"在公路%@由于发生交通事故损坏公路路产，%@。",caseInfo.place,caseStatusString];
 
         }
     }
-    
+
+//    闵彬勇于2012年6月3日22时00分驾驶桂P11617大巴车，行驶至G15沈海高速（佛开段）开平方向K3128+700m处，因车辆失控与粤GJZ992大货车和粤J22369小车发生交通事故，
     NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-    
     OrgInfo *orgInfo = [OrgInfo orgInfoForOrgID:[UserInfo userInfoForUserID:currentUserID].organization_id];
-    
     if (orgInfo != nil && orgInfo.belongtoorg_id != nil && ![orgInfo.belongtoorg_id isEmpty]) {
         orgInfo = [OrgInfo orgInfoForOrgID:orgInfo.belongtoorg_id];
     }
     NSString *organizationName = [orgInfo valueForKey:@"orgshortname"];
-    
     NSString *orgname = [orgInfo valueForKey:@"orgname"];
     NSRange found = [orgname rangeOfString:@"天汕"];
     if (found.location != NSNotFound) {
         organizationName = orgname;
     }
-    caseDescString=[caseDescString stringByAppendingFormat:@"经现场勘查认定损坏路产（详细见广东省佛开高速公路路产赔偿清单）",organizationName];
+    caseDescString=[caseDescString stringByAppendingFormat:@"发生交通事故，经现场勘查认定损坏高速公路路产(详见《广东省佛开高速公路路产赔偿清单》)。"];
     return caseDescString;
 }
 

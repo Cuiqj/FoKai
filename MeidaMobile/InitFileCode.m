@@ -11,9 +11,10 @@
 
 @implementation InitFileCode
 
--(void)downLoadFileCode{
+-(void)downLoadFileCode:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from FileCode"];
+//    [service downloadDataSet:@"select * from FileCode"];
+    [service downloadDataSet:[@"select * from FileCode where org_id = " stringByAppendingString:orgID]];
 }
 
 - (void)xmlParser:(NSString *)webString{

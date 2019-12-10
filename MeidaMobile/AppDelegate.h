@@ -47,7 +47,7 @@
              username:(NSString *)username;
 */ 
 
--(NSString *)getUserName:(NSString *)account;
+-(NSString *)getUserName:(NSString *)code;
 
 -(NSMutableArray *)getIconInfoByType:(NSString *)iconType;
 -(NSMutableArray *)getIconInfoByName:(NSString *)iconName;

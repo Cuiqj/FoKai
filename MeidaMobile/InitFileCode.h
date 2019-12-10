@@ -10,6 +10,6 @@
 
 @interface InitFileCode : InitData
 
--(void)downLoadFileCode;
+-(void)downLoadFileCode:(NSString *)orgID;
 
 @end

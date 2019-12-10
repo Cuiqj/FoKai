@@ -114,7 +114,7 @@
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@"proveinfo_id==%@ && nexus==%@",caseID,nexus];
     fetchRequest.predicate=predicate;
     if ([context countForFetchRequest:fetchRequest error:nil]>0) {
-        return [[context executeFetchRequest:fetchRequest error:nil] lastObject];
+        return [[context executeFetchRequest:fetchRequest error:nil] firstObject];
     } else {
         return nil;
     }

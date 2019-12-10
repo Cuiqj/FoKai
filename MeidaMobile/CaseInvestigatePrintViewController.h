@@ -42,6 +42,8 @@
 
 //案件调查经过及结论
 @property (weak, nonatomic) IBOutlet UITextView *textviewcourse;
+//所附证据材料   不选择 直接默认填写
+@property (weak, nonatomic) IBOutlet UITextView *textviewWitness;
 //领导意见
 @property (weak, nonatomic) IBOutlet UITextView *textviewleader_comment;
 //备注

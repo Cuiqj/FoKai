@@ -51,7 +51,7 @@ static NSString * const xmlName = @"InvestigateTable";
     }
     if(proveInfo){
 //        self.textcasedesc.text = [NSString stringWithFormat:@"%@%@因交通事故%@", self.citizen.automobile_number, self.citizen.automobile_pattern, proveInfo.case_short_desc];
-        self.textcasedesc.text = proveInfo.case_short_desc;
+        self.textcasedesc.text = [NSString stringWithFormat:@"交通事故%@",proveInfo.case_short_desc];
     }
     if (self.caseInvestigate) {
         //    调查人员
@@ -65,7 +65,10 @@ static NSString * const xmlName = @"InvestigateTable";
         if ([namearray count]>=3) {
             self.textnamethree.text = [namearray objectAtIndex:2];
         }
-        [self pageLoadInfoforWitness];
+//        [self pageLoadInfoforWitness];
+
+        self.textviewWitness.text = self.caseInvestigate.witness;
+    
         //   案件调查经过及结论
         self.textviewcourse.text = self.caseInvestigate.course;
         //   领导意见
@@ -112,7 +115,7 @@ static NSString * const xmlName = @"InvestigateTable";
 //根据案件记录，完整 调查报告
 - (void)generateDefaultInfo:(CaseInvestigate *)caseInvestigate{
     NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-    NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"username"];
+    NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"name"];
     NSArray *inspectorArray = [[NSUserDefaults standardUserDefaults] objectForKey:INSPECTORARRAYKEY];
     if ([inspectorArray count] == 0) {
         self.caseInvestigate.investigater_name = currentUserName;
@@ -125,7 +128,7 @@ static NSString * const xmlName = @"InvestigateTable";
         }
     }
     self.caseInvestigate.course = [self CourseandConclusionofthecase];
-    self.caseInvestigate.witness = @"";
+    self.caseInvestigate.witness = @"勘验检查笔录1份；\n询问笔录1份；\n现场勘验图1份；\n现场拍摄照片1张。";
     [[AppDelegate App] saveContext];
 }
 - (NSString *)CourseandConclusionofthecase{
@@ -141,7 +144,8 @@ static NSString * const xmlName = @"InvestigateTable";
         NSString * cartype = self.citizen.automobile_pattern;
         NSString * carnumber = self.citizen.automobile_number;
         NSString * caseproveplace = proveInfo.remark;
-        remark = [NSString stringWithFormat:@"经路政人员现场勘查认定，于%@驾驶%@%@行至%@处，因发生交通事故，造成高速公路路产损坏，事实清楚，证据充分确凿。",datestring,cartype,carnumber,caseproveplace];
+//        经路政人员现场勘查认定，闵彬勇于2012年6月3日22时00分驾驶桂P11617大巴车行驶至沈海高速（佛开段）开平方向K3128+700m处，因车辆失控与粤GJZ992大货车和粤J22369小车发生交通事故，造成高速公路路产损坏，事实清楚，证据充分确凿。
+        remark = [NSString stringWithFormat:@"经路政人员现场勘查认定，%@于%@驾驶%@%@行驶至%@处，因%@发生交通事故，造成高速公路路产损坏，事实清楚，证据充分确凿。",self.citizen.party,datestring,cartype,carnumber,caseproveplace,caseInfo.case_reason];
         
     }
     return remark;
@@ -222,6 +226,7 @@ static NSString * const xmlName = @"InvestigateTable";
     self.caseInvestigate.remark = self.textviewremark.text;
     self.caseInvestigate.leader_comment = self.textviewleader_comment.text;
     self.caseInvestigate.course = self.textviewcourse.text;
+    self.caseInvestigate.witness = self.textviewWitness.text;
     [[AppDelegate App] saveContext];
     return TRUE;
 }
@@ -307,9 +312,9 @@ static NSString * const xmlName = @"InvestigateTable";
         NSString * mark2 = caseInfo.case_mark2;
         NSString * mark3 = [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3];
         NSString * anyou = self.textcasedesc.text.length >0 ? self.textcasedesc.text :@"无";
-        NSString * userone = self.textnameone.text.length>0 ? [NSString stringWithFormat:@"%@ %@",self.textnameone.text,[UserInfo exelawidforname:self.textnameone.text]] :@"无";
-        NSString * usertwo = self.textnametwo.text.length >0 ? [NSString stringWithFormat:@"%@ %@",self.textnametwo.text,[UserInfo exelawidforname:self.textnametwo.text]] :@"无";
-        NSString * userthree = self.textnamethree.text.length >0 ? [NSString stringWithFormat:@"%@ %@",self.textnamethree.text,[UserInfo exelawidforname:self.textnamethree.text]] :@"无";
+        NSString * userone = self.textnameone.text.length>0 ? [NSString stringWithFormat:@"%@ %@",self.textnameone.text,[UserInfo exelawidforname:self.textnameone.text]] :@"";
+        NSString * usertwo = self.textnametwo.text.length >0 ? [NSString stringWithFormat:@"%@ %@",self.textnametwo.text,[UserInfo exelawidforname:self.textnametwo.text]] :@"";
+        NSString * userthree = self.textnamethree.text.length >0 ? [NSString stringWithFormat:@"%@ %@",self.textnamethree.text,[UserInfo exelawidforname:self.textnamethree.text]] :@"";
         //案件经过
         NSString * course = self.textviewcourse.text;
         //领导意见

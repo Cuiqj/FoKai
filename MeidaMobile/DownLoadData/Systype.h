@@ -19,4 +19,7 @@
 @property (nonatomic, retain) NSString * remark;
 
 + (NSArray *)typeValueForCodeName:(NSString *)codeName;
++ (NSArray *)sysTypeArrayForCodeName:(NSString *)codeName;
++ (NSString *)sysTypeForCodeNameAndTypeValue:(NSString *)codeName withType_value:(NSString *)type_value;
++ (NSString *)typeValueForCodeName:(NSString *)codeName andSys_code:(NSString*)sys_code;
 @end

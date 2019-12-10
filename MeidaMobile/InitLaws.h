@@ -9,22 +9,22 @@
 #import "InitData.h"
 
 @interface InitLaws : InitData
-- (void)downLoadLaws;
+- (void)downLoadLaws:(NSString *)orgID;
 @end
 
 
 @interface InitLawBreakingAction : InitData
-- (void)downloadLawBreakingAction;
+- (void)downloadLawBreakingAction:(NSString *)orgID;
 @end
 
 @interface InitLawItems : InitData
-- (void)downloadLawItems;
+- (void)downloadLawItems:(NSString *)orgID;
 @end
 
 @interface InitMatchLaw : InitData
-- (void)downloadMatchLaw;
+- (void)downloadMatchLaw:(NSString *)orgID;
 @end
 
 @interface InitMatchLawDetails : InitData
-- (void)downloadMatchLawDetails;
+- (void)downloadMatchLawDetails:(NSString *)orgID;
 @end

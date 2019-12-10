@@ -41,6 +41,7 @@
 #define INSPECTIONKEY @"CurrentInpection_id"
 #define INSPECTORARRAYKEY @"CurrentInspectorArray"
 #define USERKEY @"CurrentUser_id"
+#define ORGKEY @"CurrentOrgID"
 
 /*
  *add by lxm
@@ -50,4 +51,4 @@
 
 
 #define VERSION_NAME @"佛开高速路政"
-#define VERSION_TIME @"2019年11月05日"
+#define VERSION_TIME @"2019年12月10日"

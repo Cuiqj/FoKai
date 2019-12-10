@@ -11,9 +11,10 @@
 
 @implementation InitUser
 
-- (void)downLoadUserInfo{
+- (void)downLoadUserInfo:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from UserInfo"];
+//    [service downloadDataSet:@"select * from UserInfo"];
+    [service downloadDataSet:[@"select * from UserInfo where org_id = " stringByAppendingString:orgID]];
 }
 
 - (void)xmlParser:(NSString *)webString{
@@ -59,9 +60,10 @@
 
 @implementation InitOrgInfo
 
-- (void)downLoadOrgInfo{
+- (void)downLoadOrgInfo:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from OrgInfo"];
+//    [service downloadDataSet:@"select * from OrgInfo"];
+    [service downloadDataSet:@"select * from OrgInfo" orgid:orgID];
 }
 
 - (void)xmlParser:(NSString *)webString{

@@ -207,7 +207,7 @@
     notice.case_desc = [CaseProveInfo generateEventDescForCase2:caseID];
     
     
-    notice.witness = @"现场勘验笔录、询问笔录、现场勘查图、现场照片";
+    notice.witness = @"勘验检查笔录、询问笔录、现场勘验图、现场照片";
     notice.check_organization = [[Systype typeValueForCodeName:@"复核单位"] objectAtIndex:0];
 
     NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
@@ -217,7 +217,7 @@
     }
     
     
-    notice.organization_id = [orgInfo valueForKey:@"orgname"];
+    notice.organization_id = [[[[orgInfo valueForKey:@"orgname"] stringByReplacingOccurrencesOfString:@"三中队" withString:@""] stringByReplacingOccurrencesOfString:@"二中队" withString:@""] stringByReplacingOccurrencesOfString:@"一中队" withString:@""];
     
     Citizen *citizen = [Citizen citizenForCitizenName:notice.citizen_name nexus:@"当事人" case:caseID];
     notice.citizen_name = citizen.automobile_number;
@@ -245,7 +245,8 @@
         //payReason = [NSString stringWithFormat:@"%@，按照%@规定，并依照%@",  breakStr, matchStr, payStr];
         
     }
-    notice.pay_reason = payReason;
+//    notice.pay_reason = payReason;
+    notice.pay_reason = @"《公路法》第八十五条第一款和《广东省公路条例》第二十三条第一款的规定，并依照广东省《损坏公路路产赔偿标准》（粤交路〔1998〕38号）";
     NSArray *deformations = [CaseDeformation deformationsForCase:caseID forCitizen:notice.citizen_name];
     double summary=[[deformations valueForKeyPath:@"@sum.total_price.doubleValue"] doubleValue];
     NSNumber *sumNum = @(summary);
@@ -463,8 +464,12 @@
     id data            = @{};
     CaseInfo *caseInfo = [CaseInfo caseInfoForID:self.caseID];
     if (caseInfo) {
-        NSString *caseMark2       = caseInfo.case_mark2;
-        NSString *caseMark3       = [NSString stringWithFormat:@"%@",caseInfo.full_case_mark3];
+        NSString * caseMark2       = caseInfo.case_mark2;
+        NSString * caseMark3       = [NSString stringWithFormat:@"%@",caseInfo.full_case_mark3];
+        NSArray * casemarkarray = [caseInfo.full_case_mark3 componentsSeparatedByString:@"字第"];
+        if ([casemarkarray count] >1) {
+            caseMark3 = casemarkarray[1];
+        }
         NSString *casePrefix      = [FileCode fileCodeWithPredicateFormat :@"赔补偿案件编号"].organization_code;
         NSString *partyName       = @"";
         NSString *partyAddress    = @"";
@@ -689,4 +694,13 @@
 -(void)setCaseText:(NSString *)aText{
     self.textBankName.text = aText;
 }
+
+- (void)deleteCurrentDoc{
+    if (![self.caseID isEmpty] && self.notice){
+        [[[AppDelegate App] managedObjectContext] deleteObject:self.notice];
+        [[AppDelegate App] saveContext];
+        self.notice = nil;
+    }
+}
+
 @end

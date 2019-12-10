@@ -12,7 +12,7 @@
 
 @interface UserInfo : NSManagedObject
 
-@property (nonatomic, retain) NSString * account;
+@property (nonatomic, retain) NSString * code;
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * cardid;
 @property (nonatomic, retain) NSString * duty;
@@ -23,16 +23,13 @@
 @property (nonatomic, retain) NSString * sex;
 @property (nonatomic, retain) NSString * telephone;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * username;
-
-
-
-+ (NSString *)exelawidforname:(NSString *)name;
+@property (nonatomic, retain) NSString * name;
 
 + (UserInfo *)userInfoForUserID:(NSString *)userID;
 
 + (NSArray *)allUserInfo;
 
-+ (NSString *)orgAndDutyForUserName:(NSString *)username;
++ (NSString *)exelawidforname:(NSString *)name;
 
++ (NSString *)orgAndDutyForUserName:(NSString *)username;
 @end

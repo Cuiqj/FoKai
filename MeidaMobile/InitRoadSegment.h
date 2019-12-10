@@ -10,5 +10,5 @@
 #import "InitData.h"
 
 @interface InitRoadSegment : InitData;
-- (void)downloadRoadSegment;
+- (void)downloadRoadSegment:(NSString *)orgID;
 @end

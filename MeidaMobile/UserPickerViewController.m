@@ -17,7 +17,16 @@
 
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.data=[UserInfo allUserInfo];
+    NSMutableArray * mutablearray = [[NSMutableArray alloc] init];
+    NSArray *temparray =[UserInfo allUserInfo];
+    for(id obj in temparray) {
+        if ([[obj valueForKey:@"name"] containsString:@"管理员"]) {
+            
+        }else{
+            [mutablearray addObject:obj];
+        }
+    }
+    self.data= [NSArray arrayWithArray:mutablearray];
 }
 
 - (void)viewDidUnload
@@ -54,7 +63,7 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text=[[self.data objectAtIndex:indexPath.row] valueForKey:@"username"];
+    cell.textLabel.text=[[self.data objectAtIndex:indexPath.row] valueForKey:@"name"];
     return cell;
 }
 
@@ -62,7 +71,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *userName=[[self.data objectAtIndex:indexPath.row] valueForKey:@"username"];
+    NSString *userName=[[self.data objectAtIndex:indexPath.row] valueForKey:@"name"];
     NSString *userID=[[self.data objectAtIndex:indexPath.row] valueForKey:@"myid"];
     [self.delegate setUser:userName andUserID:userID];
     [self.pickerPopover dismissPopoverAnimated:YES];

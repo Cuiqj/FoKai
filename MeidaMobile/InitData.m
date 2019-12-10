@@ -41,12 +41,23 @@
                         if ([elementName isEqualToString:@"id"]) {
                             elementName = @"myid";
                         }
+                        if ([elementName isEqualToString:@"org_id"]) {
+                            elementName = @"organization_id";
+                        }
+                        if ([elementName isEqualToString:@"name"] && [dataModelName isEqualToString:@"OrgInfo"]) {
+                            elementName = @"orgname";
+                        }
+                       
                         if ([obj respondsToSelector:NSSelectorFromString(elementName)]) {
                             NSDictionary *attributes = [entity attributesByName];
                             NSAttributeDescription *attriDesc = [attributes objectForKey:elementName];
                             switch (attriDesc.attributeType) {
                                 case NSStringAttributeType:
-                                    [obj setValue:[TBXML textForElement:tableChild] forKey:elementName];
+                                    if ([elementName isEqualToString:@"lochus_code"] && [dataModelName isEqualToString:@"FileCode"]) {
+                                        [obj setValue:[[TBXML textForElement:tableChild] stringByReplacingOccurrencesOfString:@"佛开交赔字第" withString:@""] forKey:elementName];
+                                    }else{
+                                        [obj setValue:[TBXML textForElement:tableChild] forKey:elementName];
+                                    }
                                     break;
                                 case NSBooleanAttributeType:
                                     [obj setValue:@([TBXML textForElement:tableChild].boolValue) forKey:elementName];

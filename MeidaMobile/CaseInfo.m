@@ -178,7 +178,7 @@ static NSString *lochus_code = @"";
             lochus_code        = [NSString stringWithString:fileCode.lochus_code];
         }
     }
-    
+    lochus_code = [lochus_code stringByReplacingOccurrencesOfString:@"佛开交赔字第" withString:@""];
     return [NSString stringWithFormat:@"%@%@", lochus_code, self.case_mark3];
     
 }

@@ -35,4 +35,7 @@
 + (RoadSegment *)roadSegmentFromSegmentID:(NSString *)segmentID;
 //返回所有的路段名称和路段号
 + (NSArray *)allRoadSegments;
++ (NSArray *)allRoadSegmentsForCaseView;
+-(void)setName:(NSString *)name;
+-(void)setMyid:(NSString *)myid;
 @end

@@ -73,16 +73,14 @@ enum kUITextFieldTag {
     if (_users == nil) {
         NSMutableArray *result = [[NSMutableArray alloc] init];
         for (UserInfo *thisUserInfo in [UserInfo allUserInfo]) {
-            [result addObject: thisUserInfo.username];
+            [result addObject: thisUserInfo.name];
         }
         _users = [result copy];
     }
     return _users;
 }
 
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     self.askID=@"";
     self.textAsk.text=@"";
@@ -278,7 +276,7 @@ enum kUITextFieldTag {
         
         
         NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-        NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"username"];
+        NSString *currentUserName=[[UserInfo userInfoForUserID:currentUserID] valueForKey:@"name"];
         NSArray *inspectorArray = [[NSUserDefaults standardUserDefaults] objectForKey:INSPECTORARRAYKEY];
         self.textFieldInquirer.text = currentUserName;
         if (inspectorArray != nil && [inspectorArray count] > 0) {
@@ -382,7 +380,7 @@ enum kUITextFieldTag {
         caseInquire.relation=citizen.nexus;
         caseInquire.sex=citizen.sex;
         caseInquire.age=citizen.age;
-        caseInquire.company_duty=[NSString stringWithFormat:@"%@ %@",citizen.org_name?citizen.org_name:@"",citizen.org_principal_duty?citizen.org_principal_duty:@""];
+        caseInquire.company_duty=[NSString stringWithFormat:@"%@/%@",citizen.org_name?citizen.org_name:@"无",citizen.org_principal_duty?citizen.org_principal_duty:@"无"];
         caseInquire.phone=citizen.tel_number;
         caseInquire.postalcode=citizen.postalcode;
         caseInquire.address=citizen.address;
@@ -876,7 +874,7 @@ enum kUITextFieldTag {
 //    NSString * text = [[Systype typeValueForCodeName:@"询问笔录固定用语"] lastObject];
     //\n    不识别
     if (text == nil) {
-        text = @"问：你好，我们是#机构#的路政员，现在向你了解事故发生的一些情况，请如实提供证言，不得作伪证，否则要负法律责任，清楚吗？\n答：清楚。\n问：请您陈述事故发生的时间，经过和原因？\n答：#事故经过及原因#\n问：您的车辆购买的是哪家保险公司的保险？保险单号是多少？\n答：我购买了#保险公司#的保险。保险单号是\n问：该车的车主是谁？\n答：#车主#。\n问：经路政人员现场勘查，您的车辆损坏公路路产的项目与数量（详见《公路赔（补）偿通知书》及《广东省佛开高速公路路产索赔计价清单》应赔偿路产损坏的金额为#金额#您对上述损坏佛开高速公路路产的项目、数量和赔偿金额是否有异议？\n答：我无异议。\n   请对上述内容复核，并在下面签名确认。\n  （以下空白）";
+        text = @"问：您好，我们是#机构#路政员，现在向您了解一些事故情况，请您如实回答，不得作伪证，否则要负法律责任，您清楚吗？\n答：我清楚。\n问：请您陈述一下这次交通事故发生的时间、经过和原因？\n答：#事故经过及原因#\n问：您驾驶的车辆是否购买了车险？我们有义务告知您可通过购买的车险进行理赔。\n答：买了，\n问：事故车车主是谁？\n答：#车主#。\n问：经路政人员现场勘查认定事故造成高速公路 路产设施损坏（详见《广东省佛开高速公路路产赔偿清单》，当事人应赔偿路产损失#金额#请问您对上述路损事实的项目、数量和赔偿金额是否有异议？\n答：我没有异议。\n问：请问您还有什么要补充说明的吗？\n答：没有了。\n    请您对上述内容进行复核，并签名确认。\n ";
     }
     text= [self paraseMuBan:text];
     return text;
@@ -933,7 +931,7 @@ enum kUITextFieldTag {
     }
     text = [text stringByReplacingOccurrencesOfString:@"#事故经过及原因#" withString:[CaseProveInfo generateEventDescForInquire:self.caseID]];
     if([citizen.carowner isEqualToString:@"当事人"] || citizen.carowner.length <= 0){
-        text = [text stringByReplacingOccurrencesOfString:@"#车主#" withString:citizen.party];
+        text = [text stringByReplacingOccurrencesOfString:@"#车主#" withString:@"我"];
     }else{
         text = [text stringByReplacingOccurrencesOfString:@"#车主#" withString:citizen.carowner];
     }
@@ -941,7 +939,7 @@ enum kUITextFieldTag {
     NSArray * deformationarray  = [[CaseDeformation deformationsForCase:self.caseID forCitizen:citizen.automobile_number] mutableCopy];
     double summary=[[deformationarray valueForKeyPath:@"@sum.total_price.doubleValue"] doubleValue];
     if ((int)(summary * 100)%100 ==0) {
-        moneystring = [NSString stringWithFormat:@"%d元整。",(int)summary];
+        moneystring = [NSString stringWithFormat:@"%d元。",(int)summary];
     }else if((int)(summary * 100)%10 ==0){
         NSString * moneystrsub = [NSString stringWithFormat:@"%.2f",summary];
         moneystrsub = [moneystrsub substringToIndex:moneystrsub.length-1];

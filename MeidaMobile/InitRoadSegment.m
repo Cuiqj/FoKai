@@ -11,9 +11,10 @@
 
 @implementation InitRoadSegment
 
-- (void)downloadRoadSegment{
+- (void)downloadRoadSegment:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from RoadSegment"];
+    //[service downloadDataSet:@"select * from RoadSegment"orgid:orgID];
+    [service downloadDataSet:[@"select * from RoadSegment where org_id = " stringByAppendingString:orgID]];
 }
 
 - (void)xmlParser:(NSString *)webString{

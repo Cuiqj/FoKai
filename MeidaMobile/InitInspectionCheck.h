@@ -16,7 +16,7 @@
 #import "CheckItems.h"
 
 @interface InitCheckType :InitData
-- (void)downLoadCheckType;
+- (void)downLoadCheckType:(NSString *)orgID;
 @end
 
 @interface InitCheckReason : InitData
@@ -28,11 +28,11 @@
 @end
 
 @interface InitCheckStatus : InitData
-- (void)downLoadCheckStatus;
+- (void)downLoadCheckStatus:(NSString *)orgID;
 @end
 
 @interface InitCheckItems : InitData
-- (void)downloadCheckItems;
+- (void)downloadCheckItems:(NSString *)orgID;
 @end
 
 @interface InitCheckItemDetails : InitData

@@ -7,9 +7,9 @@
 		<key>server place</key>
 		<string>佛开</string>
 		<key>server address</key>
-		<string>http://125.95.17.12:8082/irmsdata1</string>
+		<string>http://124.172.189.177:8123/IrmsData_fklz/</string>
 		<key>file address</key>
-		<string>http://125.95.17.12:8082/irmsdata1</string>
+		<string>http://124.172.189.177:8123/IrmsData_fklz/</string>
 	</dict>
 	<key>FileToTableMapping</key>
 	<dict>

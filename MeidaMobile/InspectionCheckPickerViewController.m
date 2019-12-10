@@ -16,7 +16,6 @@
 @implementation InspectionCheckPickerViewController
 
 
-
 - (void)viewDidLoad{
     switch (self.pickerState) {
         case kCheckHandle:
@@ -48,7 +47,7 @@
             self.data=[Systype typeValueForCodeName:@"巡查车号"];
             break;
         case kUser:
-            self.data = [[UserInfo allUserInfo] valueForKey:@"username"];
+            self.data = [[UserInfo allUserInfo] valueForKey:@"name"];
             break;
         case kStation:
             self.data = [Systype typeValueForCodeName:@"收费站"];

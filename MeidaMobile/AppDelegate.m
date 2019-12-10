@@ -296,8 +296,8 @@
     NSManagedObject *usermodel=[NSEntityDescription insertNewObjectForEntityForName:@"UserInfo" inManagedObjectContext:self.managedObjectContext];
     [usermodel setValue:myid forKey:@"myid"];
     [usermodel setValue:orgid forKey:@"orgid"];
-    [usermodel setValue:account forKey:@"account"];
-    [usermodel setValue:username forKey:@"username"];
+    [usermodel setValue:account forKey:@"code"];
+    [usermodel setValue:username forKey:@"name"];
     NSError *error=nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -305,17 +305,17 @@
     
 }
 
--(NSString *)getUserName:(NSString *)account{
+-(NSString *)getUserName:(NSString *)code{
     NSError *error=nil;
     NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
     NSEntityDescription *entry=[NSEntityDescription entityForName:@"UserInfo" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entry];
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"account == %@",account];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"code == %@",code];
     [fetchRequest setPredicate:predicate];
     NSMutableArray *mutableFetchResults=[[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
     if (mutableFetchResults.count>0){
         UserInfo *userinfo=[mutableFetchResults objectAtIndex:0];
-        NSString *username=userinfo.username;
+        NSString *username=userinfo.name;
         NSString *orgname=[self getOrgName:userinfo.organization_id];
         NSString *result=[NSString stringWithFormat:@"%@/%@",orgname,username];
         return result;        

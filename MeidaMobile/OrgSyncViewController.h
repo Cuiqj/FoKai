@@ -17,28 +17,26 @@
 
 @interface OrgSyncViewController : UIViewController<UIAlertViewDelegate,setServiceDelegate>
 @property (retain, nonatomic) DataDownLoad *dataDownLoader;
-//@property (weak, nonatomic) IBOutlet UITableView *tableOrgList;
+@property (weak, nonatomic) IBOutlet UITableView *tableOrgList;
 @property (weak, nonatomic) IBOutlet UITextField *textServerAddress;
 @property (weak, nonatomic) id<OrgSetDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UILabel *versionName;
-@property (weak, nonatomic) IBOutlet UILabel *versionTime;
+//@property (weak, nonatomic) IBOutlet UILabel *versionName;
+//@property (weak, nonatomic) IBOutlet UILabel *versionTime;
 
+//确定当前服务器地址
+- (IBAction)showServerAddress:(UIBarButtonItem *)sender;
 //确定当前服务器地址
 - (IBAction)setCurrentOrg:(UIBarButtonItem *)sender;
 
-@property (weak, nonatomic) IBOutlet UITextField *serviceTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *serviceTextField;  显示是佛开
 
 
 @property (nonatomic,retain) UIPopoverController *pickerPopOver;
 
 //保存
-
-- (IBAction)saveService:(UIButton *)sender;
-
-
-// 选择
-
-- (IBAction)ServiceChoose:(UITextField *)sender;
+//- (IBAction)saveService:(UIButton *)sender;
+//// 选择
+//- (IBAction)ServiceChoose:(UITextField *)sender;
 
 
 @end

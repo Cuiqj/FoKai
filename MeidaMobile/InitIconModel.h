@@ -11,5 +11,6 @@
 
 @interface InitIconModel : InitData
 
--(void)downLoadIconModels;
+-(void)downLoadIconModels:(NSString *)orgID;
+
 @end

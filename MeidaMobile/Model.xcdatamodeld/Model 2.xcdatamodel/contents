@@ -422,6 +422,7 @@
         <attribute name="bankaccount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="belongtoorg_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="faxnumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isselected" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="linkman" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="myid" optional="YES" attributeType="String" syncable="YES"/>
@@ -560,18 +561,18 @@
         <attribute name="uploadedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
-        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cardid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duty" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="exelawid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="myid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="organization_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="AtonementNotice" positionX="160" positionY="192" width="128" height="240"/>
@@ -580,6 +581,7 @@
         <element name="CaseDocuments" positionX="0" positionY="0" width="128" height="90"/>
         <element name="CaseInfo" positionX="0" positionY="0" width="128" height="405"/>
         <element name="CaseInquire" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="CaseInvestigate" positionX="81" positionY="153" width="128" height="225"/>
         <element name="CaseMap" positionX="160" positionY="192" width="128" height="165"/>
         <element name="CasePhoto" positionX="0" positionY="0" width="128" height="75"/>
         <element name="CaseProveInfo" positionX="0" positionY="0" width="128" height="345"/>
@@ -612,7 +614,7 @@
         <element name="Laws" positionX="160" positionY="192" width="128" height="90"/>
         <element name="MatchLaw" positionX="160" positionY="192" width="128" height="105"/>
         <element name="MatchLawDetails" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="OrgInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="OrgInfo" positionX="0" positionY="0" width="128" height="300"/>
         <element name="ParkingNode" positionX="0" positionY="0" width="128" height="210"/>
         <element name="Project" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Provinces" positionX="0" positionY="0" width="128" height="90"/>
@@ -624,6 +626,5 @@
         <element name="TrafficRecord" positionX="160" positionY="192" width="128" height="375"/>
         <element name="UploadedRecordList" positionX="160" positionY="192" width="128" height="90"/>
         <element name="UserInfo" positionX="0" positionY="0" width="128" height="225"/>
-        <element name="CaseInvestigate" positionX="81" positionY="153" width="128" height="225"/>
     </elements>
 </model>

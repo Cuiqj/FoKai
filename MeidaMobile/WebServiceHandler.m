@@ -45,11 +45,16 @@ static NSString *PASSWORD=@"Xinlu:Admin";
 }
 
 -(void)getOrgInfo{
-    NSString *soapMessage=[NSString stringWithFormat:@" <q0:getOrgList> \n"
-                           " </q0:getOrgList> \n"];
-    [self executeWebService:@"getOrgList" serviceParm:soapMessage];
-   
+//    NSString *soapMessage=[NSString stringWithFormat:@" <q0:getOrgList> \n"
+//                           " </q0:getOrgList> \n"];
+//    [self executeWebService:@"getOrgList" serviceParm:soapMessage];
+    NSString *soapMessage = [[NSString alloc] initWithFormat:@" <DownloadDataSet xmlns=\"http://tempuri.org/IrmsData/MobileData\"> \n"
+                             "  <key>%@</key> \n"
+                             "  <strSQL>%@</strSQL> \n"
+                             " </DownloadDataSet> \n",PASSWORD,@"select * from orginfo"];
+    [self executeWebService:@"DownloadDataSet" serviceParm:soapMessage];
 }
+
 -(void)getUserInfo{
     NSString *soapMessage=[NSString stringWithFormat:@" <q0:getUserInfo> \n"
                            " </q0:getUserInfo> \n"];
@@ -106,6 +111,13 @@ static NSString *PASSWORD=@"Xinlu:Admin";
     "  <key>%@</key> \n"
     "  <strSQL>%@</strSQL> \n"
     " </DownloadDataSet> \n",PASSWORD,strSQL];
+    [self executeWebService:@"DownloadDataSet" serviceParm:soapMessage];
+}
+- (void)downloadDataSet:(NSString *)strSQL orgid:(NSString *)orgid{
+    NSString *soapMessage = [[NSString alloc] initWithFormat:@" <DownloadDataSet xmlns=\"http://tempuri.org/IrmsData/MobileData\"> \n"
+                             "  <key>%@</key> \n"
+                             "  <strSQL>%@</strSQL> \n"
+                             " </DownloadDataSet> \n",PASSWORD,strSQL];
     [self executeWebService:@"DownloadDataSet" serviceParm:soapMessage];
 }
 

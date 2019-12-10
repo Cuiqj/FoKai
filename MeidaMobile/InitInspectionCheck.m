@@ -10,9 +10,10 @@
 
 @implementation InitCheckType
 
-- (void)downLoadCheckType{
+- (void)downLoadCheckType:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from CheckType"];
+//    [service downloadDataSet:@"select * from CheckType"];
+    [service downloadDataSet:[NSString stringWithFormat: @"select * from CheckType where org_id=%@ ",orgID]];
 }
 
 - (void)xmlParser:(NSString *)webString{
@@ -135,9 +136,10 @@
 
 @implementation InitCheckStatus
 
-- (void)downLoadCheckStatus{
+- (void)downLoadCheckStatus:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from Status"];
+//    [service downloadDataSet:@"select * from Status"];
+    [service downloadDataSet:[NSString stringWithFormat: @"select * from Status where org_id=%@ ",orgID]];
 }
 
 - (void)xmlParser:(NSString *)webString{
@@ -172,9 +174,10 @@
 
 @implementation InitCheckItems
 
-- (void)downloadCheckItems{
+- (void)downloadCheckItems:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from CheckItems"];
+//    [service downloadDataSet:@"select * from CheckItems"];
+    [service downloadDataSet:[NSString stringWithFormat: @"select * from CheckItems where org_id=%@ ",orgID]];
 }
 
 - (void)xmlParser:(NSString *)webString{

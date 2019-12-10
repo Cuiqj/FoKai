@@ -8,7 +8,7 @@
 
 #import "ServiceFileEditorViewController.h"
 #import "CaseServiceReceipt.h"
-#define MAX_SELECTED_FILE_NUM 6
+#define MAX_SELECTED_FILE_NUM 3
 
 @interface ServiceFileEditorViewController ()
 @property (nonatomic, strong) UIPopoverController *selectServiceFilePopover;
@@ -64,9 +64,10 @@
 //            self.file = [CaseServiceFiles newCaseServiceFilesForID:self.caseID];
 //        }
         if (self.file == nil) {
+//            6份文书改为3份了
             // 在新增文书情况下判断是否已超出文书数量限制
             if ([filesOwned count] >= MAX_SELECTED_FILE_NUM) {
-                [[[UIAlertView alloc] initWithTitle:@"提示" message:@"最多只能添加六份文书" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:@"提示" message:@"最多只能添加三份文书" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 return;
             }

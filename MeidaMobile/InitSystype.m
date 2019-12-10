@@ -9,9 +9,10 @@
 #import "InitSystype.h"
 
 @implementation InitSystype
-- (void)downloadSysType{
+- (void)downloadSysType:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from SysType"];
+//    [service downloadDataSet:@"select * from SysType"];
+    [service downloadDataSet:[@"select * from SysType where org_id = " stringByAppendingString:orgID]];
 }
 
 - (void)xmlParser:(NSString *)webString{

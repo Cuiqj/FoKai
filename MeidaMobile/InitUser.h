@@ -10,9 +10,9 @@
 #import "InitData.h"
 
 @interface InitUser : InitData
--(void)downLoadUserInfo;
+- (void)downLoadUserInfo:(NSString *)orgID;
 @end
 
 @interface InitOrgInfo:InitData
-- (void)downLoadOrgInfo;
+- (void)downLoadOrgInfo:(NSString *)orgID;
 @end

@@ -14,9 +14,9 @@
 
 @implementation InitIconModel
 
--(void)downLoadIconModels{
+-(void)downLoadIconModels:(NSString *)orgID{
     WebServiceInit;
-    [service downloadDataSet:@"select * from Icon"];
+    [service downloadDataSet:@"select * from Icon" orgid:orgID];
 }
 
 - (void)xmlParser:(NSString *)webString{

@@ -37,4 +37,15 @@
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"myid == %@ ",myID]];
     return [context executeFetchRequest:fetchRequest error:nil];
 }
+
++(NSString *)LawbreakingActionCaptionForID:(NSString *)myID{
+    NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
+    NSEntityDescription *entity=[NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"myid == %@ ",myID]];
+     LawbreakingAction *lb= [[context executeFetchRequest:fetchRequest error:nil] lastObject];
+    return  [lb valueForKey:@"caption"];
+
+}
 @end

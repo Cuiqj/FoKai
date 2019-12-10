@@ -49,7 +49,7 @@
             self.remarkTextView.text = map.remark;
         } else {
             NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
-            self.textDraftMan.text = [[UserInfo userInfoForUserID:currentUserID] valueForKey:@"username"];
+            self.textDraftMan.text = [[UserInfo userInfoForUserID:currentUserID] valueForKey:@"name"];
             self.textRoadType.text = @"沥青";
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setLocale:[NSLocale currentLocale]];

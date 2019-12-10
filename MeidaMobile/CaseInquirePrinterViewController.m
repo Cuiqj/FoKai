@@ -106,7 +106,7 @@ enum kPageInfo {
     
     Citizen *citizen = [Citizen citizenForCitizenName:self.caseInquire.answerer_name nexus:self.caseInquire.relation case:self.caseID];
     if ([self.caseInquire.company_duty isEmpty]) {
-        self.caseInquire.company_duty = [NSString stringWithFormat:@"%@%@", citizen.org_name, citizen.profession];
+        self.caseInquire.company_duty = [NSString stringWithFormat:@"%@/%@", citizen.org_name, citizen.profession];
     }
     self.textcompany_duty.text = self.caseInquire.company_duty;
     if ([self.caseInquire.phone isEmpty]) {
@@ -312,6 +312,7 @@ enum kPageInfo {
                      @"mark3": [NSString stringWithFormat:@"佛开交赔字第%@",caseInfo.full_case_mark3],
                      @"weather": caseInfo.weater,
                      };
+//        @"mark3": [NSString stringWithFormat:@"%@",caseInfo.full_case_mark3],
     }
     NSDate *date;
     NSString *dateString = @"";
