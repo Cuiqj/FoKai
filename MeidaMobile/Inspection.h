@@ -38,4 +38,8 @@
 @property (nonatomic, retain) NSDate * yjsj;
 
 + (NSArray *)inspectionForID:(NSString *)inspectionID;
+
+
+
++(Inspection *)Inspectionforinspectionid:(NSString *)specialID;
 @end

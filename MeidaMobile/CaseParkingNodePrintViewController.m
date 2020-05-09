@@ -188,7 +188,7 @@ typedef enum _kTextFieldTag {
         
         OrgInfo *orgInfo = [OrgInfo orgInfoForOrgID:caseInfo.organization_id];
         if (orgInfo) {
-            [self.textFieldOfficeAddress setText:orgInfo.orgshortname];
+            [self.textFieldOfficeAddress setText:orgInfo.orgname];
         }
     }
 }
@@ -337,7 +337,7 @@ typedef enum _kTextFieldTag {
         
         OrgInfo *orgInfo = [OrgInfo orgInfoForOrgID:caseInfo.organization_id];
         if (orgInfo) {
-            officeAddress = orgInfo.orgshortname;
+            officeAddress = orgInfo.orgname;
         }
         
         

@@ -17,6 +17,8 @@
 #import "Citizen.h"
 #import "RoadSegment.h"
 #import "CaseDeformation.h"
+#import "InspectionTotalViewController.h"
+#import "Inspection_ClassMain.h"
 
 @interface RoadInspectViewController ()
 @property (nonatomic,retain) NSMutableArray *data;
@@ -198,7 +200,11 @@ InspectionCheckState inspectionState;
         [dateFormatter setLocale:[NSLocale currentLocale]];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         self.textCheckTime.text = [dateFormatter stringFromDate:path.checktime];
-        
+        if ([path.station_record isEqualToString:@"1"]) {
+            self.Inspectionswrich.on = NO;
+        }else{
+            self.Inspectionswrich.on = YES;
+        }
         NSString *tmp = [path.stationname substringToIndex:2];
         NSString *stationName = path.stationname;
         if ([tmp isEqualToString:@"经过"] || [tmp isEqualToString:@"回到"]) {
@@ -314,6 +320,11 @@ InspectionCheckState inspectionState;
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
             newPath.checktime = [dateFormatter dateFromString:self.textCheckTime.text];
             newPath.stationname = self.textStationName.text;
+              if (self.Inspectionswrich.on) {
+                  newPath.station_record = @"0";
+              }else{
+                  newPath.station_record = @"1";
+              }
             newPath.inspectionid = self.inspectionID;
             [[AppDelegate App] saveContext];
             
@@ -356,7 +367,8 @@ InspectionCheckState inspectionState;
             }
         }
         NSString *remark=[NSString stringWithFormat:strFormat, timeString, self.textStationName.text];
-        inspectionRecord.remark=remark;
+        inspectionRecord.remark= remark;
+        
         [[AppDelegate App] saveContext];
         [self reloadRecordData];
     }else{
@@ -402,6 +414,7 @@ InspectionCheckState inspectionState;
                 textField.text = @"";
             }
         }
+        self.Inspectionswrich.on = YES;
         NSIndexPath *index = [self.tableRecordList indexPathForSelectedRow];
         if (index) {
             [self.tableRecordList deselectRowAtIndexPath:index animated:YES];
@@ -411,6 +424,22 @@ InspectionCheckState inspectionState;
 
 - (IBAction)btnDeliver:(UIButton *)sender {
     if (self.isCurrentInspection) {
+        NSString * mycurrtinspectionID  = [[NSUserDefaults standardUserDefaults] valueForKey:INSPECTIONKEY];
+        Inspection_ClassMain * inspection_class = [Inspection_ClassMain InspectionClassMainforinspectionid:mycurrtinspectionID];
+        __weak typeof(self)weakself = self;
+        if (!inspection_class) {
+            UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"提示" message:@"您还未保存巡查汇总信息，是否继续交班？"  preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"直接交班" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+                [self SelfDeliver:sender];
+                return ;
+            }];
+            [ac addAction:doneAction];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action){
+                //            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [ac addAction:cancelAction];
+            [weakself.navigationController presentViewController:ac animated:YES completion:nil];
+        }
         [self performSegueWithIdentifier:@"toInspectionOut" sender:nil];
     } else {
         self.isCurrentInspection = YES;
@@ -424,14 +453,23 @@ InspectionCheckState inspectionState;
                             [sender setTitle:@"交班" forState:UIControlStateNormal];
                             [self.uiButtonAddNew setAlpha:1.0];
                             [self.uiButtonSave setAlpha:1.0];
+                            [self.InspectionMessageSummary setAlpha:1.0];
                         }
                         completion:^(BOOL finish){
                             [self.uiButtonSave setEnabled:YES];
                             [self.uiButtonAddNew setEnabled:YES];
+                            [self.InspectionMessageSummary setEnabled:YES];
                         }];
         self.inspectionID=[[NSUserDefaults standardUserDefaults] valueForKey:INSPECTIONKEY];
         [self loadInspectionInfo];
     }
+}
+- (void)SelfDeliver:(UIButton *)sender{
+    [self performSegueWithIdentifier:@"toInspectionOut" sender:nil];
+    //    交班
+    //    if (self.isCurrentInspection) {
+    //        [self performSegueWithIdentifier:@"toInspectionOut" sender:nil];
+    //    }
 }
 
 - (IBAction)segSwitch:(id)sender {
@@ -525,10 +563,12 @@ InspectionCheckState inspectionState;
                         [self.uiButtonDeliver setTitle:@"返回当前巡查" forState:UIControlStateNormal];
                         [self.uiButtonAddNew setAlpha:0.0];
                         [self.uiButtonSave setAlpha:0.0];
+                        [self.InspectionMessageSummary setAlpha:0.0];
                     }
                     completion:^(BOOL finish){
                         [self.uiButtonSave setEnabled:NO];
                         [self.uiButtonAddNew setEnabled:NO];
+                        [self.InspectionMessageSummary setEnabled:NO];
                     }];
     self.isCurrentInspection = NO;
     self.inspectionID = inspectionID;
@@ -573,7 +613,7 @@ InspectionCheckState inspectionState;
     
     [dateFormatter setDateFormat:DATE_FORMAT_HH_MM_COLON];
     NSString *timeString=[dateFormatter stringFromDate:inspectionRecord.start_time];
-    NSMutableString *remark=[[NSMutableString alloc] initWithFormat:@"%@ 巡至%@往%@方向K%@+%@m处时，发现%@驾驶%@%@在%@发生交通事故，",timeString, [RoadSegment roadNameFromSegment:caseInfo.roadsegment_id], caseInfo.side, [caseInfo station_start_km], [caseInfo station_start_m], citizen.party, citizen.automobile_number, citizen.automobile_pattern, caseInfo.place];
+    NSMutableString *remark=[[NSMutableString alloc] initWithFormat:@"%@巡至%@往%@方向K%@+%@m处时，发现%@驾驶%@%@在%@发生交通事故，",timeString, [RoadSegment roadNameFromSegment:caseInfo.roadsegment_id], caseInfo.side, [caseInfo station_start_km], [caseInfo station_start_m], citizen.party, citizen.automobile_number, citizen.automobile_pattern, caseInfo.place];
     if ([caseInfo.fleshwound_sum intValue]==0 && [caseInfo.badwound_sum intValue]==0 && [caseInfo.death_sum intValue]==0) {
         [remark appendString:@"无人员伤亡，"];
     }else{
@@ -634,7 +674,7 @@ InspectionCheckState inspectionState;
         remark = [NSString stringWithFormat:@"%@ 接监控中心报方向%@发现交通事故，", timeStr, stationString];
     }else if ([trafficRecord.infocome isEqualToString:@"路政"]) {
 //        remark = [NSString stringWithFormat:@"%@巡查至%@K%@路段发现有交通事故。", timeStr, inspectionRecord.fix, trafficRecord.station];
-        remark = [NSString stringWithFormat:@"%@ 巡查至方向%@发现交通事故，", timeStr, stationString];
+        remark = [NSString stringWithFormat:@"%@巡查至方向%@发现交通事故，", timeStr, stationString];
     }
     
     if (trafficRecord.car) {
@@ -711,4 +751,17 @@ InspectionCheckState inspectionState;
     [[AppDelegate App] saveContext];
     [self reloadRecordData];
 }
+
+
+//跳转到巡查每班信息记录页面
+- (IBAction)InspectionMessageSummaryButtonClick:(id)sender {
+    UIStoryboard *mainstoryboard=[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    InspectionTotalViewController * InspectionTotalVC =[mainstoryboard instantiateViewControllerWithIdentifier:@"InspectionTotalVC"];
+    InspectionTotalVC.inspectionID = self.inspectionID;
+    if(InspectionTotalVC.inspectionID.length <=0){
+        InspectionTotalVC.inspectionID = [[NSUserDefaults standardUserDefaults] valueForKey:INSPECTIONKEY];
+    }
+    [self.navigationController pushViewController:InspectionTotalVC animated:YES];
+}
+
 @end

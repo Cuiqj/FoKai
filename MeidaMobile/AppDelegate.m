@@ -372,7 +372,7 @@
     NSMutableArray *mutableFetchResults=[[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
     if (mutableFetchResults.count>0){
         OrgInfo *org=[mutableFetchResults objectAtIndex:0];
-        NSString *orgshortname=org.orgshortname;
+        NSString *orgshortname=org.orgname;
         return orgshortname;
     }else{
         return @"";

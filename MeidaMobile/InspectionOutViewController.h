@@ -39,6 +39,9 @@
 //巡查路线选择
 - (IBAction)textRoadClick:(id)sender;
 
+//移交装备选择
+- (IBAction)textyjzbSelect:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *textyjzb;
 
 @property (weak, nonatomic) id<InspectionHandler> delegate;
 

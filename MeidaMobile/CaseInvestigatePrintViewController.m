@@ -129,6 +129,7 @@ static NSString * const xmlName = @"InvestigateTable";
     }
     self.caseInvestigate.course = [self CourseandConclusionofthecase];
     self.caseInvestigate.witness = @"勘验检查笔录1份；\n询问笔录1份；\n现场勘验图1份；\n现场拍摄照片1张。";
+    self.caseInvestigate.leader_comment = @"同意立案。";
     [[AppDelegate App] saveContext];
 }
 - (NSString *)CourseandConclusionofthecase{

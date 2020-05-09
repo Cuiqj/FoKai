@@ -16,7 +16,9 @@
 @property (nonatomic, retain) NSString * inspectionid;
 @property (nonatomic, retain) NSString * myid;
 @property (nonatomic, retain) NSString * stationname;
+@property (nonatomic, retain) NSString * station_record;
 @property (nonatomic, retain) NSNumber * isuploaded;
+
 
 + (NSArray *)pathsForInspection:(NSString *)inspectionID;
 @end

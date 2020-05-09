@@ -10,6 +10,8 @@
 #import "Global.h"
 #import "RoadInspectViewController.h"
 
+#import "Sfz.h"
+
 @interface AddNewInspectRecordViewController ()
 @property (nonatomic,retain) NSString *roadSegmentID;
 
@@ -183,10 +185,18 @@
             [dateFormatter setLocale:[NSLocale currentLocale]];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
             inspectionRecord.start_time=[dateFormatter dateFromString:self.textDate.text];
+            inspectionRecord.end_time = [dateFormatter dateFromString:self.textendDate.text];
             
             [dateFormatter setDateFormat:DATE_FORMAT_HH_MM_COLON];
-            NSString *timeString=[dateFormatter stringFromDate:inspectionRecord.start_time];
-            NSString *remark=[[NSString alloc] initWithFormat:@"%@ 巡至%@%@K%d+%03dm处时，在公路%@%@，巡逻班组%@。",timeString,self.textSegement.text,self.textSide.text,self.textStationStartKM.text.integerValue,self.textStationStartM.text.integerValue,self.textPlace.text,self.textCheckReason.text,self.textCheckStatus.text];
+            NSString *timeString= [dateFormatter stringFromDate:inspectionRecord.start_time];
+            if (inspectionRecord.end_time) {
+                timeString = [NSString stringWithFormat:@"%@-%@",timeString,[dateFormatter stringFromDate:inspectionRecord.end_time]];
+            }
+            NSString *remark=[[NSString alloc] initWithFormat:@"%@巡至%@%@K%d+%03dm处时，在公路%@%@，巡逻班组%@。",timeString,self.textSegement.text,self.textSide.text,self.textStationStartKM.text.integerValue,self.textStationStartM.text.integerValue,self.textPlace.text,self.textCheckReason.text,self.textCheckStatus.text];
+            if (self.textStationEndKM.text.length>0) {
+                NSString * endstation = [NSString stringWithFormat:@"至k%d+%03dm之间时，",self.textStationEndKM.text.integerValue,self.textStationEndM.text.integerValue];
+                remark = [remark stringByReplacingOccurrencesOfString:@"处时，" withString:endstation];
+            }
             self.textCheckHandle.text=[self.textCheckHandle.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             if (![self.textCheckHandle.text isEmpty]) {
                 remark=[remark stringByAppendingFormat:@"%@。",self.textCheckHandle.text];
@@ -228,9 +238,10 @@
             inspectionRecord.inspection_id=self.inspectionID;
             inspectionRecord.relationid = @"0";
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-            [dateFormatter setLocale:[NSLocale currentLocale]];
-            [dateFormatter setDateFormat:DATE_FORMAT_HH_MM_COLON];
-            inspectionRecord.start_time = [dateFormatter dateFromString:self.textTimeStart.text];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+            NSString * datetemstring = [dateFormatter stringFromDate:[NSDate date]];
+            NSString * subtemstr = [datetemstring substringToIndex:10];
+            inspectionRecord.start_time = [dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@",subtemstr,self.textTimeStart.text]];
             inspectionRecord.remark=self.textViewNormalDesc.text;
             [[AppDelegate App] saveContext];
             [self.delegate reloadRecordData];
@@ -255,6 +266,9 @@
             rect = [self.view convertRect:rect fromView:self.contentView];
         } else {
             rect = [self.view convertRect:rect fromView:self.viewNormalDesc];
+        }
+        if (state == kDescription) {
+            icPicker.preferredContentSize = CGSizeMake(600, 500);
         }
         [self.pickerPopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
         icPicker.pickerPopover=self.pickerPopover;
@@ -285,15 +299,21 @@
 
 - (IBAction)textTouch:(UITextField *)sender {
     switch (sender.tag) {
-        case 100:{
+        case 100:
+        case 221:
+        {
             //时间选择
             if ([self.pickerPopover isPopoverVisible]) {
                 [self.pickerPopover dismissPopoverAnimated:YES];
             } else {
+                self.selectsfztag = sender.tag;
                 DateSelectController *datePicker=[self.storyboard instantiateViewControllerWithIdentifier:@"datePicker"];
                 datePicker.delegate=self;
                 datePicker.pickerType=1;
                 [datePicker showdate:self.textDate.text];
+                if (sender.tag == 221) {
+                    [datePicker showdate:self.textendDate.text];
+                }
                 self.pickerPopover=[[UIPopoverController alloc] initWithContentViewController:datePicker];
                 CGRect rect;
                 if (self.descState == kAddNewRecord) {
@@ -364,8 +384,16 @@
             if(self.selectsfztag == 2051){
                 self.textsfzend.text = checkText;
                 self.selectsfztag = 0;
+                NSString * station = [Sfz station_startforShoufzName:checkText];
+                self.gozhuanghaostart.text = [station substringToIndex:station.length-3];
+                self.gozhuanghaoend.text = [station substringFromIndex:station.length -3];
+                //                获取桩号 然后给赋值      根据名字来获取桩号
             }else{
                 self.textsfz.text = checkText;
+                //                第一个收费站
+                NSString * station = [Sfz station_startforShoufzName:checkText];
+                self.zhuanghaostart.text = [station substringToIndex:station.length-3];
+                self.zhuanghaoend.text = [station substringFromIndex:station.length -3];
             }
             break;
         default:
@@ -375,7 +403,13 @@
 
 - (void)setDate:(NSString *)date{
     if (self.descState == kAddNewRecord) {
-        self.textDate.text=date;
+        if (self.selectsfztag == 100) {
+            self.textDate.text=date;
+            self.selectsfztag = 0;
+        }else if (self.selectsfztag == 221) {
+            self.textendDate.text=date;
+            self.selectsfztag = 0;
+        }
     } else {
         NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
         [dateFormatter setLocale:[NSLocale currentLocale]];
@@ -456,14 +490,14 @@
         sfzname = self.textsfzend.text;
     }
     NSString * kstationstartandend;
-    if (self.zhuanghaoend.text.intValue == self.gozhuanghaoend.text.intValue && self.zhuanghaostart.text.intValue == self.gozhuanghaostart.text.intValue && self.zhuanghaostart.text.intValue!=0) {
-        kstationstartandend = [NSString stringWithFormat:@"K%d+%d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
-    }else if(self.zhuanghaoend.text.intValue !=0 && self.gozhuanghaoend.text.intValue !=0 && self.zhuanghaostart.text.intValue !=0 && self.gozhuanghaostart.text.intValue !=0){
-        kstationstartandend = [NSString stringWithFormat:@"K%d+%d-K%d+%d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue,self.gozhuanghaostart.text.intValue,self.gozhuanghaoend.text.intValue];
-    }else if(self.zhuanghaostart.text.intValue == 0 && self.zhuanghaoend == 0){
+    if (self.zhuanghaoend.text.intValue == self.gozhuanghaoend.text.intValue && self.zhuanghaostart.text.intValue == self.gozhuanghaostart.text.intValue && (self.zhuanghaostart.text.intValue!=0 || self.zhuanghaoend.text.intValue !=0)) {
+        kstationstartandend = [NSString stringWithFormat:@"K%d+%03d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
+    }else if((self.zhuanghaoend.text.intValue !=0 || self.zhuanghaostart.text.intValue !=0) && (self.gozhuanghaoend.text.intValue !=0 || self.gozhuanghaostart.text.intValue !=0)){
+        kstationstartandend = [NSString stringWithFormat:@"K%d+%03d-K%d+%03d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue,self.gozhuanghaostart.text.intValue,self.gozhuanghaoend.text.intValue];
+    }else if(self.zhuanghaoend.text.intValue ==0 && self.gozhuanghaoend.text.intValue ==0 && self.zhuanghaostart.text.intValue ==0 && self.gozhuanghaostart.text.intValue ==0){
         kstationstartandend = @"";
     }else{
-        kstationstartandend = [NSString stringWithFormat:@"K%d+%d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
+        kstationstartandend = [NSString stringWithFormat:@"K%d+%03d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
     }
     NSString * remark = [self.textDescNormal.text stringByReplacingOccurrencesOfString:@"[时1]-[时2]" withString:time];
     remark = [remark stringByReplacingOccurrencesOfString:@"[时1]" withString:self.textTimeStart.text];
@@ -472,7 +506,7 @@
     remark = [remark stringByReplacingOccurrencesOfString:@"[站1]" withString:self.textsfz.text];
     remark = [remark stringByReplacingOccurrencesOfString:@"[站2]" withString:self.textsfzend.text];
     remark = [remark stringByReplacingOccurrencesOfString:@"[桩]" withString:kstationstartandend];
-    remark = [remark stringByReplacingOccurrencesOfString:@"K0+0" withString:@""];
+    remark = [remark stringByReplacingOccurrencesOfString:@"K0+000" withString:@""];
     self.textViewNormalDesc.text = remark;
 //    self.textViewNormalDesc.text = [NSString stringWithFormat:@"%@在%@%@路段巡查%@%@，%@",time,sfzname,kstationstartandend,self.textRoad.text,self.textPlaceNormal.text,self.textDescNormal.text];
 }

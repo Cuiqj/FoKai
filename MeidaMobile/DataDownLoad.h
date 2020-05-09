@@ -21,8 +21,9 @@
 #import "InitLaws.h"
 #import "InitFileCode.h"
 #import "InitBridge.h"
+#import "InitShoufz.h"
 
-#define DOWNLOADCOUNT 22
+#define DOWNLOADCOUNT 23
 #define DOWNLOADFINISHNOTI @"DownLoadWorkFinished"
 
 #define WAITFORPARSER   self.stillParsing = YES;\

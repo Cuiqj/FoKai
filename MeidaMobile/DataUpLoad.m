@@ -11,11 +11,11 @@
 #import "AlertViewWithProgressbar.h"
 #import "TBXML.h"
 #import "UploadRecord.h"
+#import "CasePhoto.h"
 
 //所需上传的表名称
 //modify by lxm 2013.05.13
-static NSString *dataNameArray[UPLOADCOUNT]={@"CaseInvestigate",@"Project",@"Task",@"AtonementNotice",@"CaseDeformation",@"CaseInfo",@"CaseInquire",@"CaseProveInfo",@"CaseServiceFiles",@"CaseServiceReceipt",@"Citizen",@"RoadWayClosed",@"Inspection",@"InspectionCheck",@"InspectionOutCheck",@"InspectionPath",@"InspectionRecord",@"ParkingNode",@"CaseMap",@"ConstructionChangeBack",@"TrafficRecord"};
-
+static NSString *dataNameArray[UPLOADCOUNT]={@"Inspection_ClassMain",@"CaseInvestigate",@"CaseProveInfo",@"Project",@"Task",@"AtonementNotice",@"CaseDeformation",@"CaseInfo",@"CaseInquire",@"CaseServiceFiles",@"CaseServiceReceipt",@"Citizen",@"RoadWayClosed",@"Inspection",@"InspectionCheck",@"InspectionOutCheck",@"InspectionPath",@"InspectionRecord",@"InspectionTotal",@"ParkingNode",@"CaseMap",@"ConstructionChangeBack",@"TrafficRecord",@"CasePhoto"};
 //static NSString *dataNameArray[UPLOADCOUNT]={@"CaseMap"};
 
 @interface DataUpLoad()
@@ -71,25 +71,41 @@ static NSString *dataNameArray[UPLOADCOUNT]={@"CaseInvestigate",@"Project",@"Tas
 //        dataArray = [NSClassFromString(currentDataName) uploadArrayOfObject];
 //    }
     if (dataArray.count > 0) {
-        
-        NSString *dataTypeString = [NSClassFromString(currentDataName) complexTypeString];
         NSString *dataXML = @"";
-        for (id obj in dataArray) {
-            dataXML = [dataXML stringByAppendingString:[obj dataXMLString]];
-            [_uploadedRecord addUploadedRecord:currentDataName WitdData:obj];
-        }
-        if (![dataXML isEmpty]) {
-            NSString *uploadXML = [[NSString alloc] initWithFormat:@"%@\n"
+        if ([currentDataName isEqualToString:@"CasePhoto"]) {
+            NSInteger dataArrayCount = [dataArray count];
+            for (NSInteger i = 0;i < dataArrayCount;i++) {
+                id obj = [dataArray objectAtIndex:i];
+                CasePhoto *photo = (CasePhoto *)obj;
+                if(photo.proveinfo_id == nil && photo.project_id ==nil) continue;
+                dataXML = @"";
+                dataXML = [dataXML stringByAppendingString:[photo dataXMLStringForCasePhoto]];
+                [_uploadedRecord addUploadedRecord:currentDataName WitdData:obj];
+                WebServiceHandler *service= [[WebServiceHandler alloc] init];
+                service.delegate=self;
+                [service uploadPhotot:dataXML updatedObject:obj];
+            }
+        }else{
+            NSString *dataTypeString = [NSClassFromString(currentDataName) complexTypeString];
+            for (id obj in dataArray) {
+//                  if ([currentDataName isEqualToString:@"CaseInfo"]) {
+//                   NSLog(@"%@",obj);
+//                  }
+                dataXML = [dataXML stringByAppendingString:[obj dataXMLString]];
+                [_uploadedRecord addUploadedRecord:currentDataName WitdData:obj];
+            }
+            if (![dataXML isEmpty]) {
+                NSString *uploadXML = [[NSString alloc] initWithFormat:@"%@\n"
                                    "<diffgr:diffgram xmlns:msdata=\"urn:schemas-microsoft-com:xml-msdata\" xmlns:diffgr=\"urn:schemas-microsoft-com:xml-diffgram-v1\">\n"
                                    "   <NewDataSet xmlns=\"\">\n"
                                    "       %@\n"
                                    "   </NewDataSet>\n"
                                    "</diffgr:diffgram>",dataTypeString,dataXML];
-            
-            WebServiceHandler *service=[[WebServiceHandler alloc] init];
-            service.delegate=self;
-            NSLog(@"%@\n%@", currentDataName, uploadXML);
-            [service uploadDataSet:uploadXML];
+                WebServiceHandler *service=[[WebServiceHandler alloc] init];
+                service.delegate=self;
+                NSLog(@"%@\n%@", currentDataName, uploadXML);
+                [service uploadDataSet:uploadXML];
+            }
         }
     } else {
         self.currentWorkIndex += 1;
@@ -207,6 +223,38 @@ static NSString *dataNameArray[UPLOADCOUNT]={@"CaseInvestigate",@"Project",@"Tas
 //        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 //            [self.progressView hide];
 //        });
+    }
+}
+- (void)getWebServiceReturnString:(NSString *)webString forWebService:(NSString *)serviceName updatedObject:(id)updatedObject{
+    BOOL success = NO;
+    TBXML *xml = [TBXML newTBXMLWithXMLString:webString error:nil];
+    TBXMLElement *root = [xml rootXMLElement];
+    TBXMLElement *r1 = root->firstChild;
+    TBXMLElement *r2 = r1->firstChild;
+    TBXMLElement *r3 = r2->firstChild;
+    if (r3) {
+        NSString *outString = [TBXML textForElement:r3];
+        if (outString.boolValue) {
+            success = YES;
+        }
+    }
+    if (success) {
+        NSDictionary *userInfo = @{@"updatedObject":updatedObject};
+        [[NSNotificationCenter defaultCenter] postNotificationName:UPLOADFINISH object:nil userInfo:userInfo];
+    } else {
+        NSString *upLoadedDataName = dataNameArray[self.currentWorkIndex];
+        // if(![upLoadedDataName isEqualToString:  @"CasePhoto"]){
+        NSString *message = [[NSString alloc] initWithFormat:@"上传图片出现错误"];
+        NSLog(@"ERROR!:%@\n%@",upLoadedDataName, webString);
+        [self.progressView setMessage:message];
+        // }
+        double delayInSeconds = 0.5;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            //  [self.progressView hide];
+            [self.progressView dismissWithClickedButtonIndex:-1 animated:YES];
+        });
+        
     }
 }
 

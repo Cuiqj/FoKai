@@ -80,7 +80,7 @@
     if (temp.count>0) {
         id obj=[temp objectAtIndex:0];
         //return [obj name];
-        return [obj valueForKey:@"orgshortname"];
+        return [obj valueForKey:@"orgname"];
     } else {
         return @"";
     }

@@ -15,6 +15,10 @@
 
 @implementation UserPickerViewController
 
+-(void)awakeFromNib{
+    [super awakeFromNib];
+//    self.preferredContentSize = CGSizeMake(200, 400);
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     NSMutableArray * mutablearray = [[NSMutableArray alloc] init];

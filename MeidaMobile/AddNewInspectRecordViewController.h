@@ -33,11 +33,15 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UIButton *uibuttonSwitch;
 
 @property (weak, nonatomic) IBOutlet UITextField *textDate;
+@property (weak, nonatomic) IBOutlet UITextField *textendDate;
 @property (weak, nonatomic) IBOutlet UITextField *textSegement;
 
 @property (weak, nonatomic) IBOutlet UITextField *textPlace;
 @property (weak, nonatomic) IBOutlet UITextField *textStationStartKM;
 @property (weak, nonatomic) IBOutlet UITextField *textStationStartM;
+@property (weak, nonatomic) IBOutlet UITextField *textStationEndKM;
+@property (weak, nonatomic) IBOutlet UITextField *textStationEndM;
+
 
 @property (weak, nonatomic) IBOutlet UIView *viewNormalDesc;
 @property (weak, nonatomic) IBOutlet UITextField *textTimeStart;
@@ -84,6 +88,8 @@ typedef enum {
 //点击文本框，弹出选择窗口
 - (IBAction)textTouch:(UITextField *)sender;
 - (IBAction)toCaseView:(id)sender;
+
+
 
 
 @end

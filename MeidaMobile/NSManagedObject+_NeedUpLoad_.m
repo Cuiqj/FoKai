@@ -74,10 +74,10 @@
     NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
     NSEntityDescription *entity=[NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
     NSDictionary *attributes = [entity attributesByName];
-    NSString *typeString = @"";
-
+    NSString *typeString     = @"";
+    
     for (NSString *attriName in [attributes allKeys]) {
-        if (![attriName isEqualToString:@"isuploaded"] && ![attriName isEqualToString:@"officeAddress"]) {
+        if (![attriName isEqualToString:@"isuploaded"]) {
             NSAttributeDescription *attriDesc = [attributes objectForKey:attriName];
             NSString *elementString;
             switch (attriDesc.attributeType) {
@@ -91,7 +91,7 @@
                         elementString = [[NSString alloc] initWithFormat:@"<xs:element name=\"description\" type=\"xs:string\" minOccurs=\"0\" />\r"];
                     } else if ([attriName isEqualToString:@"map_item"]) {
                         elementString = [[NSString alloc] initWithFormat:@"<xs:element name=\"%@\" type=\"xs:string\" minOccurs=\"0\" />\r",attriName];
-                        for (int i=1; i <= 9; i++) {
+                        for (int i    = 1; i <= 9; i++) {
                             elementString = [elementString stringByAppendingFormat:@"<xs:element name=\"%@%d\" type=\"xs:string\" minOccurs=\"0\" />\r",attriName,i];
                         }
                     } else {
@@ -105,24 +105,32 @@
     }
     
     typeString = [[NSString alloc] initWithFormat:@"<xs:schema id=\"NewDataSet\" xmlns=\"\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:msdata=\"urn:schemas-microsoft-com:xml-msdata\">\r"
-        "   <xs:element name=\"NewDataSet\" msdata:IsDataSet=\"true\" msdata:Locale=\"zh-CN\">\r"
-        "       <xs:complexType>\r"
-        "           <xs:choice maxOccurs=\"unbounded\">\r"
-        "               <xs:element name=\"%@\">\r"
-        "                   <xs:complexType>\r"
-        "                       <xs:sequence>\r"
-        "                           %@\r"
-        "                       </xs:sequence>\r"
-        "                   </xs:complexType>\r"
-        "               </xs:element>\r"
-        "           </xs:choice>\r"
-        "       </xs:complexType>\r"
-        "   </xs:element>\r"
-        "</xs:schema>\r",NSStringFromClass([self class]),typeString];
+                  "   <xs:element name=\"NewDataSet\" msdata:IsDataSet=\"true\" msdata:Locale=\"zh-CN\">\r"
+                  "       <xs:complexType>\r"
+                  "           <xs:choice maxOccurs=\"unbounded\">\r"
+                  "               <xs:element name=\"%@\">\r"
+                  "                   <xs:complexType>\r"
+                  "                       <xs:sequence>\r"
+                  "                           %@\r"
+                  "                       </xs:sequence>\r"
+                  "                   </xs:complexType>\r"
+                  "               </xs:element>\r"
+                  "           </xs:choice>\r"
+                  "       </xs:complexType>\r"
+                  "   </xs:element>\r"
+                  "</xs:schema>\r",NSStringFromClass([self class]),typeString];
     return typeString;
 }
 
 - (NSString *)dataXMLString{
+    NSString *currentOrgID=[[NSUserDefaults standardUserDefaults] stringForKey:ORGKEY];
+    if (currentOrgID.length > 0) {
+        
+    }else{
+        NSString *currentUserID=[[NSUserDefaults standardUserDefaults] stringForKey:USERKEY];
+        currentOrgID = [UserInfo userInfoForUserID:currentUserID].organization_id;
+    }
+    
     NSString *dataXMLString = @"";
     NSEntityDescription *entity=[self entity];
     NSDictionary *attributes = [entity attributesByName];
@@ -135,6 +143,18 @@
                 case NSStringAttributeType:{
                     if (obj == nil) {
                         obj = @"";
+                        if ([attriName isEqualToString:@"organization_id"]) {
+                            obj = currentOrgID;
+                        }
+                        if ([attriName isEqualToString:@"org_id"]) {
+                            obj = currentOrgID;
+                        }
+                        if ([attriName isEqualToString:@"inspection_id"]) {
+                            obj = currentOrgID;
+                        }
+                        if ([attriName isEqualToString:@"inspectionid"]) {
+                            obj = currentOrgID;
+                        }
                     }
                     if (![attriName isEqualToString:@"maintainplan_id"]) {
                         if ([attriName isEqualToString:@"myid"]) {

@@ -15,9 +15,11 @@
 @property (nonatomic,retain) NSArray             *itemArray;
 @property (nonatomic,retain) NSArray             *detailArray;
 @property (nonatomic,retain) UIPopoverController *pickerPopover;
+
+@property (nonatomic,retain) NSString * listselect;
+
 - (NSString *)resultTextFromPickerView:(UIPickerView *)pickerView selectedRow:(NSInteger)row inComponent:(NSInteger)component;
 @end
-
 @implementation InspectionOutViewController
 @synthesize itemArray;
 @synthesize detailArray;
@@ -131,13 +133,13 @@
     self.textDetail.text=[self resultTextFromPickerView:pickerView selectedRow:row inComponent:component];
 }
 
-- (void)showAlert{
-    [[[UIAlertView alloc] initWithTitle:@"提示"
-                                message:@"确定提交？"
-                               delegate:self
-                      cancelButtonTitle:@"否"
-                      otherButtonTitles:@"是", nil] show];
-}
+//- (void)showAlert{
+//    [[[UIAlertView alloc] initWithTitle:@"提示"
+//                                message:@"确定提交？"
+//                               delegate:self
+//                      cancelButtonTitle:@"否"
+//                      otherButtonTitles:@"是", nil] show];
+//}
 
 - (void)submit{
 //    确定提交的提示选择了   是
@@ -165,6 +167,7 @@
             inspection.inspection_milimetres=@(self.textMile.text.floatValue);
             inspection.isdeliver=@(YES);
             inspection.delivertext = self.textDeliver.text;
+            inspection.yjzb = self.textyjzb.text;
             NSString *description=@"";
             NSArray *recordArray=[InspectionRecord recordsForInspection:inspectionID];
             for (int i             = 0; i<recordArray.count; i++) {
@@ -241,7 +244,8 @@
             pathString                  = [[NSString alloc] initWithFormat:@"%@出发%@，%@结束巡查",[formatter stringFromDate:inspection.time_start],pathString,[formatter stringFromDate:inspection.time_end]];
             inspection.inspection_place = pathString;
 //            巡查路线   保存
-            inspection.inspection_place = self.textRoad.text;
+            inspection.inspection_place = @"";
+//            self.textRoad.text;
             [[AppDelegate App] saveContext];
         }
         for (TempCheckItem *checkItem in self.itemArray) {
@@ -266,7 +270,7 @@
 }
 
 - (IBAction)btnSave:(UIBarButtonItem *)sender {
-    [self showAlert];
+    [self submit];
 }
 
 - (IBAction)btnOK:(UIBarButtonItem *)sender {
@@ -354,27 +358,43 @@
 
 //巡查路线选择
 - (IBAction)textRoadClick:(id)sender {
+    self.listselect = @"road";
+    NSMutableArray * nsmuarray = [[Systype typeValuelikecontainsForCodeName:@"巡查和路线"] mutableCopy];
+    NSSet *set = [NSSet setWithArray:nsmuarray];
+    NSArray * endarray = [set allObjects];
+    [self listSelectPopverShowViewwithsender:sender anddata:[NSArray arrayWithArray:endarray]];
+}
+
+- (IBAction)textyjzbSelect:(id)sender {
+    self.listselect = @"yjzb";
+    NSMutableArray * nsmuarray = [[Systype typeValueForCodeName:@"巡查移交装备"] mutableCopy];
+    NSSet *set = [NSSet setWithArray:nsmuarray];
+    NSArray * endarray = [set allObjects];
+    [self listSelectPopverShowViewwithsender:sender anddata:[NSArray arrayWithArray:endarray]];
+}
+- (void)listSelectPopverShowViewwithsender:(UIButton *)sender anddata:(NSArray *)data{
     if ([self.pickerPopover isPopoverVisible]) {
         [self.pickerPopover dismissPopoverAnimated:YES];
     }else{
         UITextField * textfield = sender;
         ListSelectViewController *listPicker=[self.storyboard instantiateViewControllerWithIdentifier:@"ListSelectPoPover"];
         listPicker.delegate = self;
-        NSMutableArray * nsmuarray = [[Systype typeValueForCodeName:@"常用日常巡查路线"] mutableCopy];
-        if (nsmuarray.count<=0) {
-            listPicker.data = @[@"大麻站-打撒站-萨达站",@"阿斯顿站-大事站"];
-        }else{
-            listPicker.data = [NSArray arrayWithArray:nsmuarray];
-        }
+        listPicker.preferredContentSize = CGSizeMake(580, 330);
         self.pickerPopover=[[UIPopoverController alloc] initWithContentViewController:listPicker];
         CGRect rect = CGRectMake(textfield.frame.origin.x, textfield.frame.origin.y, textfield.frame.size.width/2, textfield.frame.size.height);
+        listPicker.data = data;
         [self.pickerPopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
         listPicker.pickerPopover=self.pickerPopover;
     }
-    
 }
+
 - (void)setSelectData:(NSString *)data{
-    self.textRoad.text = data;
+    if ([self.listselect isEqualToString:@"road"]) {
+        self.textRoad.text = data;
+    }else if([self.listselect isEqualToString:@"yjzb"]){
+        self.textyjzb.text = data;
+    }
+    
 }
 
 @end

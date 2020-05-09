@@ -253,7 +253,7 @@
             }
         }
     }
-    return [NSString stringWithFormat:@"\b\b%@\n   如承认以上路损事实，请在下面签名确认。",caseDescString ];
+    return [NSString stringWithFormat:@"    %@\n如承认以上路损事实，请在下面签名确认。",caseDescString ];
 }
 
 
@@ -552,7 +552,7 @@
     if (orgInfo != nil && orgInfo.belongtoorg_id != nil && ![orgInfo.belongtoorg_id isEmpty]) {
         orgInfo = [OrgInfo orgInfoForOrgID:orgInfo.belongtoorg_id];
     }
-    NSString *organizationName = [orgInfo valueForKey:@"orgshortname"];
+    NSString *organizationName = [orgInfo valueForKey:@"orgname"];
     NSString *orgname = [orgInfo valueForKey:@"orgname"];
     NSRange found = [orgname rangeOfString:@"天汕"];
     if (found.location != NSNotFound) {

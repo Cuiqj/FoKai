@@ -64,7 +64,9 @@
             WAITFORPARSER
             InitRoadSegment *initRoad = [[InitRoadSegment alloc] init];
             [initRoad downloadRoadSegment:orgID];
-            
+            WAITFORPARSER
+            InitSfz * initsfz = [[InitSfz alloc] init];
+            [initsfz downLoadSfz:orgID];
             WAITFORPARSER
             InitRoadAssetPrice *initRoadAssetPrice = [[InitRoadAssetPrice alloc] init];
             [initRoadAssetPrice downloadRoadAssetPrice];

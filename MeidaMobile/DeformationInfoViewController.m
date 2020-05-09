@@ -66,9 +66,9 @@
     NSEntityDescription *entity=[NSEntityDescription entityForName:@"RoadAssetPrice" inManagedObjectContext:context];
     NSFetchRequest *fecthRequest=[[NSFetchRequest alloc] init];
     [fecthRequest setEntity:entity];
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"is_unvarying > 0"];
+//    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"is_unvarying > 0"];
     NSSortDescriptor *sortDescriptor=[[NSSortDescriptor alloc] initWithKey:@"is_unvarying" ascending:YES];
-    [fecthRequest setPredicate:predicate];
+//    [fecthRequest setPredicate:predicate];
     [fecthRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     self.roadAssetWithLabel=[[NSMutableArray alloc] initWithCapacity:1];
     self.roadAssetWithLabel=[[context executeFetchRequest:fecthRequest error:&error] mutableCopy];

@@ -108,8 +108,14 @@
         <attribute name="road_type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="CasePhoto" representedClassName="CasePhoto" syncable="YES">
-        <attribute name="caseinfo_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isuploaded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="myid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photopath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="project_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="proveinfo_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="CaseProveInfo" representedClassName="CaseProveInfo" syncable="YES">
         <attribute name="case_desc_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -314,6 +320,28 @@
         <attribute name="yjsx" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yjzb" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Inspection_ClassMain" syncable="YES">
+        <attribute name="accident_num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bzgzc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cllmzaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date_inspection" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="deal_accident_num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deal_bxlp_num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fcflws" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fxqx" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fxwfxw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gzzfj" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hhzyhdlg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inspection_man_num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inspection_mile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inspectionid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isuploaded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="jcsgd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jzwfxw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="myid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="org_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qlxr" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="InspectionBridge" representedClassName="InspectionBridge" syncable="YES">
         <attribute name="area_size" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="bridge_desc" optional="YES" attributeType="String" syncable="YES"/>
@@ -367,9 +395,11 @@
         <attribute name="inspectionid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isuploaded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="myid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="station_record" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stationname" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="InspectionRecord" representedClassName="InspectionRecord" syncable="YES">
+        <attribute name="end_time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inspection_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inspection_item" optional="YES" attributeType="String" syncable="YES"/>
@@ -385,6 +415,45 @@
         <attribute name="start_time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="station" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="InspectionTotal" syncable="YES">
+        <attribute name="alter_illegal" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="car_num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="check_bridge" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="check_job_site" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="check_service" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="clean_bridge_misc" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="clear_barrier" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="construction_note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="correct_violate" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="daily_event" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="exhort_car" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="exhort_passerby" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="find_illegal" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="find_illegal_adv" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="find_illegal_con" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="get_facilities" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="help_people" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="help_trouble_car" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inspect_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inspect_people_num" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inspect_times" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inspectionid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isuploaded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mileage_after_trans" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mileage_before_trans" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="myid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="other_illegal" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="personnel_class" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="propaganda" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="put_facilities" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="remove_illegal_adv" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="remove_illegal_con" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="resume_railing" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roadasset_case" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="shunt" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="stop_note" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="traffic_accident" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="LawbreakingAction" representedClassName="LawbreakingAction" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
@@ -516,6 +585,14 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Sfz" syncable="YES">
+        <attribute name="myid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roadsegment_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sfz_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="station_end" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="station_start" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Systype" representedClassName="Systype" syncable="YES">
         <attribute name="code_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
@@ -583,7 +660,7 @@
         <element name="CaseInquire" positionX="0" positionY="0" width="128" height="285"/>
         <element name="CaseInvestigate" positionX="81" positionY="153" width="128" height="225"/>
         <element name="CaseMap" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="CasePhoto" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="CasePhoto" positionX="0" positionY="0" width="128" height="165"/>
         <element name="CaseProveInfo" positionX="0" positionY="0" width="128" height="345"/>
         <element name="CaseServiceFiles" positionX="0" positionY="0" width="128" height="165"/>
         <element name="CaseServiceReceipt" positionX="0" positionY="0" width="128" height="165"/>
@@ -603,12 +680,14 @@
         <element name="InquireAnswerSentence" positionX="0" positionY="0" width="128" height="75"/>
         <element name="InquireAskSentence" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Inspection" positionX="0" positionY="0" width="128" height="405"/>
+        <element name="Inspection_ClassMain" positionX="81" positionY="153" width="128" height="345"/>
         <element name="InspectionBridge" positionX="90" positionY="162" width="128" height="360"/>
         <element name="InspectionBridgePoint" positionX="81" positionY="153" width="128" height="150"/>
         <element name="InspectionCheck" positionX="0" positionY="0" width="128" height="135"/>
         <element name="InspectionOutCheck" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="InspectionPath" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="InspectionRecord" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="InspectionPath" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="InspectionRecord" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="InspectionTotal" positionX="81" positionY="153" width="128" height="600"/>
         <element name="LawbreakingAction" positionX="160" positionY="192" width="128" height="105"/>
         <element name="LawItems" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Laws" positionX="160" positionY="192" width="128" height="90"/>
@@ -621,6 +700,7 @@
         <element name="RoadAssetPrice" positionX="0" positionY="0" width="128" height="195"/>
         <element name="RoadSegment" positionX="0" positionY="0" width="128" height="285"/>
         <element name="RoadWayClosed" positionX="0" positionY="0" width="128" height="360"/>
+        <element name="Sfz" positionX="81" positionY="153" width="128" height="135"/>
         <element name="Systype" positionX="0" positionY="0" width="128" height="120"/>
         <element name="Task" positionX="160" positionY="192" width="128" height="135"/>
         <element name="TrafficRecord" positionX="160" positionY="192" width="128" height="375"/>

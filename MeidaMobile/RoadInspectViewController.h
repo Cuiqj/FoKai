@@ -41,6 +41,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITextField *textCheckTime;
 @property (weak, nonatomic) IBOutlet UITextField *textStationName;
 @property (weak, nonatomic) IBOutlet UITextField *textCheckStatus;
+@property (weak, nonatomic) IBOutlet UISwitch *Inspectionswrich;
 
 @property (nonatomic,retain) NSString *inspectionID;
 @property (nonatomic,assign) InpectionState state;
@@ -52,4 +53,13 @@ typedef enum {
 
 @property (weak, nonatomic) IBOutlet UILabel *guozhantext;
 - (void) createRecodeByTrafficRecord:(TrafficRecord *)trafficRecord;
+
+//每班次巡查记录
+@property (weak, nonatomic) IBOutlet UIButton *InspectionMessageSummary;
+- (IBAction)InspectionMessageSummaryButtonClick:(id)sender;
+
+
+
+
+
 @end

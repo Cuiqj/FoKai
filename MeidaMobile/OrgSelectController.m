@@ -154,7 +154,7 @@
         } else if ([org.belongtoorg_id isEqualToString:@"13860865"]) {
             [cell setIndentationLevel:1];
         }
-        cell.textLabel.text=org.orgshortname;
+        cell.textLabel.text=org.orgname;
         cell.detailTextLabel.text=org.orgname;
     }
     // Configure the cell...
@@ -238,7 +238,7 @@
 {
     OrgInfo *org=[self.data objectAtIndex:indexPath.row];
     NSString *selectid=org.myid;
-    NSString *selectname=org.orgshortname;
+    NSString *selectname=org.orgname;
     
     _currentorg=selectid;
     

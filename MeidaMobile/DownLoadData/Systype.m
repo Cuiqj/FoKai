@@ -40,18 +40,6 @@
     return [NSArray arrayWithArray:tempArray];
 }
 + (NSArray *)sysTypeArrayForCodeName:(NSString *)codeName{
-
-//    NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
-//    NSEntityDescription *entity=[NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
-//    NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
-//    [fetchRequest setEntity:entity];
-//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"code_name == %@",codeName]];
-//    NSArray *temp=[context executeFetchRequest:fetchRequest error:nil];
-//    if (temp.count>0) {
-//        return temp ;
-//    } else {
-//        return nil;
-//    }
     NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
     NSEntityDescription *entity=[NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
     NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
@@ -122,5 +110,31 @@
     return [tempArray firstObject];
 }
 
+
++ (NSArray *)typeValuelikecontainsForCodeName:(NSString *)codeName{
+    NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
+    NSEntityDescription *entity=[NSEntityDescription entityForName:NSStringFromClass([self class]) inManagedObjectContext:context];
+    NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"code_name contains %@ and code_name contains %@",@"路线",@"巡查"]];
+    //查询出包含e这个字符的字符串
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"code_name like[cd] '*巡查*路线*'"]];
+    //[NSPredicate predicateWithFormat:@"SELF like[cd] '*e*' "];   //*表示通配符
+    NSMutableArray *tempArray=[[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"type_code" ascending:YES comparator:^(id obj1, id obj2){
+        if ([obj1 integerValue] > [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if ([obj1 integerValue] < [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    [tempArray sortUsingDescriptors:@[sort]];
+    tempArray=[[tempArray valueForKeyPath:@"type_value"] mutableCopy];
+    [tempArray removeObject:[NSNull null]];
+    [tempArray removeObject:@""];
+    return [NSArray arrayWithArray:tempArray];
+}
 
 @end

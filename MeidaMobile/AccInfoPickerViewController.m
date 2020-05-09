@@ -138,7 +138,7 @@
     if (self.pickerType==3) {
         cell.textLabel.text=[[self.data objectAtIndex:indexPath.row] valueForKey:@"automobile_number"];
     } else if (self.pickerType == 6) {
-         cell.textLabel.text=[[self.data objectAtIndex:indexPath.row] valueForKey:@"orgshortname"];
+         cell.textLabel.text=[[self.data objectAtIndex:indexPath.row] valueForKey:@"orgname"];
     } else {
          cell.textLabel.text=[_data objectAtIndex:indexPath.row];
     }        

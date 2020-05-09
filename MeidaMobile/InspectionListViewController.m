@@ -8,6 +8,8 @@
 
 #import "InspectionListViewController.h"
 #import "Inspection.h"
+#import "InspectionRecord.h"
+#import "InspectionTotal.h"
 
 @interface InspectionListViewController ()
 
@@ -149,6 +151,19 @@
     id obj=[self.data objectAtIndex:indexPath.row];
     NSManagedObjectContext *context=[[AppDelegate App] managedObjectContext];
     [context deleteObject:obj];
+    Inspection * inspection = (Inspection *)self.data[indexPath.row];
+    //相当于记录的inspection_id
+    NSArray * array = [InspectionRecord recordsForInspection:inspection.myid];
+    
+    for(int i = 0;i <[array count]; i++){
+        //删除巡查中的  每一条巡查信息
+        [context deleteObject:array[i]];
+    }
+    InspectionTotal * inspectiontotal = [InspectionTotal InspectionTotalforinspectionid:inspection.myid];
+    if (inspectiontotal) {
+        //删除巡查中的每班次信息统计
+        [context deleteObject:inspectiontotal];
+    }
     [self.data removeObjectAtIndex:indexPath.row];
     [[AppDelegate App] saveContext];
     

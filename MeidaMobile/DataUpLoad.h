@@ -10,7 +10,7 @@
 #import "WebServiceHandler.h"
 #import "NSManagedObject+_NeedUpLoad_.h"
 
-#define UPLOADCOUNT 21
+#define UPLOADCOUNT 24
 
 //#define UPLOADCOUNT 1
 #define UPLOADFAIL @"UpLoadFail"

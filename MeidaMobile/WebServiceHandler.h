@@ -34,6 +34,8 @@
 
 - (void)uploadDataSet:(NSString *)xmlDataFile;
 
+- (void)uploadPhotot:(NSString *)xmlDataFile updatedObject:(id)updatedObject;
+
 //测试网络连通性
 + (BOOL)isServerReachable;
 @end
@@ -41,6 +43,9 @@
 @protocol WebServiceReturnString <NSObject>
 @optional
 - (void)getWebServiceReturnString:(NSString *)webString forWebService:(NSString *)serviceName;
+- (void)getWebServiceReturnString:(NSString *)webString forWebService:(NSString *)serviceName updatedObject:(id)updatedObject;
+
+
 - (void)requestTimeOut;
 - (void)requestUnkownError;
 

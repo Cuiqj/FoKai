@@ -218,13 +218,24 @@
 		80D2081C180722FD00D17F47 /* InquireTable2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 80D20812180722FD00D17F47 /* InquireTable2.xml */; };
 		80D2081D180722FD00D17F47 /* ProveInfoTable.xml in Resources */ = {isa = PBXBuildFile; fileRef = 80D20813180722FD00D17F47 /* ProveInfoTable.xml */; };
 		80D2081E180722FD00D17F47 /* ServiceReceiptTable.xml in Resources */ = {isa = PBXBuildFile; fileRef = 80D20814180722FD00D17F47 /* ServiceReceiptTable.xml */; };
+		840B1FB323A8C59600B0FF0B /* OtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1FB223A8C59600B0FF0B /* OtherViewController.m */; };
 		841C3768229F87DD00562EDB /* CaseInvestigate.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C3767229F87DD00562EDB /* CaseInvestigate.m */; };
+		841CD94E24591F9100BC97C2 /* Sfz.m in Sources */ = {isa = PBXBuildFile; fileRef = 841CD94C24591F9100BC97C2 /* Sfz.m */; };
+		841CD955245920DF00BC97C2 /* InitShoufz.m in Sources */ = {isa = PBXBuildFile; fileRef = 841CD953245920DE00BC97C2 /* InitShoufz.m */; };
 		841E969A229FB91800BD079F /* CaseInvestigatePrintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841E9699229FB91800BD079F /* CaseInvestigatePrintViewController.m */; };
 		841E96A3229FC9AA00BD079F /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 841E969D229FC9A600BD079F /* checked@2x.png */; };
 		841E96A4229FC9AA00BD079F /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 841E969F229FC9A700BD079F /* unchecked.png */; };
 		841E96A5229FC9AA00BD079F /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 841E96A0229FC9A800BD079F /* checked.png */; };
 		841E96A7229FC9AA00BD079F /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 841E96A2229FC9A900BD079F /* unchecked@2x.png */; };
 		841ECB6E22A0CA7800DB1272 /* InvestigateTable.xml in Resources */ = {isa = PBXBuildFile; fileRef = 841ECB6D22A0CA7800DB1272 /* InvestigateTable.xml */; };
+		842BBFED245AA4D3001D647A /* Inspection_ClassMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BBFEC245AA4D3001D647A /* Inspection_ClassMain.m */; };
+		84327B0723A8A8F400B2E07D /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84327B0623A8A8F300B2E07D /* bg1.png */; };
+		84327B0923A8BB2A00B2E07D /* 施工检查1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84327B0823A8BB2A00B2E07D /* 施工检查1.png */; };
+		84327B0E23A8BC5500B2E07D /* 桥涵检查.png in Resources */ = {isa = PBXBuildFile; fileRef = 84327B0A23A8BC5400B2E07D /* 桥涵检查.png */; };
+		84327B0F23A8BC5500B2E07D /* 交通救援.png in Resources */ = {isa = PBXBuildFile; fileRef = 84327B0B23A8BC5500B2E07D /* 交通救援.png */; };
+		84327B1023A8BC5500B2E07D /* 交通事故登记.png in Resources */ = {isa = PBXBuildFile; fileRef = 84327B0C23A8BC5500B2E07D /* 交通事故登记.png */; };
+		84327B1123A8BC5500B2E07D /* 违法登记.png in Resources */ = {isa = PBXBuildFile; fileRef = 84327B0D23A8BC5500B2E07D /* 违法登记.png */; };
+		8434038523ACA9BC00FFAA5E /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8434038423ACA9BC00FFAA5E /* NSString+Base64.m */; };
 		84886CEB21F5B45F0051C582 /* LCNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84886CEA21F5B45F0051C582 /* LCNetworking.m */; };
 		84904DA91FE9FD3E00F0815A /* BridgeCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84904DA81FE9FD3E00F0815A /* BridgeCheckViewController.m */; };
 		84904DAD1FEA081300F0815A /* TKListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84904DAC1FEA081300F0815A /* TKListSelectViewController.m */; };
@@ -255,6 +266,8 @@
 		84A573C71FE7A8A1007DF28B /* InspectionBridgePoint+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A573C21FE7A8A1007DF28B /* InspectionBridgePoint+CoreDataProperties.m */; };
 		84A573C81FE7A8A1007DF28B /* InspectionBridgePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A573C41FE7A8A1007DF28B /* InspectionBridgePoint.m */; };
 		84A573CC1FE7AE8A007DF28B /* InitBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A573CB1FE7AE8A007DF28B /* InitBridge.m */; };
+		84B753AA23B09BD0001966B5 /* InspectionTotal.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B753A923B09BCF001966B5 /* InspectionTotal.m */; };
+		84B753AD23B09C3C001966B5 /* InspectionTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B753AB23B09C3C001966B5 /* InspectionTotalViewController.m */; };
 		9B3C3E6C1796C5940071C174 /* ServiceFileSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C3E6B1796C5930071C174 /* ServiceFileSelectViewController.m */; };
 		9B6464571814EE4300569AE3 /* InquireTable2_new.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9B6464561814EE4300569AE3 /* InquireTable2_new.xml */; };
 		9BC0B11217A9001800D7C9CD /* TBXML+TraverseAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC0B11117A9001700D7C9CD /* TBXML+TraverseAddition.m */; };
@@ -645,8 +658,14 @@
 		80D20812180722FD00D17F47 /* InquireTable2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = InquireTable2.xml; sourceTree = "<group>"; };
 		80D20813180722FD00D17F47 /* ProveInfoTable.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ProveInfoTable.xml; sourceTree = "<group>"; };
 		80D20814180722FD00D17F47 /* ServiceReceiptTable.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ServiceReceiptTable.xml; sourceTree = "<group>"; };
+		840B1FB123A8C59600B0FF0B /* OtherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherViewController.h; sourceTree = "<group>"; };
+		840B1FB223A8C59600B0FF0B /* OtherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherViewController.m; sourceTree = "<group>"; };
 		841C3766229F87DD00562EDB /* CaseInvestigate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaseInvestigate.h; sourceTree = "<group>"; };
 		841C3767229F87DD00562EDB /* CaseInvestigate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaseInvestigate.m; sourceTree = "<group>"; };
+		841CD94C24591F9100BC97C2 /* Sfz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sfz.m; sourceTree = "<group>"; };
+		841CD94D24591F9100BC97C2 /* Sfz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sfz.h; sourceTree = "<group>"; };
+		841CD953245920DE00BC97C2 /* InitShoufz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitShoufz.m; sourceTree = "<group>"; };
+		841CD954245920DE00BC97C2 /* InitShoufz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitShoufz.h; sourceTree = "<group>"; };
 		841E9698229FB91800BD079F /* CaseInvestigatePrintViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaseInvestigatePrintViewController.h; sourceTree = "<group>"; };
 		841E9699229FB91800BD079F /* CaseInvestigatePrintViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaseInvestigatePrintViewController.m; sourceTree = "<group>"; };
 		841E969D229FC9A600BD079F /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
@@ -654,6 +673,16 @@
 		841E96A0229FC9A800BD079F /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		841E96A2229FC9A900BD079F /* unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked@2x.png"; sourceTree = "<group>"; };
 		841ECB6D22A0CA7800DB1272 /* InvestigateTable.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = InvestigateTable.xml; sourceTree = "<group>"; };
+		842BBFEB245AA4D3001D647A /* Inspection_ClassMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Inspection_ClassMain.h; sourceTree = "<group>"; };
+		842BBFEC245AA4D3001D647A /* Inspection_ClassMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Inspection_ClassMain.m; sourceTree = "<group>"; };
+		84327B0623A8A8F300B2E07D /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg1.png; sourceTree = "<group>"; };
+		84327B0823A8BB2A00B2E07D /* 施工检查1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "施工检查1.png"; sourceTree = "<group>"; };
+		84327B0A23A8BC5400B2E07D /* 桥涵检查.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桥涵检查.png"; sourceTree = "<group>"; };
+		84327B0B23A8BC5500B2E07D /* 交通救援.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交通救援.png"; sourceTree = "<group>"; };
+		84327B0C23A8BC5500B2E07D /* 交通事故登记.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交通事故登记.png"; sourceTree = "<group>"; };
+		84327B0D23A8BC5500B2E07D /* 违法登记.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "违法登记.png"; sourceTree = "<group>"; };
+		8434038323ACA9BC00FFAA5E /* NSString+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		8434038423ACA9BC00FFAA5E /* NSString+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		84886CE921F5B45F0051C582 /* LCNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetworking.h; sourceTree = "<group>"; };
 		84886CEA21F5B45F0051C582 /* LCNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetworking.m; sourceTree = "<group>"; };
 		84904DA71FE9FD3E00F0815A /* BridgeCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeCheckViewController.h; sourceTree = "<group>"; };
@@ -710,6 +739,10 @@
 		84A573C41FE7A8A1007DF28B /* InspectionBridgePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionBridgePoint.m; sourceTree = "<group>"; };
 		84A573CA1FE7AE8A007DF28B /* InitBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitBridge.h; sourceTree = "<group>"; };
 		84A573CB1FE7AE8A007DF28B /* InitBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitBridge.m; sourceTree = "<group>"; };
+		84B753A823B09BA3001966B5 /* InspectionTotal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionTotal.h; sourceTree = "<group>"; };
+		84B753A923B09BCF001966B5 /* InspectionTotal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionTotal.m; sourceTree = "<group>"; };
+		84B753AB23B09C3C001966B5 /* InspectionTotalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionTotalViewController.m; sourceTree = "<group>"; };
+		84B753AC23B09C3C001966B5 /* InspectionTotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionTotalViewController.h; sourceTree = "<group>"; };
 		9B3C3E6A1796C5920071C174 /* ServiceFileSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceFileSelectViewController.h; sourceTree = "<group>"; };
 		9B3C3E6B1796C5930071C174 /* ServiceFileSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceFileSelectViewController.m; sourceTree = "<group>"; };
 		9B6464561814EE4300569AE3 /* InquireTable2_new.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = InquireTable2_new.xml; sourceTree = "<group>"; };
@@ -1132,7 +1165,7 @@
 				33980B44150F329700FE0E5B /* DataModeldfile */,
 				33A9032E14FDD82E006587A7 /* docfile */,
 				33A527AC14F742E0009BC91E /* Data Models */,
-				33A527A114F72908009BC91E /* imgs */,
+				84327B0523A87E3900B2E07D /* imgs */,
 				33A5279414F5EDBD009BC91E /* Web Service Handler */,
 				33A5276814F4E5C9009BC91E /* XML Parser */,
 				33A5276714F4E5BD009BC91E /* Views Controller */,
@@ -1176,6 +1209,7 @@
 		33A5276714F4E5BD009BC91E /* Views Controller */ = {
 			isa = PBXGroup;
 			children = (
+				840B1FB423A8C5A400B0FF0B /* Other */,
 				84904DAA1FEA07DB00F0815A /* Tools */,
 				84904DA61FE9FD1200F0815A /* BridgeCheck */,
 				330571651AAD6FFD001A8936 /* DataSync */,
@@ -1214,60 +1248,6 @@
 			name = "Web Service Handler";
 			sourceTree = "<group>";
 		};
-		33A527A114F72908009BC91E /* imgs */ = {
-			isa = PBXGroup;
-			children = (
-				841E96A0229FC9A800BD079F /* checked.png */,
-				841E969D229FC9A600BD079F /* checked@2x.png */,
-				841E969F229FC9A700BD079F /* unchecked.png */,
-				841E96A2229FC9A900BD079F /* unchecked@2x.png */,
-				84A573BB1FE7535C007DF28B /* 构造物检查.png */,
-				84A573B91FE75352007DF28B /* 保险案件.png */,
-				84A573B71FE75349007DF28B /* 服务区检查.png */,
-				33949C65165B5AB300CD6464 /* framebg.png */,
-				84A573B51FE75325007DF28B /* nav11.png */,
-				337918551650DD3900500483 /* 从照片库选取@2x.png */,
-				337918561650DD3900500483 /* 拍摄照片@2x.png */,
-				339166FC15E7623100C16B91 /* 从照片库选取.png */,
-				339166FD15E7623100C16B91 /* 拍摄照片.png */,
-				3322BFA615BE484900C2B328 /* 赔补偿清单-bg.png */,
-				3322BFA815BE484900C2B328 /* 左栏按钮.png */,
-				3388782D15BFC63000A55748 /* 左栏背景.png */,
-				332FB43E15B7E7DB007CC89F /* 案件信息-bg.png */,
-				332FB43F15B7E7DB007CC89F /* 服务器参数设置 -bg.png */,
-				332FB44015B7E7DB007CC89F /* 勘验图文字备注-bg.png */,
-				332FB45015B7EDB9007CC89F /* 勘验左栏按钮.png */,
-				332FB44115B7E7DB007CC89F /* 蓝底按钮.png */,
-				332FB44215B7E7DB007CC89F /* 蓝底主按钮.png */,
-				332FB44315B7E7DB007CC89F /* 文书打印-bg.png */,
-				332FB44415B7E7DB007CC89F /* 现场勘验图-bg.png */,
-				332FB44515B7E7DB007CC89F /* 小按钮.png */,
-				332FB44615B7E7DB007CC89F /* 询问笔录-bg.png */,
-				33A9031614FDD7E6006587A7 /* 同步-bg.png */,
-				33A9031714FDD7E6006587A7 /* 法律-bg.png */,
-				33A9031814FDD7E6006587A7 /* 许可-bg.png */,
-				33A9031914FDD7E6006587A7 /* case-录入-bg.png */,
-				33A9031A14FDD7E6006587A7 /* 巡查-bg.png */,
-				33A9031B14FDD7E6006587A7 /* case-清单-bg.png */,
-				33A9031C14FDD7E6006587A7 /* case-询问-bg.png */,
-				33A9031D14FDD7E6006587A7 /* login_index-bg.png */,
-				33A9031E14FDD7E6006587A7 /* case-画图-bg.png */,
-				33A9031F14FDD7E6006587A7 /* case-文书-bg.png */,
-				33A09AEA14FB12090096BA1D /* 审批-1.png */,
-				33A09AEB14FB12090096BA1D /* 基础资料-1.png */,
-				33A09AEC14FB12090096BA1D /* 附件-1.png */,
-				33A09AED14FB12090096BA1D /* shenqing-bg1.png */,
-				33A09AEE14FB12090096BA1D /* index-bg.png */,
-				33A09AEF14FB12090096BA1D /* login-btn-同步.png */,
-				33A09AF014FB12090096BA1D /* login-btn-法规.png */,
-				33A09AF114FB12090096BA1D /* login-btn-案件.png */,
-				33A09AF214FB12090096BA1D /* login-btn-信息.png */,
-				33A09AF314FB12090096BA1D /* login-btn-许可.png */,
-				33A09AF414FB12090096BA1D /* login-btn-巡查.png */,
-			);
-			name = imgs;
-			sourceTree = "<group>";
-		};
 		33A527AC14F742E0009BC91E /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1278,6 +1258,8 @@
 				67F43AE8178E75E500A7BD8C /* UploadedRecordList.m */,
 				CCA0BA26178AA3A300F03873 /* TrafficRecord.h */,
 				CCA0BA27178AA3A300F03873 /* TrafficRecord.m */,
+				842BBFEB245AA4D3001D647A /* Inspection_ClassMain.h */,
+				842BBFEC245AA4D3001D647A /* Inspection_ClassMain.m */,
 				335B9F6D16669AF600A94D65 /* CaseProveInfo.h */,
 				335B9F6E16669AF600A94D65 /* CaseProveInfo.m */,
 				336CEE4216635895004A6763 /* Inspection.h */,
@@ -1352,6 +1334,8 @@
 				84A573C21FE7A8A1007DF28B /* InspectionBridgePoint+CoreDataProperties.m */,
 				84A573C31FE7A8A1007DF28B /* InspectionBridgePoint.h */,
 				84A573C41FE7A8A1007DF28B /* InspectionBridgePoint.m */,
+				84B753A823B09BA3001966B5 /* InspectionTotal.h */,
+				84B753A923B09BCF001966B5 /* InspectionTotal.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -1385,34 +1369,7 @@
 			children = (
 				337918511650DD0300500483 /* DataDownLoad.h */,
 				337918521650DD0300500483 /* DataDownLoad.m */,
-				B3CD53921546FD83000564FC /* InitCities.h */,
-				B3CD53931546FD83000564FC /* InitCities.m */,
-				33D8BC9B1623FE4D00C04B81 /* InitData.h */,
-				33D8BC9C1623FE4D00C04B81 /* InitData.m */,
-				335C8B8B1535169000B406CD /* InitIconModel.h */,
-				335C8B8C1535169000B406CD /* InitIconModel.m */,
-				B32AC1F31547279900A8CC57 /* InitInquireAnswerSentence.h */,
-				B32AC1F41547279900A8CC57 /* InitInquireAnswerSentence.m */,
-				B32AC1EA1547245800A8CC57 /* InitInquireAskSentence.h */,
-				B32AC1EB1547245900A8CC57 /* InitInquireAskSentence.m */,
-				3369577615E618360078EDBC /* InitInspectionCheck.h */,
-				3369577715E618360078EDBC /* InitInspectionCheck.m */,
-				33ADC4D216549B05007E3429 /* InitLaws.h */,
-				33ADC4D316549B05007E3429 /* InitLaws.m */,
-				B334C0621546E048003AD10E /* InitProvince.h */,
-				B334C0631546E048003AD10E /* InitProvince.m */,
-				B32AC1D81547147900A8CC57 /* InitRoadAssetPrice.h */,
-				B32AC1D91547147900A8CC57 /* InitRoadAssetPrice.m */,
-				B32AC1CF15470D5A00A8CC57 /* InitRoadSegment.h */,
-				B32AC1D015470D5A00A8CC57 /* InitRoadSegment.m */,
-				33D07F3F15FD96090034B287 /* InitSystype.h */,
-				33D07F4015FD96090034B287 /* InitSystype.m */,
-				3307298F15171DFE0092E281 /* InitUser.h */,
-				3307299015171DFE0092E281 /* InitUser.m */,
-				67CAEBEB178AF174000BF8A7 /* InitFileCode.h */,
-				67CAEBEC178AF174000BF8A7 /* InitFileCode.m */,
-				84A573CA1FE7AE8A007DF28B /* InitBridge.h */,
-				84A573CB1FE7AE8A007DF28B /* InitBridge.m */,
+				841CD9522459206F00BC97C2 /* initdata */,
 			);
 			name = DataDownLoad;
 			sourceTree = "<group>";
@@ -1472,6 +1429,8 @@
 				67CAEBF2178BE1AE000BF8A7 /* CaseConstructionChangeBackViewController.m */,
 				67CAEBF6178C4D1D000BF8A7 /* TrafficRecordViewController.h */,
 				67CAEBF7178C4D1E000BF8A7 /* TrafficRecordViewController.m */,
+				84B753AC23B09C3C001966B5 /* InspectionTotalViewController.h */,
+				84B753AB23B09C3C001966B5 /* InspectionTotalViewController.m */,
 			);
 			name = RoadInspect;
 			sourceTree = "<group>";
@@ -1561,6 +1520,112 @@
 			path = XML;
 			sourceTree = "<group>";
 		};
+		840B1FB423A8C5A400B0FF0B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				840B1FB123A8C59600B0FF0B /* OtherViewController.h */,
+				840B1FB223A8C59600B0FF0B /* OtherViewController.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		841CD9522459206F00BC97C2 /* initdata */ = {
+			isa = PBXGroup;
+			children = (
+				335C8B8B1535169000B406CD /* InitIconModel.h */,
+				335C8B8C1535169000B406CD /* InitIconModel.m */,
+				B32AC1F31547279900A8CC57 /* InitInquireAnswerSentence.h */,
+				B32AC1EB1547245900A8CC57 /* InitInquireAskSentence.m */,
+				B3CD53921546FD83000564FC /* InitCities.h */,
+				B3CD53931546FD83000564FC /* InitCities.m */,
+				33D8BC9B1623FE4D00C04B81 /* InitData.h */,
+				33D8BC9C1623FE4D00C04B81 /* InitData.m */,
+				B32AC1EA1547245800A8CC57 /* InitInquireAskSentence.h */,
+				B32AC1F41547279900A8CC57 /* InitInquireAnswerSentence.m */,
+				3369577615E618360078EDBC /* InitInspectionCheck.h */,
+				3369577715E618360078EDBC /* InitInspectionCheck.m */,
+				33ADC4D216549B05007E3429 /* InitLaws.h */,
+				33ADC4D316549B05007E3429 /* InitLaws.m */,
+				B334C0621546E048003AD10E /* InitProvince.h */,
+				B334C0631546E048003AD10E /* InitProvince.m */,
+				B32AC1D81547147900A8CC57 /* InitRoadAssetPrice.h */,
+				B32AC1D91547147900A8CC57 /* InitRoadAssetPrice.m */,
+				B32AC1CF15470D5A00A8CC57 /* InitRoadSegment.h */,
+				B32AC1D015470D5A00A8CC57 /* InitRoadSegment.m */,
+				33D07F3F15FD96090034B287 /* InitSystype.h */,
+				33D07F4015FD96090034B287 /* InitSystype.m */,
+				3307298F15171DFE0092E281 /* InitUser.h */,
+				3307299015171DFE0092E281 /* InitUser.m */,
+				67CAEBEB178AF174000BF8A7 /* InitFileCode.h */,
+				67CAEBEC178AF174000BF8A7 /* InitFileCode.m */,
+				84A573CA1FE7AE8A007DF28B /* InitBridge.h */,
+				84A573CB1FE7AE8A007DF28B /* InitBridge.m */,
+				841CD954245920DE00BC97C2 /* InitShoufz.h */,
+				841CD953245920DE00BC97C2 /* InitShoufz.m */,
+			);
+			path = initdata;
+			sourceTree = "<group>";
+		};
+		84327B0523A87E3900B2E07D /* imgs */ = {
+			isa = PBXGroup;
+			children = (
+				84327B0623A8A8F300B2E07D /* bg1.png */,
+				84327B0B23A8BC5500B2E07D /* 交通救援.png */,
+				84327B0C23A8BC5500B2E07D /* 交通事故登记.png */,
+				84327B0A23A8BC5400B2E07D /* 桥涵检查.png */,
+				84327B0D23A8BC5500B2E07D /* 违法登记.png */,
+				841E969F229FC9A700BD079F /* unchecked.png */,
+				84327B0823A8BB2A00B2E07D /* 施工检查1.png */,
+				841E96A2229FC9A900BD079F /* unchecked@2x.png */,
+				84A573BB1FE7535C007DF28B /* 构造物检查.png */,
+				84A573B91FE75352007DF28B /* 保险案件.png */,
+				84A573B71FE75349007DF28B /* 服务区检查.png */,
+				33949C65165B5AB300CD6464 /* framebg.png */,
+				84A573B51FE75325007DF28B /* nav11.png */,
+				337918551650DD3900500483 /* 从照片库选取@2x.png */,
+				337918561650DD3900500483 /* 拍摄照片@2x.png */,
+				339166FC15E7623100C16B91 /* 从照片库选取.png */,
+				339166FD15E7623100C16B91 /* 拍摄照片.png */,
+				3322BFA615BE484900C2B328 /* 赔补偿清单-bg.png */,
+				3322BFA815BE484900C2B328 /* 左栏按钮.png */,
+				3388782D15BFC63000A55748 /* 左栏背景.png */,
+				332FB43E15B7E7DB007CC89F /* 案件信息-bg.png */,
+				332FB43F15B7E7DB007CC89F /* 服务器参数设置 -bg.png */,
+				332FB44015B7E7DB007CC89F /* 勘验图文字备注-bg.png */,
+				332FB45015B7EDB9007CC89F /* 勘验左栏按钮.png */,
+				332FB44115B7E7DB007CC89F /* 蓝底按钮.png */,
+				332FB44215B7E7DB007CC89F /* 蓝底主按钮.png */,
+				332FB44315B7E7DB007CC89F /* 文书打印-bg.png */,
+				332FB44415B7E7DB007CC89F /* 现场勘验图-bg.png */,
+				332FB44515B7E7DB007CC89F /* 小按钮.png */,
+				332FB44615B7E7DB007CC89F /* 询问笔录-bg.png */,
+				33A9031614FDD7E6006587A7 /* 同步-bg.png */,
+				33A9031714FDD7E6006587A7 /* 法律-bg.png */,
+				33A9031814FDD7E6006587A7 /* 许可-bg.png */,
+				33A9031914FDD7E6006587A7 /* case-录入-bg.png */,
+				33A9031A14FDD7E6006587A7 /* 巡查-bg.png */,
+				841E96A0229FC9A800BD079F /* checked.png */,
+				841E969D229FC9A600BD079F /* checked@2x.png */,
+				33A9031B14FDD7E6006587A7 /* case-清单-bg.png */,
+				33A9031C14FDD7E6006587A7 /* case-询问-bg.png */,
+				33A9031D14FDD7E6006587A7 /* login_index-bg.png */,
+				33A9031E14FDD7E6006587A7 /* case-画图-bg.png */,
+				33A9031F14FDD7E6006587A7 /* case-文书-bg.png */,
+				33A09AEA14FB12090096BA1D /* 审批-1.png */,
+				33A09AEB14FB12090096BA1D /* 基础资料-1.png */,
+				33A09AEC14FB12090096BA1D /* 附件-1.png */,
+				33A09AED14FB12090096BA1D /* shenqing-bg1.png */,
+				33A09AEE14FB12090096BA1D /* index-bg.png */,
+				33A09AEF14FB12090096BA1D /* login-btn-同步.png */,
+				33A09AF014FB12090096BA1D /* login-btn-法规.png */,
+				33A09AF114FB12090096BA1D /* login-btn-案件.png */,
+				33A09AF214FB12090096BA1D /* login-btn-信息.png */,
+				33A09AF314FB12090096BA1D /* login-btn-许可.png */,
+				33A09AF414FB12090096BA1D /* login-btn-巡查.png */,
+			);
+			path = imgs;
+			sourceTree = "<group>";
+		};
 		84904DA61FE9FD1200F0815A /* BridgeCheck */ = {
 			isa = PBXGroup;
 			children = (
@@ -1575,6 +1640,8 @@
 			children = (
 				84904DAB1FEA081300F0815A /* TKListSelectViewController.h */,
 				84904DAC1FEA081300F0815A /* TKListSelectViewController.m */,
+				8434038323ACA9BC00FFAA5E /* NSString+Base64.h */,
+				8434038423ACA9BC00FFAA5E /* NSString+Base64.m */,
 				84904DAE1FEA458900F0815A /* NSMutableArray+TKProcess.h */,
 				84904DAF1FEA458900F0815A /* NSMutableArray+TKProcess.m */,
 			);
@@ -1602,6 +1669,8 @@
 				849FD5FC239895F000CD7781 /* LawbreakingAction.m */,
 				849FD5F0239895EF00CD7781 /* Laws.h */,
 				849FD5F9239895F000CD7781 /* Laws.m */,
+				841CD94D24591F9100BC97C2 /* Sfz.h */,
+				841CD94C24591F9100BC97C2 /* Sfz.m */,
 				849FD60B239895F100CD7781 /* OrgInfo.h */,
 				849FD5F6239895EF00CD7781 /* OrgInfo.m */,
 				849FD601239895F000CD7781 /* Provinces.h */,
@@ -1741,6 +1810,7 @@
 				33A09AF614FB12090096BA1D /* 基础资料-1.png in Resources */,
 				33A09AF714FB12090096BA1D /* 附件-1.png in Resources */,
 				841E96A7229FC9AA00BD079F /* unchecked@2x.png in Resources */,
+				84327B0723A8A8F400B2E07D /* bg1.png in Resources */,
 				33A09AF814FB12090096BA1D /* shenqing-bg1.png in Resources */,
 				33A09AF914FB12090096BA1D /* index-bg.png in Resources */,
 				33A09AFA14FB12090096BA1D /* login-btn-同步.png in Resources */,
@@ -1750,12 +1820,14 @@
 				33A09AFE14FB12090096BA1D /* login-btn-许可.png in Resources */,
 				33A09AFF14FB12090096BA1D /* login-btn-巡查.png in Resources */,
 				33A9032114FDD7E6006587A7 /* 同步-bg.png in Resources */,
+				84327B1123A8BC5500B2E07D /* 违法登记.png in Resources */,
 				84A573B61FE75325007DF28B /* nav11.png in Resources */,
 				33A9032214FDD7E6006587A7 /* 法律-bg.png in Resources */,
 				33A9032314FDD7E6006587A7 /* 许可-bg.png in Resources */,
 				33A9032414FDD7E6006587A7 /* case-录入-bg.png in Resources */,
 				33A9032514FDD7E6006587A7 /* 巡查-bg.png in Resources */,
 				33A9032614FDD7E6006587A7 /* case-清单-bg.png in Resources */,
+				84327B0923A8BB2A00B2E07D /* 施工检查1.png in Resources */,
 				33A9032714FDD7E6006587A7 /* case-询问-bg.png in Resources */,
 				33A9032814FDD7E6006587A7 /* login_index-bg.png in Resources */,
 				33A9032914FDD7E6006587A7 /* case-画图-bg.png in Resources */,
@@ -1765,6 +1837,7 @@
 				33A9035C14FDD86B006587A7 /* 中华人民共和国公路管理条例.pdf in Resources */,
 				33A9035D14FDD86B006587A7 /* 中华人民共和国道路交通安全法.pdf in Resources */,
 				33A9035E14FDD86B006587A7 /* 路政管理规定.pdf in Resources */,
+				84327B1023A8BC5500B2E07D /* 交通事故登记.png in Resources */,
 				33A9035F14FDD86B006587A7 /* 中华人民共和国公路法.pdf in Resources */,
 				33A9036014FDD86B006587A7 /* 损坏公路路产赔补偿标准.pdf in Resources */,
 				33A9036114FDD86B006587A7 /* 广东省路政档案管理办法.pdf in Resources */,
@@ -1774,11 +1847,13 @@
 				84A573B81FE75349007DF28B /* 服务区检查.png in Resources */,
 				33EE50AE1C462ABB0082F0A6 /* TSAtonementNoticeTable.xml in Resources */,
 				332FB44915B7E7DB007CC89F /* 勘验图文字备注-bg.png in Resources */,
+				84327B0F23A8BC5500B2E07D /* 交通救援.png in Resources */,
 				332FB44A15B7E7DB007CC89F /* 蓝底按钮.png in Resources */,
 				332FB44B15B7E7DB007CC89F /* 蓝底主按钮.png in Resources */,
 				332FB44C15B7E7DB007CC89F /* 文书打印-bg.png in Resources */,
 				332FB44D15B7E7DB007CC89F /* 现场勘验图-bg.png in Resources */,
 				332FB44E15B7E7DB007CC89F /* 小按钮.png in Resources */,
+				84327B0E23A8BC5500B2E07D /* 桥涵检查.png in Resources */,
 				841E96A3229FC9AA00BD079F /* checked@2x.png in Resources */,
 				332FB44F15B7E7DB007CC89F /* 询问笔录-bg.png in Resources */,
 				332FB45115B7EDB9007CC89F /* 勘验左栏按钮.png in Resources */,
@@ -1835,6 +1910,7 @@
 				33A5277914F4E62B009BC91E /* XKDetailController.m in Sources */,
 				33A5278A14F5DAA7009BC91E /* XKBaseInfoController.m in Sources */,
 				33A5278D14F5DABB009BC91E /* XKSPInfoController.m in Sources */,
+				84B753AD23B09C3C001966B5 /* InspectionTotalViewController.m in Sources */,
 				339567881B58A869004CD59D /* HandleStrings.m in Sources */,
 				849FD613239895F200CD7781 /* ServiceOrg.m in Sources */,
 				334B29191F569948003B0128 /* OMGToast.m in Sources */,
@@ -1847,6 +1923,7 @@
 				84904DA91FE9FD3E00F0815A /* BridgeCheckViewController.m in Sources */,
 				33C1F5B014FDBE1400CA96A3 /* DateSelectController.m in Sources */,
 				33A9037214FDDC5B006587A7 /* LawViewController.m in Sources */,
+				842BBFED245AA4D3001D647A /* Inspection_ClassMain.m in Sources */,
 				3307299115171DFE0092E281 /* InitUser.m in Sources */,
 				33AE47D815206751005CA38D /* CasePaintViewController.m in Sources */,
 				849FD61A239895F200CD7781 /* IconTexts.m in Sources */,
@@ -1854,6 +1931,7 @@
 				849FD619239895F200CD7781 /* IconItems.m in Sources */,
 				330EF711152D740C0096F7D9 /* DWStroke.m in Sources */,
 				330EF719152D754A0096F7D9 /* PaintArea.m in Sources */,
+				841CD94E24591F9100BC97C2 /* Sfz.m in Sources */,
 				33D1A4821533FB6500FE8092 /* MoveableImage.m in Sources */,
 				335C8B8D1535169000B406CD /* InitIconModel.m in Sources */,
 				84A573C71FE7A8A1007DF28B /* InspectionBridgePoint+CoreDataProperties.m in Sources */,
@@ -1872,6 +1950,7 @@
 				B32AC1D115470D5A00A8CC57 /* InitRoadSegment.m in Sources */,
 				84904DAD1FEA081300F0815A /* TKListSelectViewController.m in Sources */,
 				B32AC1DA1547147900A8CC57 /* InitRoadAssetPrice.m in Sources */,
+				841CD955245920DF00BC97C2 /* InitShoufz.m in Sources */,
 				B32AC1EC1547245900A8CC57 /* InitInquireAskSentence.m in Sources */,
 				849FD61F239895F200CD7781 /* Table101.m in Sources */,
 				B32AC1F51547279A00A8CC57 /* InitInquireAnswerSentence.m in Sources */,
@@ -1920,6 +1999,7 @@
 				33C0B34515F72D0B00ADC00C /* NewInspectionViewController.m in Sources */,
 				33268B1115F99DB2003D8A2C /* CheckItems.m in Sources */,
 				33268B1415F99DC0003D8A2C /* CheckItemDetails.m in Sources */,
+				84B753AA23B09BD0001966B5 /* InspectionTotal.m in Sources */,
 				33D07F4115FD96090034B287 /* InitSystype.m in Sources */,
 				84A573C51FE7A8A1007DF28B /* InspectionBridge+CoreDataProperties.m in Sources */,
 				336CD6CD16005FF200B49EA3 /* TempCheckItem.m in Sources */,
@@ -1929,6 +2009,8 @@
 				337C4089160963CF0035618B /* RoadSegmentPickerViewController.m in Sources */,
 				331A56E9160C55EA00048168 /* LoginViewController.m in Sources */,
 				33CF2570160FED9B0074172F /* UserPickerViewController.m in Sources */,
+				840B1FB323A8C59600B0FF0B /* OtherViewController.m in Sources */,
+				8434038523ACA9BC00FFAA5E /* NSString+Base64.m in Sources */,
 				33D8BC9D1623FE4D00C04B81 /* InitData.m in Sources */,
 				337918531650DD0300500483 /* DataDownLoad.m in Sources */,
 				33A6B15D16523D7400E6DF90 /* AGAlertViewWithProgressbar.m in Sources */,
@@ -2097,9 +2179,9 @@
 					"\"$(SRCROOT)/MeidaMobile/GRMustache/lib\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_BUNDLE_IDENTIFIER = adam.GDFoKaiMobile;
+				PRODUCT_BUNDLE_IDENTIFIER = adam.GDFoKaiMobileNew;
 				PRODUCT_NAME = FoKaiMobile;
-				PROVISIONING_PROFILE = "01c35a78-7e8f-4531-b724-275da7dc4dbb";
+				PROVISIONING_PROFILE = "cb5cdc7f-881f-4499-acc2-47fc2ce00b74";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = AllProjectCanUsedevelopment;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -2114,8 +2196,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 27NSK65R5P;
 				ENABLE_BITCODE = NO;
@@ -2130,11 +2212,11 @@
 					"\"$(SRCROOT)/MeidaMobile/GRMustache/lib\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_BUNDLE_IDENTIFIER = adam.GDFoKaiMobile;
+				PRODUCT_BUNDLE_IDENTIFIER = adam.GDFoKaiMobileNew;
 				PRODUCT_NAME = FoKaiMobile;
-				PROVISIONING_PROFILE = "01c35a78-7e8f-4531-b724-275da7dc4dbb";
+				PROVISIONING_PROFILE = "2d696fbe-7508-45e6-bb6a-e79f0c6d81f0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = AllProjectCanUsedevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = AllProjectCanDistribution;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;

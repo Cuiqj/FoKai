@@ -27,7 +27,13 @@
         currentUserName = @"";
     }
     self.labelCurrentUser.text=[[NSString alloc] initWithFormat:@"操作员：%@",currentUserName];
-    self.labelOrgShortName.text = [[OrgInfo orgInfoForOrgID:[UserInfo userInfoForUserID:currentUserID].organization_id] valueForKey:@"orgshortname"];
+    NSString * namearraystring = [[OrgInfo orgInfoForOrgID:[UserInfo userInfoForUserID:currentUserID].organization_id] valueForKey:@"orgname"];
+    NSArray * namearray = [namearraystring componentsSeparatedByString:@"公路事务中心"];
+    if ([namearray count]>1) {
+        self.labelOrgShortName.text = [namearray lastObject];
+    }else{
+        self.labelOrgShortName.text = namearraystring;
+    }
 }
 
 //监测是否设置当前机构，否则弹出机构选择菜单

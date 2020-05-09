@@ -122,4 +122,8 @@
     self.textFileName.text = serviceFileName;
 }
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.preferredContentSize = CGSizeMake(520, 640);
+}
 @end

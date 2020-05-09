@@ -651,6 +651,9 @@ typedef enum {
             [self performSegueWithIdentifier:@"toDeformInfoEditor" sender:self];
             break;
         case 3:
+            if (self.inquireInfoBriefVC.textParty.text.length ==0) {
+                break;
+            }
             [self performSegueWithIdentifier:@"toInquireInfoEditor" sender:self];
             break;
         case 4:
@@ -1517,8 +1520,6 @@ typedef enum {
     picker.delegate=self;
     picker.sourceType=sourceType;
     picker.modalPresentationStyle = UIModalPresentationFullScreen;
-    
-    
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         [self presentModalViewController:picker animated:YES];
     } else if (sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
@@ -1548,14 +1549,16 @@ typedef enum {
                 photoName=@"1.jpg";
             } else {
                 NSInteger photoNumber=[[self.photoArray valueForKeyPath:@"@max.integerValue"] integerValue]+1;
-                photoName=[[NSString alloc] initWithFormat:@"%d.jpg",photoNumber];
+                photoName=[[NSString alloc] initWithFormat:@"%ld.jpg",photoNumber];
             }
             NSString *filePath=[self.photoPath stringByAppendingPathComponent:photoName];
             NSData *photoData=UIImageJPEGRepresentation(photo, 0.8);
             if ([photoData writeToFile:filePath atomically:YES]) {
                 CasePhoto *newPhoto=[CasePhoto newDataObjectWithEntityName:@"CasePhoto"];
-                newPhoto.caseinfo_id=self.caseID;
-                newPhoto.photo_name=photoName;
+                newPhoto.project_id = self.caseID;
+                newPhoto.photo_name = photoName;
+                newPhoto.photopath=filePath;
+                newPhoto.type = @"现场照片";
                 [[AppDelegate App] saveContext];
                 [self.photoArray insertObject:photoName atIndex:self.imageIndex];
                 dispatch_async(dispatch_get_main_queue(), ^(void) {

@@ -128,7 +128,49 @@ static NSString *PASSWORD=@"Xinlu:Admin";
                              " </UploadDataSet> \n",PASSWORD,xmlDataFile];
     [self executeWebService:@"UploadDataSet" serviceParm:soapMessage];
 }
-
+//上传图片
+- (void)uploadPhotot:(NSString *)xmlDataFile updatedObject:(id)updatedObject{
+    NSString *soapMessage = [[NSString alloc] initWithFormat:@" <UploadPhoto xmlns=\"http://tempuri.org/IrmsData/MobileData\"> \n"
+                             "  <key>%@</key> \n"
+                             "  %@ \n"
+                             " </UploadPhoto> \n",PASSWORD,xmlDataFile];
+    [self executeWebService:@"UploadPhoto" serviceParm:soapMessage updatedObject:updatedObject];
+}
+-(void)executeWebService:(NSString *)serviceName
+             serviceParm:(NSString *)parms updatedObject:(id)updatedObject{
+    //web service request
+    NSString *soapMessage=[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+                           "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \n"
+                           "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"  \n"
+                           "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"> \n"
+                           "<soapenv:Header/>"
+                           "<soapenv:Body>  \n"
+                           "%@"
+                           "</soapenv:Body> \n"
+                           "</soapenv:Envelope>",parms];
+    NSString *urlString=[[[AppDelegate App] serverAddress] stringByAppendingString:@"/MobileData.asmx"];
+    NSURL *url=[NSURL URLWithString:urlString];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength=[NSString stringWithFormat:@"%d",[soapMessage length]];
+    [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: [NSString stringWithFormat:@"http://tempuri.org/IrmsData/MobileData/%@",serviceName] forHTTPHeaderField:@"SOAPAction"];
+    
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        if (data.length > 0 && error == nil) {
+            NSString *theXML = [[NSString alloc] initWithBytes: [data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+            [self.delegate getWebServiceReturnString:theXML forWebService:serviceName updatedObject:updatedObject];
+        } else if (error != nil && error.code == NSURLErrorTimedOut) {
+            [self.delegate requestTimeOut];
+        } else if (error != nil) {
+            [self.delegate requestUnkownError];
+        }
+    }];
+}
 -(void)executeWebService:(NSString *)serviceName
              serviceParm:(NSString *)parms{
     //web service request
@@ -161,6 +203,9 @@ static NSString *PASSWORD=@"Xinlu:Admin";
             [self.delegate requestTimeOut];
         } else if (error != nil) {
             [self.delegate requestUnkownError];
+        }else if(error == nil){
+            NSLog(@"不知道为什么错了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"ParserFinished" object:nil userInfo:nil];
         }
     }];
 }

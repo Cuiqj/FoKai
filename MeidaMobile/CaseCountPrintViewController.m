@@ -57,7 +57,7 @@ static NSString * const xmlName = @"CaseCountTable";
         self.textfieldCaseAddress.text = caseInfo.full_happen_place_forCount;
    // }
     
-    self.casecountstandard.text = @"粤交路[1998]38号文的规定";
+    self.casecountstandard.text = @"1、粤交路[1998]38号文的规定。";
     self.casecountstandard.delegate = self;
     self.textfieldHappenTime.delegate =self;
     
@@ -442,8 +442,9 @@ static NSString * const xmlName = @"CaseCountTable";
     } else{
         ListSelectViewController *listPicker=[self.storyboard instantiateViewControllerWithIdentifier:@"ListSelectPoPover"];
         listPicker.delegate=self;
-        listPicker.data = @[@"粤交路[1998]38号文的规定",@"粤交路[1999]263号文的规定"];
+        listPicker.data = @[@"1、粤交路[1998]38号文的规定。",@"2、物价评估机构评估价格。"];
         self.pickerPopover=[[UIPopoverController alloc] initWithContentViewController:listPicker];
+        listPicker.preferredContentSize = CGSizeMake(350, 200);
         UITextField * textfield = sender;
         CGRect rect = CGRectMake(textfield.frame.origin.x, textfield.frame.origin.y, textfield.frame.size.width/2, textfield.frame.size.height);
         [self.pickerPopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
@@ -459,7 +460,7 @@ static NSString * const xmlName = @"CaseCountTable";
         }else if([self.casecountstandard.text hasSuffix:data]){
             self.casecountstandard.text =[[self.casecountstandard.text componentsSeparatedByString:data][0] substringToIndex:[self.casecountstandard.text componentsSeparatedByString:data][0].length-1];
         }else{
-            self.casecountstandard.text = [NSString stringWithFormat:@"%@、%@",self.casecountstandard.text,data];
+            self.casecountstandard.text = [NSString stringWithFormat:@"%@%@",self.casecountstandard.text,data];
         }
     }else{
         self.casecountstandard.text = data;

@@ -133,8 +133,8 @@
     self.textParty.text = citizen.party;
     self.textPartyAddress.text = citizen.address;
     //self.textCaseReason.text = [NSString stringWithFormat:@"驾驶%@%@因交通事故%@", citizen.automobile_number, citizen.automobile_pattern, proveInfo.case_short_desc];
-//    self.textCaseReason.text = [NSString stringWithFormat:@"交通事故%@",  proveInfo.case_short_desc];
-    self.textCaseReason.text = proveInfo.case_short_desc;
+    self.textCaseReason.text = [NSString stringWithFormat:@"交通事故%@", proveInfo.case_short_desc];
+//    self.textCaseReason.text = proveInfo.case_short_desc;
     self.textOrg.text = self.notice.organization_id;
     
     NSArray * tempArr = [self.notice.case_desc componentsSeparatedByString:@"，经与当事人"];
@@ -144,7 +144,7 @@
     self.textViewCaseDesc.text = NSStringNilIsBad(tempCaseDesc);
 
     
-    self.textWitness.text = @"现场照片、勘验检查笔录、询问笔录、现场勘验图";
+    self.textWitness.text = @" 勘验检查笔录、询问笔录、现场勘验图、现场照片";
     self.textViewPayReason.text = self.notice.pay_reason;
     
     NSArray *temp=[Citizen allCitizenNameForCase:self.caseID];
@@ -522,7 +522,7 @@
             if (agency.length<=0) {
                 agency = @"广东省公路事务中心佛开高速公路路政大队";
             }
-            NSArray * temp=[notice.case_desc componentsSeparatedByString:@"分"];
+            NSArray * temp=[notice.case_desc componentsSeparatedByString:@"日"];
             caseDescription=[temp objectAtIndex:1];
             //caseDescription = NSStringNilIsBad(notice.case_desc);
             

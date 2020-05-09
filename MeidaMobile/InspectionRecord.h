@@ -25,8 +25,11 @@
 @property (nonatomic, retain) NSString * remark;
 @property (nonatomic, retain) NSString * roadsegment_id;
 @property (nonatomic, retain) NSDate * start_time;
+@property (nonatomic, retain) NSDate * end_time;
 @property (nonatomic, retain) NSNumber * station;
 @property (nonatomic, retain) NSString * status;
+
+
 
 + (NSArray *)recordsForInspection:(NSString *)inspectionID;
 @end

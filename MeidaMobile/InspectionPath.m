@@ -15,6 +15,7 @@
 @dynamic inspectionid;
 @dynamic myid;
 @dynamic stationname;
+@dynamic station_record;
 @dynamic isuploaded;
 
 - (NSString *) signStr{

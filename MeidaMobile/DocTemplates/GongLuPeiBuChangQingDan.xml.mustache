@@ -16,13 +16,13 @@
             	<pdf:td width="32.5">时 间</pdf:td>
             	<pdf:td width="51.5" textAlignment="left">
                     
-                    <pdf:text point="mid-left:12,5.5" static="NO"> 年   月   日  : </pdf:text>
+                    <pdf:text point="mid-left:12,5.5" static="NO"> 年  月  日  时  分 </pdf:text>
                     
                     <pdf:text point="mid-left:4,5.5" static="NO">{{case.year}}</pdf:text>
-                    <pdf:text point="mid-left:17,5.5" static="NO">{{case.month}}</pdf:text>
-                    <pdf:text point="mid-left:25,5.5" static="NO">{{case.day}}</pdf:text>
-                    <pdf:text point="mid-left:33,5.5" static="NO">{{case.hour}}</pdf:text>
-                    <pdf:text point="mid-left:38,5.5" static="NO">{{case.min}}</pdf:text>
+                    <pdf:text point="mid-left:16,5.5" static="NO">{{case.month}}</pdf:text>
+                    <pdf:text point="mid-left:23,5.5" static="NO">{{case.day}}</pdf:text>
+                    <pdf:text point="mid-left:29.7,5.5" static="NO">{{case.hour}}</pdf:text>
+                    <pdf:text point="mid-left:37.1,5.5" static="NO">{{case.min}}</pdf:text>
                 </pdf:td>
                 <pdf:td width="26">地  点</pdf:td>
                 <pdf:td width="56.5" textAlignment="left" static="NO">{{ case.place }}</pdf:td>

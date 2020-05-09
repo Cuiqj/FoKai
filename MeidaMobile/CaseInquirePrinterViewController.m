@@ -346,6 +346,12 @@ enum kPageInfo {
         inquireNotePages = (NSMutableArray *)[self pagesSplitted];
         pagesCount = [NSString stringWithFormat:@"%d",[inquireNotePages count]];
         pageNum = @"1";
+    }else{
+        return  @{
+          @"case": @{},
+          @"caseInquire": @{},
+          @"page":@{},
+          };
     }
     
     if (date) {
@@ -366,7 +372,9 @@ enum kPageInfo {
     }
     NSString * inquirer_name_num = [self.caseInquire inquirer_name_num];
     NSString * recorder_name_num = [self.caseInquire recorder_name_num];
-    
+    if(recorder_name_num.length<=0){
+        recorder_name_num = @"";
+    }
     id caseInquireData = @{
                            @"date":dateString,
                            @"place":address,

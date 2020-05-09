@@ -8,6 +8,7 @@
 
 #import "InspectionCheckPickerViewController.h"
 #import "UserInfo.h"
+#import "Sfz.h"
 
 @interface InspectionCheckPickerViewController ()
 @property (nonatomic,retain) NSArray *data;
@@ -50,7 +51,7 @@
             self.data = [[UserInfo allUserInfo] valueForKey:@"name"];
             break;
         case kStation:
-            self.data = [Systype typeValueForCodeName:@"收费站"];
+            self.data = [Sfz allShoufzName];
             break;
         case kDescription:
             self.data = [Systype typeValueForCodeName:@"巡查无异常描述"];
