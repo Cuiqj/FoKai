@@ -491,13 +491,13 @@
     }
     NSString * kstationstartandend;
     if (self.zhuanghaoend.text.intValue == self.gozhuanghaoend.text.intValue && self.zhuanghaostart.text.intValue == self.gozhuanghaostart.text.intValue && (self.zhuanghaostart.text.intValue!=0 || self.zhuanghaoend.text.intValue !=0)) {
-        kstationstartandend = [NSString stringWithFormat:@"K%d+%03d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
+        kstationstartandend = [NSString stringWithFormat:@"K%d+%03dm",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
     }else if((self.zhuanghaoend.text.intValue !=0 || self.zhuanghaostart.text.intValue !=0) && (self.gozhuanghaoend.text.intValue !=0 || self.gozhuanghaostart.text.intValue !=0)){
-        kstationstartandend = [NSString stringWithFormat:@"K%d+%03d-K%d+%03d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue,self.gozhuanghaostart.text.intValue,self.gozhuanghaoend.text.intValue];
+        kstationstartandend = [NSString stringWithFormat:@"K%d+%03dm至K%d+%03dm",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue,self.gozhuanghaostart.text.intValue,self.gozhuanghaoend.text.intValue];
     }else if(self.zhuanghaoend.text.intValue ==0 && self.gozhuanghaoend.text.intValue ==0 && self.zhuanghaostart.text.intValue ==0 && self.gozhuanghaostart.text.intValue ==0){
         kstationstartandend = @"";
     }else{
-        kstationstartandend = [NSString stringWithFormat:@"K%d+%03d",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
+        kstationstartandend = [NSString stringWithFormat:@"K%d+%03dm",self.zhuanghaostart.text.intValue,self.zhuanghaoend.text.intValue];
     }
     NSString * remark = [self.textDescNormal.text stringByReplacingOccurrencesOfString:@"[时1]-[时2]" withString:time];
     remark = [remark stringByReplacingOccurrencesOfString:@"[时1]" withString:self.textTimeStart.text];
@@ -506,7 +506,7 @@
     remark = [remark stringByReplacingOccurrencesOfString:@"[站1]" withString:self.textsfz.text];
     remark = [remark stringByReplacingOccurrencesOfString:@"[站2]" withString:self.textsfzend.text];
     remark = [remark stringByReplacingOccurrencesOfString:@"[桩]" withString:kstationstartandend];
-    remark = [remark stringByReplacingOccurrencesOfString:@"K0+000" withString:@""];
+    remark = [remark stringByReplacingOccurrencesOfString:@"K0+000m" withString:@""];
     self.textViewNormalDesc.text = remark;
 //    self.textViewNormalDesc.text = [NSString stringWithFormat:@"%@在%@%@路段巡查%@%@，%@",time,sfzname,kstationstartandend,self.textRoad.text,self.textPlaceNormal.text,self.textDescNormal.text];
 }
