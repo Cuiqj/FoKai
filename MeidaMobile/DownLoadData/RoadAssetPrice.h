@@ -23,4 +23,6 @@
 @property (nonatomic, retain) NSString * spec;
 @property (nonatomic, retain) NSString * unit_name;
 
++(NSString *)document_namewithRoadAssetPriceforname:(NSString * )name andspec:(NSString *)spec;
+
 @end

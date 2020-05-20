@@ -24,6 +24,7 @@ typedef void(^SelectedIndexPathBlock) (NSIndexPath*);
 //设置检查类型
 - (void)setSelectData:(NSString *)data;
 
+- (void)setSelectData:(NSString *)data withtag:(NSInteger)tag;
 // added by xushiwen
 - (void)listSelectPopover:(ListSelectViewController *)popoverContent selectedIndexPath:(NSIndexPath *)indexPath;
 

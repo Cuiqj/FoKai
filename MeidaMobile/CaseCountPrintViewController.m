@@ -14,7 +14,7 @@
 #import "NSNumber+NumberConvert.h"
 #import "CaseCount.h"
 #import "FileCode.h"
-
+#import "RoadAssetPrice.h"
 
 static NSString * const xmlName = @"CaseCountTable";
 
@@ -23,12 +23,14 @@ static NSString * const xmlName = @"CaseCountTable";
 @property (nonatomic, retain) CaseCount      *caseCount;
 
 @property (nonatomic,retain) UIPopoverController *pickerPopover;
+@property (nonatomic,retain) NSString * tagstring;
 @end
 
 @implementation CaseCountPrintViewController
 @synthesize caseID    = _caseID;
 @synthesize data      = _data;
 @synthesize caseCount = _caseCount;
+
 
 -(void)viewDidLoad{
     [super setCaseID:self.caseID];
@@ -49,15 +51,12 @@ static NSString * const xmlName = @"CaseCountTable";
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy年MM月dd日HH时mm分"];
     [dateFormatter setLocale:[NSLocale currentLocale]];
-    
     //self.labelCaseAddress.text = caseInfo.full_happen_place2;
     //if(caseInfo.remark !=nil){
     //    self.textfieldCaseAddress.text = caseInfo.remark;
     //}else{
         self.textfieldCaseAddress.text = caseInfo.full_happen_place_forCount;
    // }
-    
-    self.casecountstandard.text = @"1、粤交路[1998]38号文的规定。";
     self.casecountstandard.delegate = self;
     self.textfieldHappenTime.delegate =self;
     
@@ -66,9 +65,6 @@ static NSString * const xmlName = @"CaseCountTable";
     }else{
         self.textfieldHappenTime.text = [dateFormatter stringFromDate:caseInfo.happen_date];
     }
-    
-    
-    
     if (citizen) {
         self.labelParty.text       = [NSString stringWithFormat:@"%@ %@", (citizen.org_name ? citizen.org_name : @""), citizen.party];
         self.labelAutoNumber.text  = citizen.automobile_number;
@@ -76,6 +72,23 @@ static NSString * const xmlName = @"CaseCountTable";
 //        self.labelTele.text        = citizen.tel_number;
     }
     self.data = [[CaseDeformation deformationsForCase:self.caseID forCitizen:citizen.automobile_number] mutableCopy];
+    NSString * document_namestr ;
+    for (CaseDeformation * deformation in self.data) {
+        NSString * str = [RoadAssetPrice document_namewithRoadAssetPriceforname:deformation.roadasset_name andspec:deformation.rasset_size];
+        if (![document_namestr containsString:str]) {
+            document_namestr = [NSString stringWithFormat:@"%@%@",document_namestr,str];
+        }
+        
+    }
+    if ([document_namestr containsString:@"38"]) {
+        self.tagstring = @"0";
+        if ([document_namestr containsString:@"263"]) {
+            self.tagstring = @"01";
+        }
+    }else if(([document_namestr containsString:@"263"])){
+        self.tagstring = @"1";
+    }
+    [self setSelectData:nil withtag:3];
     [self.tableCaseCountDetail reloadData];
     double summary=[[self.data valueForKeyPath:@"@sum.total_price.doubleValue"] doubleValue];
     self.labelPayReal.text     = [NSString stringWithFormat:@"%.2f",summary];
@@ -442,7 +455,7 @@ static NSString * const xmlName = @"CaseCountTable";
     } else{
         ListSelectViewController *listPicker=[self.storyboard instantiateViewControllerWithIdentifier:@"ListSelectPoPover"];
         listPicker.delegate=self;
-        listPicker.data = @[@"1、粤交路[1998]38号文的规定。",@"2、物价评估机构评估价格。"];
+        listPicker.data = @[@"粤交路[1998]38号文的规定",@"粤交路[1999]263号文的规定",@"物价评估机构评估价格"];
         self.pickerPopover=[[UIPopoverController alloc] initWithContentViewController:listPicker];
         listPicker.preferredContentSize = CGSizeMake(350, 200);
         UITextField * textfield = sender;
@@ -451,19 +464,31 @@ static NSString * const xmlName = @"CaseCountTable";
         listPicker.pickerPopover=self.pickerPopover;
     }
 }
-- (void)setSelectData:(NSString *)data{
-    if ([self.casecountstandard.text isEqualToString:data]) {
-        self.casecountstandard.text = @"";
-    }else if (self.casecountstandard.text.length>0) {
-        if ([self.casecountstandard.text hasPrefix:data]) {
-            self.casecountstandard.text =[[self.casecountstandard.text componentsSeparatedByString:data][1] substringFromIndex:1];
-        }else if([self.casecountstandard.text hasSuffix:data]){
-            self.casecountstandard.text =[[self.casecountstandard.text componentsSeparatedByString:data][0] substringToIndex:[self.casecountstandard.text componentsSeparatedByString:data][0].length-1];
-        }else{
-            self.casecountstandard.text = [NSString stringWithFormat:@"%@%@",self.casecountstandard.text,data];
+- (void)setSelectData:(NSString *)data withtag:(NSInteger)tag{
+    if ([self.tagstring containsString:[NSString stringWithFormat:@"%ld",(long)tag]]) {
+        self.tagstring = [self.tagstring stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%ld",(long)tag] withString:@""];
+    }else if(tag >=0 && tag <3){
+        self.tagstring = [NSString stringWithFormat:@"%@%@",self.tagstring,[NSString stringWithFormat:@"%ld",(long)tag]];
+    }
+    if ([self.tagstring isEqualToString:@"2"]) {
+        self.casecountstandard.text = @"物价评估机构评估价格。";
+    }else if([self.tagstring containsString:@"0"] && [self.tagstring containsString:@"1"]){
+        self.casecountstandard.text = @"粤交路[1998]38号文的规定、粤交路[1999]263号文的规定。";
+        if ([self.tagstring containsString:@"2"]) {
+            self.casecountstandard.text = [NSString stringWithFormat:@"1、%@2、%@",self.casecountstandard.text,@"物价评估机构评估价格。"];
+        }
+    }else if([self.tagstring containsString:@"0"]){
+        self.casecountstandard.text = @"粤交路[1998]38号文的规定。";
+        if ([self.tagstring containsString:@"2"]) {
+            self.casecountstandard.text = [NSString stringWithFormat:@"1、%@2、%@",self.casecountstandard.text,@"物价评估机构评估价格。"];
+        }
+    }else if([self.tagstring containsString:@"1"]){
+        self.casecountstandard.text = @"粤交路[1999]263号文的规定。";
+        if ([self.tagstring containsString:@"2"]) {
+            self.casecountstandard.text = [NSString stringWithFormat:@"1、%@2、%@",self.casecountstandard.text,@"物价评估机构评估价格。"];
         }
     }else{
-        self.casecountstandard.text = data;
+        self.casecountstandard.text = @"";
     }
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{

@@ -59,7 +59,9 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self.delegate respondsToSelector:@selector(setSelectData:)]) {
+    if ([self.delegate respondsToSelector:@selector(setSelectData:withtag:)]) {
+        [self.delegate setSelectData:[self.data objectAtIndex:indexPath.row] withtag:indexPath.row];
+    }else if ([self.delegate respondsToSelector:@selector(setSelectData:)]) {
         [self.delegate setSelectData:[self.data objectAtIndex:indexPath.row]];
     } else if ([self.delegate respondsToSelector:@selector(listSelectPopover:selectedIndexPath:)]) {
         [self.delegate listSelectPopover:self selectedIndexPath:indexPath];
