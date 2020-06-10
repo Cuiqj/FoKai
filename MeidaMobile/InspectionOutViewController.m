@@ -245,8 +245,7 @@
             pathString                  = [[NSString alloc] initWithFormat:@"%@出发%@，%@结束巡查",[formatter stringFromDate:inspection.time_start],pathString,[formatter stringFromDate:inspection.time_end]];
             inspection.inspection_place = pathString;
 //            巡查路线   保存
-            inspection.inspection_place = @"";
-//            self.textRoad.text;
+            inspection.inspection_place = self.textRoad.text;
             [[AppDelegate App] saveContext];
         }
         for (TempCheckItem *checkItem in self.itemArray) {
