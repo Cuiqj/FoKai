@@ -168,6 +168,7 @@
             inspection.isdeliver=@(YES);
             inspection.delivertext = self.textDeliver.text;
             inspection.yjzb = self.textyjzb.text;
+            inspection.yjsx = self.textDeliver.text;
             NSString *description=@"";
             NSArray *recordArray=[InspectionRecord recordsForInspection:inspectionID];
             for (int i             = 0; i<recordArray.count; i++) {

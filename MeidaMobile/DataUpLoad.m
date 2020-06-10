@@ -15,7 +15,7 @@
 
 //所需上传的表名称
 //modify by lxm 2013.05.13
-static NSString *dataNameArray[UPLOADCOUNT]={@"Inspection_ClassMain",@"CaseInvestigate",@"CaseProveInfo",@"Project",@"Task",@"AtonementNotice",@"CaseDeformation",@"CaseInfo",@"CaseInquire",@"CaseServiceFiles",@"CaseServiceReceipt",@"Citizen",@"RoadWayClosed",@"Inspection",@"InspectionCheck",@"InspectionOutCheck",@"InspectionPath",@"InspectionRecord",@"InspectionTotal",@"ParkingNode",@"CaseMap",@"ConstructionChangeBack",@"TrafficRecord",@"CasePhoto"};
+static NSString *dataNameArray[UPLOADCOUNT]={@"InspectionRecord",@"Inspection_ClassMain",@"CaseInvestigate",@"CaseProveInfo",@"Project",@"Task",@"AtonementNotice",@"CaseDeformation",@"CaseInfo",@"CaseInquire",@"CaseServiceFiles",@"CaseServiceReceipt",@"Citizen",@"RoadWayClosed",@"Inspection",@"InspectionCheck",@"InspectionOutCheck",@"InspectionPath",@"InspectionTotal",@"ParkingNode",@"CaseMap",@"ConstructionChangeBack",@"TrafficRecord",@"CasePhoto"};
 //static NSString *dataNameArray[UPLOADCOUNT]={@"CaseMap"};
 
 @interface DataUpLoad()

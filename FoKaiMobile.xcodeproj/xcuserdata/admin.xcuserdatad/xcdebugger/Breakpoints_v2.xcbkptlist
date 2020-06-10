@@ -250,28 +250,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MeidaMobile/WebServiceHandler.m"
-            timestampString = "609834912.154036"
+            timestampString = "612166560.469216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "-executeWebService:serviceParm:updatedObject:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MeidaMobile/AddNewInspectRecordViewController.m"
-            timestampString = "611635689.916772"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "-btnSave:"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "-executeWebService:serviceParm:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
